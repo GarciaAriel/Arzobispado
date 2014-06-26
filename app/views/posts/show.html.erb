@@ -9,6 +9,6 @@
   <strong>Content:</strong>
   <%= @post.content %>
 </p>
-<%= image_tag @product.image.url(:medium) %>
+<%= image_tag @post.image.url(:medium) %>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>

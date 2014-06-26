@@ -57,7 +57,7 @@ GEM
     mime-types (1.25.1)
     minitest (5.3.5)
     multi_json (1.10.1)
-    paperclip (4.1.1)
+    paperclip (3.5.4)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
@@ -126,7 +126,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
-  paperclip
+  paperclip (~> 3.0)
   rails (= 4.0.1)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
