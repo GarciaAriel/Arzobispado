@@ -1,0 +1,26 @@
+<%= form_for(@evento) do |f| %>
+  
+	  <div class="field">
+	  	<%= f.label :nombre %>
+	  	<%= f.text_field :nombre %>
+	  </div>
+	  <div class="field">
+	  	<%= f.label :descripcion %>
+	  	<%= f.text_area :descripcion %>
+	  </div>
+	<div class="field">
+		<%= f.label :fecha_inicio %>
+		<%= f.date_select :fecha_inicio %>
+	</div>
+	<div class="field">
+		<%= f.label :fecha_fin %>
+		<%= f.date_select :fecha_fin %>
+	</div>
+
+   
+   
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+<% end %>

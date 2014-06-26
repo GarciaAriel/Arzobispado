@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
   get 'welcome/index'
 
+  resources :eventos
+
+  # get 'eventos/form'
+  # post 'eventos/form'
+  # get 'eventos/index'
+  # post 'eventos/index'
+  # get 'eventos/new'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
    root 'welcome#index'
+   get 'welcome/menu' => 'welcome#menu'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

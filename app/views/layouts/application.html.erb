@@ -1,14 +1,163 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Arzobispado</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>CSS Dock Menu</title>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-</head>
-<body>
+  <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/interface.js"></script>
+<link href="assets/style.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 7]>
+ <style type="text/css">
+ .dock img { behavior: url(iepngfix.htc) }
+ </style>
+<![endif]-->
 
-<%= yield %>
+</head>
+<body style='background-image:url(http://www.calvinwan.com/wp-content/uploads/2011/11/gradient-background-c.jpg);'>
+
+
+
+
+<div class="navbar navbar-default">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">arzobispado Logo</a>
+  </div>
+  
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+
+
+
+      
+    
+    	
+		<div class="dock" id="dock">
+  <div class="dock-container">
+	  <a class="dock-item" href="#"><img src="assets/home.png" alt="Inicio" /><span style="color:white">Inicio</span></a> 
+	  <a class="dock-item" href="#"><img src="assets/rss.png" alt="rss" /><span style="color:white">Eventos</span></a> 
+	  <a class="dock-item" href="#"><img src="assets/email.png" alt="Contacto" /><span style="color:white">Contacto</span></a> 
+	  <a class="dock-item" href="#"><img src="assets/history.png" alt="history" /><span style="color:white">Historia</span></a> 
+	  <a class="dock-item" href="#"><img src="assets/calendar.png" alt="calendar" /><span style="color:white">Calendario</span></a> 
+	  <a class="dock-item" href="#"><img src="assets/rss.png" alt="rss" /><span style="color:white">Mi cuenta</span></a>
+	  <a class="dock-item" href="#"><img src="assets/rss.png" alt="rss" /><span style="color:white">Salir</span></a> 
+
+	  
+  </div> 
+</div>
+	
+	
+	
+  </div>
+</div>
+
+
+<div class='row'>
+	<div class='col-lg-1'></div>
+	
+	<div class='col-lg-3'>
+		<div class='page-header'><h1 align='center'>Opciones</h1></div>		
+		<div class="list-group">
+		  <a href="#" class="list-group-item active">
+		    Crear Evento
+		  </a>
+		  <a href="#" class="list-group-item">Comentarios denunciados
+		  </a>
+		  <a href="#" class="list-group-item">Ver Eventos
+		  </a>
+		  <a href="#" class="list-group-item">Realizar Nuevo cuestionario
+		  </a>
+		  <a href="#" class="list-group-item">Ver Cuestionario
+		  </a>
+		</div>
+	</div>
+
+	<div class='col-lg-7'>
+		<br><br><br><br><br><br><br>
+		<div class="jumbotron">
+			<br>
+			<br><br><br><br>
+			<%= yield %>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br>
+ 		</div>
+ 	</div>
+
+	<div class='col-lg-1'></div>
+</div>
+
+	
+<!--bottom dock -->
+
+
+<!--dock menu JS options -->
+<script type="text/javascript">
+	
+	$(document).ready(
+		function()
+		{
+			$('#dock').Fisheye(
+				{
+					maxWidth: 90,
+					items: 'a',
+					itemsText: 'span',
+					container: '.dock-container',
+					itemWidth: 60,
+					proximity: 40,
+					halign : 'center'
+				}
+			)
+		}
+	);
+
+</script>
+
+<footer id="footer" style="">
+  <div class="panel panel-default">
+          <div class="row">
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-2 col-sm-12">
+              <h4>Ferro Tools</h4>
+              <p>Ferro tools es una tienda virtual, en el area ferretera, oferca productos de hogar hasta industriales, para las damas ofrecemos herramientas de jardineria y bricolage</p>
+            </div>
+            <div class="col-lg-3 col-sm-12 ">
+              <h4>Términos y condiciones</h4>
+              <div id="tweet" class="twitter" data-account-id="crivosthemes">
+                <p>Véa los términos y clasusulas de uso de la página web aqui
+                <a href="/legal.html"> Términos y condiciones </a></p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-12">
+              <div class="contact-details">
+                <h4>Contáctanos</h4>
+                <ul class="contact">
+                  <li><p><i class="icon-map-marker"></i> <strong>Dirección:</strong>C/ nombre de la calle</p></li>
+                  <li><p><i class="icon-phone"></i> <strong>Teléfono</strong> 4-xxx-xxx</p></li>
+                  <li><p><i class="icon-link"></i> <strong>Celular:</strong> 7-xxx-xxxx</p></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-12">
+              <h4>Síguenos</h4>
+              <div class="social-icons">
+                <ul class="social-icons">
+                  <li class="facebook"><a href="http://www.facebook.com/" target="_blank" data-placement="bottom" rel="tooltip" title="Facebook">Facebook</a></li>
+                  <li class="twitter"><a href="http://www.twitter.com/" target="_blank" data-placement="bottom" rel="tooltip" title="Twitter">Twitter</a></li>
+                  <li class="linkedin"><a href="http://www.linkedin.com/" target="_blank" data-placement="bottom" rel="tooltip" title="Linkedin">Linkedin</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+</footer>
 
 </body>
 </html>
