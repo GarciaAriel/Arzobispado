@@ -18,7 +18,7 @@
 
 </head>
 <body style='background-image:url(http://www.calvinwan.com/wp-content/uploads/2011/11/gradient-background-c.jpg);'>
-	
+
 
 <div class="navbar navbar-default navbar-fixed-top">
   <div class="navbar-header">
@@ -40,7 +40,7 @@
 		<div class="dock" id="dock">
   <div class="dock-container">
 	  <a class="dock-item" href="#"><img src="assets/home.png" alt="Inicio" /><span style="color:white">Inicio</span></a> 
-	  <a class="dock-item" href="#"><img src="assets/rss.png" alt="rss" /><span style="color:white">Eventos</span></a> 
+	  <a class="dock-item" href="/eventos"><img src="assets/rss.png" alt="rss" /><span style="color:white">Eventos</span></a> 
 	  <a class="dock-item" href="#"><img src="assets/email.png" alt="Contacto" /><span style="color:white">Contacto</span></a> 
 	  <a class="dock-item" href="#"><img src="assets/history.png" alt="history" /><span style="color:white">Historia</span></a> 
 	  <a class="dock-item" href="#"><img src="assets/calendar.png" alt="calendar" /><span style="color:white">Calendario</span></a> 
@@ -48,7 +48,7 @@
 	  <a class="dock-item" href="#"><img src="assets/rss.png" alt="rss" /><span style="color:white">Salir</span></a> 
 
 	  
-  </div> 
+  </div>
 </div>
 	
 	
@@ -60,22 +60,15 @@
 <div class='row'>
 	<div class='col-lg-1'></div>
 	
-	<div class='col-lg-3'>
-		<div class='page-header'><h1 align='center'>Opciones</h1></div>		
-		<div class="list-group">
-		  <a href="#" class="list-group-item active">
-		    Crear Evento
-		  </a>
-		  <a href="#" class="list-group-item">Comentarios denunciados
-		  </a>
-		  <a href="#" class="list-group-item">Ver Eventos
-		  </a>
-		  <a href="#" class="list-group-item">Realizar Nuevo cuestionario
-		  </a>
-		  <a href="#" class="list-group-item">Ver Cuestionario
-		  </a>
+	<% if @submenu==1 %>
+		<div class='col-lg-3'>
+			<%= render 'layouts/events_sub'%>
 		</div>
-	</div>
+	<% else %>	
+		<div class='col-lg-3'>
+			<%= render 'layouts/start_sub'%>
+		</div>
+	<% end %>	
 
 	<div class='col-lg-7'>
 		<br><br><br><br><br><br><br>

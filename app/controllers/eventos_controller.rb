@@ -1,22 +1,27 @@
 class EventosController < ApplicationController
 	before_action :set_evento, only: [:show, :edit, :update, :destroy]
 	def index
+		@submenu=1
 		@eventos = Evento.all
 	end
 	
 	def new
+		@submenu=1
 		@evento = Evento.new
 	end
 
 	def show
+		@submenu=1
 		@evento = Evento.find(params[:id])
 	end
 
 	def edit
+		@submenu=1
 		@evento = Evento.find(params[:id])
 	end
 	
 	def create
+		@submenu=1
 	    @evento = Evento.new(evento_params)
 
 	    respond_to do |format|
@@ -30,6 +35,7 @@ class EventosController < ApplicationController
   	end
 
   	def update
+  		@submenu=1
   		respond_to do |format|
   			if @evento.update(evento_params)
   				format.html{redirect_to @evento, notice: 'evento ok'}
@@ -42,6 +48,7 @@ class EventosController < ApplicationController
 
 
   	def destroy
+  		@submenu=1
 	    @evento.destroy
 	    respond_to do |format|
 	      format.html { redirect_to eventos_url, notice: 'High score was successfully destroyed.' }
