@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :posts
 
   get 'welcome/index'
 
   resources :eventos
+  resources :posts
 
   # get 'eventos/form'
   # post 'eventos/form'
