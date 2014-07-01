@@ -11,8 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20140625230251) do
+
+# Could not dump table "eventos" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "posts", force: true do |t|
     t.string   "title"
@@ -24,6 +26,5 @@ ActiveRecord::Schema.define(version: 20140625230251) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
-
 
 end

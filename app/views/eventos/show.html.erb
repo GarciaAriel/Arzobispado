@@ -1,28 +1,48 @@
-<>
-
-<p id="notice"><%= notice %></p>
 
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @evento.nombre %>
-</p>
+<form class="form-horizontal">
+  <fieldset>
 
-<p>
-  <strong>Descripcion:</strong>
-  <%= @evento.descripcion %>
-</p>
+    <div class="form-group">
+      <font color="white"><label class="col-lg-2 control-label" color: #000;>Nombre:</label></font>
+      <div class="col-lg-8">
+	  	<input type="text" class ="form-control" name="country" value="<%= @evento.nombre%>" readonly>
+	  </div>
+    </div>
 
-<p>
-  <strong>Fecha inicio:</strong>
-  <%= @evento.fecha_inicio %>
-</p>
+    <br><br>
+    <div class="form-group">
+      <font color="white"><label class="col-lg-2 control-label" color: #000;>Descripcion:</label></font>
+	  <div class="col-lg-8">
+	  	<textarea class ="form-control" rows="4" cols="71" readonly>
+	  		<%= @evento.descripcion%>
+		</textarea>
+	  </div>
+    </div>
 
-<p>
-  <strong>Fecha fin:</strong>
-  <%= @evento.fecha_fin %>
-</p>
+    <br><br>
+    
+	<div class="form-group">
+	    <font color="white"> <label for="inputDate" class="col-lg-2 control-label">Fecha inicio:</label> </font>
+	    <div class="col-lg-8">
+	    	<input type="text" class ="form-control" name="country" value="<%= @evento.fecha_inicio%>" readonly>
+	  	</div>
+	</div>
 
-<%= link_to 'Editar', edit_evento_path(@evento) %> |
-<%= link_to 'Atras', eventos_path %>
+	<br><br>
+	<div class="form-group">
+	    <font color="white"> <label for="inputDate" class="col-lg-2 control-label">Fecha fin:</label> </font>
+	    <div class="col-lg-8">
+	    	<input type="text" class ="form-control" name="country" value="<%= @evento.fecha_fin%>" readonly>
+	  	</div>
+	</div>
 
+
+	<br><br>
+	<div><%= link_to 'Editar', edit_evento_path(@evento),:style=>'color:#ffffff;' %> |</div>
+	<div><%= link_to 'Atras', eventos_path,:style=>'color:#ffffff;' %></div>
+	
+	
+
+  </fieldset>
+</form>

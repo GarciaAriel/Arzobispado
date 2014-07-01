@@ -29,6 +29,18 @@ class EventosController < ApplicationController
 
   	end
 
+  	def update
+  		respond_to do |format|
+  			if @evento.update(evento_params)
+  				format.html{redirect_to @evento, notice: 'evento ok'}
+  			else
+  				format.html {render :edit}	
+  			end
+  		end
+  	end
+
+
+
   	def destroy
 	    @evento.destroy
 	    respond_to do |format|

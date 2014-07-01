@@ -1,26 +1,76 @@
 <%= form_for(@evento) do |f| %>
   
-	  <div class="field">
-	  	<%= f.label :nombre %>
-	  	<%= f.text_field :nombre %>
-	  </div>
-	  <div class="field">
-	  	<%= f.label :descripcion %>
-	  	<%= f.text_area :descripcion %>
-	  </div>
-	<div class="field">
-		<%= f.label :fecha_inicio %>
-		<%= f.date_select :fecha_inicio %>
-	</div>
-	<div class="field">
-		<%= f.label :fecha_fin %>
-		<%= f.date_select :fecha_fin %>
-	</div>
+	  
+	
 
-   
-   
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-  
+<form class="form-horizontal">
+  <fieldset>
+    <div class="form-group">
+      <font color="white"><label class="col-lg-2 control-label" color: #000;>Nombre:</label></font>
+      <div class="col-lg-8">
+	  	<%= f.text_field :nombre, :class =>"form-control", :placeholder => "Nombre" %>
+	  </div>
+    </div>
+
+    <br><br>
+    <div class="form-group">
+      <font color="white"><%= f.label :descripcion, :class =>"col-lg-2 control-label" %></font>
+	  <div class="col-lg-8">
+      	<%= f.text_area :descripcion, :class =>"form-control", :rows=>"3" %>
+        <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+      </div>
+    </div>
+
+    <br><br>
+    <br><br><br><br><br><br>
+	<div class="form-group">
+	    <font color="white"> <label for="inputDate" class="col-lg-2 control-label">Fecha inicio:</label> </font>
+	    <div class="col-lg-8">
+	       <%= f.text_field :fecha_inicio, :class=>'form-control input-append',:"data-format"=>'dd/MM/yyyy', :style=>"border-bottom-left-radius: 4px;  border-top-left-radius: 4px;"%>
+	    </div>
+	</div><br><br>
+
+
+<!-- this should go after your </body> -->
+<link rel="stylesheet" type="text/css" href="/jquery.datetimepicker.css"/ >
+<script src="/jquery.js"></script>
+<script src="/jquery.datetimepicker.js"></script>
+
+<input id="datetimepicker" type="text" >
+
+jQuery('#datetimepicker').datetimepicker();
+
+jQuery('#datetimepicker1').datetimepicker({
+ lang:'de',
+ i18n:{
+  de:{
+   months:[
+    'Januar','Februar','März','April',
+    'Mai','Juni','Juli','August',
+    'September','Oktober','November','Dezember',
+   ],
+   dayOfWeek:[
+    "So.", "Mo", "Di", "Mi", 
+    "Do", "Fr", "Sa.",
+   ]
+  }
+ },
+ timepicker:false,
+ format:'d.m.Y'
+});
+
+	    
+	
+
+	<div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+
+
+  </fieldset>
+</form>
+
 <% end %>
