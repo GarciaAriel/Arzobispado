@@ -16,18 +16,25 @@
     </tr>
   </thead>
   <tbody>
+    
     <% @eventos.each do |evento| %>
       <tr class="active">
         <td><font color="#FFF"><%=evento.nombre%></font></td>
         <td><font color="#FFF"><%=evento.descripcion%></font></td>
         <td><font color="#FFF"><%=evento.fecha_inicio%></font></td>
         <td><font color="#FFF"><%=evento.fecha_fin%></font></td>
+        
         <td><%= link_to 'Ver', evento,:style=>'color:#ffffff;' %></td>
-        <td><%= link_to 'Editar ', edit_evento_path(evento),:style=>'color:#ffffff;' %></td>
-        <td><%= link_to 'Destroy', evento, method: :delete, data: { confirm: 'Are you sure?' },:style=>'color:#ffffff;' %></td>
+        <% if current_user != nil %>  
+          <td><%= link_to 'Editar ', edit_evento_path(evento),:style=>'color:#ffffff;' %></td>
+          <td><%= link_to 'Destroy', evento, method: :delete, data: { confirm: 'Are you sure?' },:style=>'color:#ffffff;' %></td>
+        <% end %>
       </tr>
+    
     <% end %>
   </tbody>
 </table>
 
- <%= link_to 'Nuevo Evento', new_evento_path,:style=>'color:#ffffff;' %>
+<% if current_user != nil %>
+  <%= link_to 'Nuevo Evento', new_evento_path,:style=>'color:#ffffff;' %>
+<% end %>  
