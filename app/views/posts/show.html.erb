@@ -1,14 +1,59 @@
+<div class="row">
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @post.title %>
+ 
+ <h2 align="center"> <%= @post.title %> </h2>
+</p>
+<p align="center">
+<%= image_tag @post.image.url(:medium) %><br>
+</p>
+<p >
+	<font color="white"  FACE="arial">
+  <%= simple_format(@post.content) %>
+</font>
 </p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
-<%= image_tag @post.image.url(:medium) %>
+
+
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
+</div>
+<div class="row">
+	<div class="col-lg-10">
+	<div class="well">
+		<fieldset>
+			<legend>Comentar:</legend>
+			<%= form_for @comment do |f| %>
+		  <div class="field">
+			<%= f.label :content %><br>
+			<%= f.text_area :content, :size => "90x7" %>
+			<%= f.hidden_field :post_id,:value=>@post.id.to_s %><br>
+			<input type="submit" class="btn btn-primary" value="Comentar">
+	      </div>
+	      <%end%>
+	  </fieldset>
+	</div>
+	</div>
+
+	<%@comments.each do |comment|%>
+	<%if comment.visible?%>
+	<div class="row">
+	<div class="col-lg-10">
+		<div class="panel panel-default">
+
+  <div class="panel-heading">Usuario</div>
+  <div class="panel-body">
+  	
+    <%=simple_format(comment.content)%><br>
+    <%= link_to 'Edit', edit_comment_path(comment) %> 
+
+    
+  </div>
+</div>
+		
+		</div></div>
+		<%end%>
+	<%end%>
+	<%= paginate @comments%>
+</div>

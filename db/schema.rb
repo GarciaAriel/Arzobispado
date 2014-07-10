@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140625230251) do
+ActiveRecord::Schema.define(version: 20140710040527) do
+
+  create_table "comments", force: true do |t|
+    t.string   "content"
+    t.boolean  "visible",    default: true
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id"
 
 # Could not dump table "eventos" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
@@ -25,6 +35,9 @@ ActiveRecord::Schema.define(version: 20140625230251) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "evento_id"
   end
+
+  add_index "posts", ["evento_id"], name: "index_posts_on_evento_id"
 
 end
