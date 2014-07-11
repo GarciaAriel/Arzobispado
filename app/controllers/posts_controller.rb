@@ -4,7 +4,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.where(:evento_id=>params[:id])
+    @evento_id=params[:id]
   end
 
   # GET /posts/1
@@ -60,7 +61,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to posts_index_path(@post.evento.id), notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
