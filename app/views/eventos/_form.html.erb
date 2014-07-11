@@ -12,7 +12,7 @@
 	  </div>
     </div>
 
-    <br><br>
+    <br><br><br>
     <div class="form-group">
       <font color="white"><%= f.label :descripcion, :class =>"col-lg-2 control-label" %></font>
 	  <div class="col-lg-8">
@@ -26,12 +26,18 @@
 	<div class="form-group">
 	    <font color="white"> <label for="inputDate" class="col-lg-2 control-label">Fecha inicio:</label> </font>
 	    <div class="col-lg-8">
-	       <%= f.text_field :fecha_inicio, :class=>'form-control input-append',:"data-format"=>'dd/MM/yyyy', :style=>"border-bottom-left-radius: 4px;  border-top-left-radius: 4px;"%>
+	       <%= f.text_field :fecha_inicio, :class=>'form-control input-append',:"data-format"=>'dd/MM/yyyy',:id =>"datepicker" , :style=>"border-bottom-left-radius: 4px;  border-top-left-radius: 4px;"%>
 	    </div>
-	</div><br><br>
+	</div><br><br><br>
 
 
-	
+  <div class="form-group">
+      <font color="white"> <label for="inputDate" class="col-lg-2 control-label">Fecha fin:</label> </font>
+      <div class="col-lg-8">
+         <%= f.text_field :fecha_fin, :class=>'form-control input-append',:"data-format"=>'dd/MM/yyyy',:id =>"datepicker1" , :style=>"border-bottom-left-radius: 4px;  border-top-left-radius: 4px;"%>
+      </div>
+  </div><br><br>
+
 
 	<div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
