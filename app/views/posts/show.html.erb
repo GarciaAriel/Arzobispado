@@ -3,7 +3,7 @@
 
 <p>
  
- <h2 align="center"> <%= @post.title %> </h2>
+ <h1 align="center"> <%= @post.title %> </h1>
 </p>
 <p align="center">
 <%= image_tag @post.image.url(:medium) %><br>
@@ -15,6 +15,9 @@
 
 <%@post.post_attatchments.each do |attatchment|%>
 <%= image_tag attatchment.image.url(:medium) %><br>
+<font color="white"  FACE="arial">
+ <%= simple_format(attatchment.content) %>
+ </font>
 <%end%>
 </p>
 

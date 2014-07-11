@@ -27,6 +27,7 @@ Rails.application.routes.draw do
    root 'welcome#index'
    get 'welcome/menu' => 'welcome#menu'
    get 'layouts/events_sub' => 'welcome#menu'
+   get 'posts/new/:id' => 'posts#new'
    get 'post_attatchments/new/:id' => 'post_attatchments#new', as: 'new_post_attatchment_id'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -17,10 +17,12 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @evento=Evento.find(params[:id])
   end
 
   # GET /posts/1/edit
   def edit
+    @evento=@post.evento
   end
 
   # POST /posts
@@ -71,6 +73,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content,:image,:active)
+      params.require(:post).permit(:title, :content,:image,:active,:evento_id)
     end
 end

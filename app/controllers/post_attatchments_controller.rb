@@ -20,6 +20,6 @@ class PostAttatchmentsController < ApplicationController
 
     private
     def post_attatchment_params
-      params.require(:post_attatchment).permit(:post_id,:image)
+      params.require(:post_attatchment).permit(:post_id,:image,:content)
     end
 end
