@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
 
   resources :comments
+  resources :post_attatchments
 
 
   get 'welcome/index'
@@ -26,7 +27,7 @@ Rails.application.routes.draw do
    root 'welcome#index'
    get 'welcome/menu' => 'welcome#menu'
    get 'layouts/events_sub' => 'welcome#menu'
-
+   get 'post_attatchments/new/:id' => 'post_attatchments#new', as: 'new_post_attatchment_id'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

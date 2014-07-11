@@ -1,0 +1,23 @@
+<%= form_for @post_attatchment, :html => { :multipart => true } do |f| %>
+  <% if @post_attatchment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post_attatchment.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post_attatchment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+  <%= f.label :image %>
+  <%= f.file_field :image %>
+</div>
+
+<%=f.hidden_field :post_id,:value=>@post.id%>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

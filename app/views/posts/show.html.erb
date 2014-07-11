@@ -12,6 +12,10 @@
 	<font color="white"  FACE="arial">
   <%= simple_format(@post.content) %>
 </font>
+
+<%@post.post_attatchments.each do |attatchment|%>
+<%= image_tag attatchment.image.url(:medium) %><br>
+<%end%>
 </p>
 
 

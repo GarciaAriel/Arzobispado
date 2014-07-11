@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-
-ActiveRecord::Schema.define(version: 20140710040527) do
+ActiveRecord::Schema.define(version: 20140710230544) do
 
   create_table "comments", force: true do |t|
     t.string   "content"
@@ -25,9 +23,18 @@ ActiveRecord::Schema.define(version: 20140710040527) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
 
-
 # Could not dump table "eventos" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
+
+  create_table "post_attatchments", force: true do |t|
+    t.integer  "post_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "post_attatchments", ["post_id"], name: "index_post_attatchments_on_post_id"
 
   create_table "posts", force: true do |t|
     t.string   "title"
@@ -41,10 +48,12 @@ ActiveRecord::Schema.define(version: 20140710040527) do
     t.integer  "evento_id"
   end
 
+  add_index "posts", ["evento_id"], name: "index_posts_on_evento_id"
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",       null: false
+    t.string   "encrypted_password",     default: "",       null: false
+    t.string   "rol",                    default: "common", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -59,8 +68,5 @@ ActiveRecord::Schema.define(version: 20140710040527) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
-  add_index "posts", ["evento_id"], name: "index_posts_on_evento_id"
-
 
 end

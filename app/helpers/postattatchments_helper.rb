@@ -1,0 +1,2 @@
+module PostattatchmentsHelper
+end
