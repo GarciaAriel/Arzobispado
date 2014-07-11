@@ -25,7 +25,7 @@
         <td><font color="#FFF"><%=evento.fecha_fin%></font></td>
         
         <td><%= link_to 'Ver', evento,:style=>'color:#ffffff;' %></td>
-        <% if current_user != nil %>  
+        <% if current_user != nil && current_user.rol == "admin"%>  
           <td><%= link_to 'Editar ', edit_evento_path(evento),:style=>'color:#ffffff;' %></td>
           <td><%= button_to "delete", evento, :method=>:delete, :class=>:destroy %></td>
           
@@ -36,6 +36,6 @@
   </tbody>
 </table>
 
-<% if current_user != nil %>
+<% if current_user != nil && current_user.rol == "admin"%>
   <%= link_to 'Nuevo Evento', new_evento_path,:style=>'color:#ffffff;' %>
 <% end %>  
