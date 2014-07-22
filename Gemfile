@@ -4,7 +4,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3',group: [:development, :test]
+gem 'sqlite3', group: [:development, :test]
+gem 'pg', group: [:production]
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -26,10 +27,10 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'kaminari'
 
-group :production do
-	gem 'pg', '0.15.1'
-	gem 'rails_12factor', '0.0.2'
-end
+#group :production do
+ # gem 'pg'
+  #gem 'rails_12factor'
+#end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
