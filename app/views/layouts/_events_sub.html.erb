@@ -2,13 +2,15 @@
 		<div class="list-group">
 		  <a href="/eventos" class="list-group-item active">Todos los evento
 		  </a>
-		  <% if current_user.rol == "admin"%>
-		  <a href="/eventos/new" class="list-group-item">
-		    Crear Evento
-		  </a>
-		  
-		  <a href="#" class="list-group-item">Mis eventos
-		  </a>
+		  <% if user_signed_in? && current_user.rol == "admin"%>
+			   	<a href="/eventos/new" class="list-group-item">
+			    	Crear Evento 
+			  	</a>
+			  
+			  	<a href="#" class="list-group-item">Mis eventos
+			  	</a>
 		  <%end%>
+		  
+
 		  
 		</div>

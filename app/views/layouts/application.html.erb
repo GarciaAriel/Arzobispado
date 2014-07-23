@@ -88,13 +88,14 @@
 		<div class="jumbotron">
 			<br>
       <% if user_signed_in? %>
-        Logged in as <strong><%= current_user.email %></strong>.
-        <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>
+        <font color="white">Hola <strong><%= current_user.email %></strong>
+        </font>  <br>
+                <%= link_to 'Editar', edit_user_registration_path,:style=>'color:#ffffff;', :class => 'navbar-link' %>
         
-        <%= link_to "sign out", destroy_user_session_path, method: :delete %>
+        <%= link_to "Salir", destroy_user_session_path,:style=>'color:#ffffff;', method: :delete %>
       <% else %>
-        <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-        <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+        <%= link_to "Crear una Cuenta", new_user_registration_path,:style=>'color:#ffffff;', :class => 'navbar-link'  %> |
+        <%= link_to "Ingresar", new_user_session_path,:style=>'color:#ffffff;', :class => 'navbar-link'  %>
       <% end %>
 			<br><br><br><br>
 

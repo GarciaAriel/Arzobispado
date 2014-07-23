@@ -3,13 +3,15 @@ class EventosController < ApplicationController
 	before_action :set_evento, only: [:show, :edit, :update, :destroy]
 	skip_before_filter :verify_authenticity_token
 	def index
-		@submenu=1
+		if user_signed_in? && current_user.rol == "admin" 
+			@submenu=1
+		end
 		@eventos = Evento.all
 		
 	end
 	
 	def new
-		if current_user != nil
+		if user_signed_in? && current_user.rol == "admin" 
 			@submenu=1
 			@evento = Evento.new
 		else
@@ -18,12 +20,14 @@ class EventosController < ApplicationController
 	end
 
 	def show
-		@submenu=1
+		if user_signed_in? && current_user.rol == "admin" 
+			@submenu=1
+		end
 		@evento = Evento.find(params[:id])
 	end
 
 	def edit
-		if current_user != nil
+		if user_signed_in? && current_user.rol == "admin"
 			@submenu=1
 			@evento = Evento.find(params[:id])
 		else
@@ -32,7 +36,7 @@ class EventosController < ApplicationController
 	end
 	
 	def create
-		if current_user != nil
+		if user_signed_in? && current_user.rol == "admin"
 			@submenu=1
 		    @evento = Evento.new(evento_params)
 
@@ -49,7 +53,7 @@ class EventosController < ApplicationController
   	end
 
   	def update
-  		if current_user != nil
+  		if user_signed_in? && current_user.rol == "admin"
 	  		@submenu=1
 	  		respond_to do |format|
 	  			if @evento.update(evento_params)
@@ -66,7 +70,9 @@ class EventosController < ApplicationController
 
 
   	def destroy
-  		@submenu=1
+  		if user_signed_in? && current_user.rol == "admin" 
+			@submenu=1
+		end
 	    @evento.destroy
 	    respond_to do |format|
 	      format.html { redirect_to eventos_url, notice: 'High score was successfully destroyed.' }

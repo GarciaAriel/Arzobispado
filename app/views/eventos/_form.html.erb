@@ -4,12 +4,12 @@
 <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>  
 	<script>
   $(function() {
-    $( "#datepicker" ).datepicker();
+    $( "#fecha_inicio" ).datepicker();
   });
   </script>
   <script>
   $(function() {
-    $( "#datepicker1" ).datepicker();
+    $( "#fecha_fin" ).datepicker();
   });
   </script>  
 	
@@ -34,18 +34,35 @@
 
     <br><br>
     <br><br><br><br><br><br>
-	<div class="form-group">
-	    <font color="white"> <label for="inputDate" class="col-lg-2 control-label">Fecha inicio:</label> </font>
-	    <div class="col-lg-8">
-	       <%= f.text_field :fecha_inicio, :class=>'form-control input-append',:"data-format"=>'dd/MM/yyyy',:id =>"datepicker" , :style=>"border-bottom-left-radius: 4px;  border-top-left-radius: 4px;"%>
-	    </div>
-	</div><br><br><br>
+	
+
+
+<div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+    </div>
+</div>
+
+
 
 
   <div class="form-group">
       <font color="white"> <label for="inputDate" class="col-lg-2 control-label">Fecha fin:</label> </font>
       <div class="col-lg-8">
-         <%= f.text_field :fecha_fin, :class=>'form-control input-append',:"data-format"=>'dd/MM/yyyy',:id =>"datepicker1" , :style=>"border-bottom-left-radius: 4px;  border-top-left-radius: 4px;"%>
+         <%= f.text_field :fecha_fin, :class=>'form-control input-append',:"data-format"=>'dd/MM/yyyy',:id =>"fecha_fin" , :required => true, :style=>"border-bottom-left-radius: 4px;  border-top-left-radius: 4px;"%>
       </div>
   </div><br><br>
 
