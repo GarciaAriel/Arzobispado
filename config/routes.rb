@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'welcome#index'
+   root 'eventos#index'
    get 'welcome/menu' => 'welcome#menu'
    get 'layouts/events_sub' => 'welcome#menu'
    get 'posts/new/:id' => 'posts#new', as: 'new_post_id'
