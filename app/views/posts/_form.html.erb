@@ -12,20 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.label :title, "Titulo" %><br>
+    <%= f.text_field :title, :class=>'form-control', :placeholder=>'Escribe aqui el titulo del post', :maxlength => 50 %>
   </div>
   <%= f.hidden_field :evento_id,:value=>@evento.id %>
   <div class="field">
     <%= f.label :content %><br>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, :size => "130x30" %>
   </div>
   <div class="field">
-  <%= f.label :image %>
-  <%= f.file_field :image %>
+  <%= f.label :image, "Imagen" %>
+  <%= f.file_field :image, :class=>'form-control',:placeholder=>'Vista miniatura para el post' %>
 </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Aceptar', :class=>"btn btn-primary" %>
   </div>
 <% end %>
 

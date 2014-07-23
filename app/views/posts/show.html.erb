@@ -1,3 +1,31 @@
+
+<script>
+    $(function() {
+    $("textarea").sceditor({
+    plugins: "bbcode",
+    style: "minifasdasied/jquery.sceditor.default.min.css"
+    });
+
+    var html = giveFormat("<%= escape_javascript(@post.content)%>");
+    var nestedDiv = document.getElementById("nested");
+    nestedDiv.innerHTML = html;
+    <%@comments.each do |comment|%>
+    	var html_comment=giveFormat("<%= escape_javascript(comment.content)%>");
+    	var commentDiv = document.getElementById("comment-<%=comment.id%>");
+    	commentDiv.innerHTML = html_comment;
+    <%end%>
+   		function giveFormat(text)
+     	{
+     	  var html = $("textarea").sceditor('instance').fromBBCode(text);
+     	  
+   			return html;
+   		}
+    
+    });
+
+     
+    </script>
+
 <div class="row">
 <p id="notice"><%= notice %></p>
 
@@ -5,23 +33,7 @@
  
  <h1 align="center"> <%= @post.title %> </h1>
 </p>
-<p align="center">
-<%= image_tag @post.image.url(:medium) %><br>
-</p>
-<p >
-	<font color="white"  FACE="arial">
-  <%= simple_format(@post.content) %>
-</font>
-
-<%@post.post_attatchments.each do |attatchment|%>
-<%= image_tag attatchment.image.url(:medium) %><br>
-<font color="white"  FACE="arial">
- <%= simple_format(attatchment.content) %>
- </font>
-<%end%>
-</p>
-
-
+<div id="nested"></div>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_index_path(@post.evento_id) %>
@@ -51,8 +63,7 @@
 
   <div class="panel-heading">Usuario</div>
   <div class="panel-body">
-  	
-    <%=simple_format(comment.content)%><br>
+  	<div id="comment-<%=comment.id%>"></div><br>
     <%= link_to 'Edit', edit_comment_path(comment) %> 
 
     

@@ -15,7 +15,6 @@
       <tr class="active" style='cursor:pointer'>
         <td><%= image_tag post.image.url(:thumb) %></td>
         <td><font color="#FFF"><%= post.title %></font></td>
-        <td><font color="#FFF"><%= post.content %></font></td>
         <td><%= link_to 'Show', post,:style=>'color:#ffffff;',:class => 'btn btn-mini btn-success' %></td>
         <td><%= link_to 'Edit', edit_post_path(post),:style=>'color:#ffffff;',:class => 'btn btn-mini btn-warning'%></td>
         <td><%= form_for post, :html => {:method => 'delete'} do |t| %>
