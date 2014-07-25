@@ -24,6 +24,33 @@
   <%= f.label :image, "Imagen" %>
   <%= f.file_field :image, :class=>'form-control',:placeholder=>'Vista miniatura para el post' %>
 </div>
+<%if @post.post_attatchments.size>0%>
+    <div class="field">
+      
+<h3>Archivos</h3>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>  
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@post.post_attatchments.each do |attatchment| %>
+    <tr class="active">
+      <td>
+        <%= link_to attatchment.image_file_name, attatchment, :method => :delete, data: { confirm: 'Are you sure?' } %>
+     <a href="/post_attatchments/download/<%=attatchment.id%>"></a>   
+    </td>
+  <tr>
+    <%end%>
+
+  
+  </tbody>
+</table> 
+
+    </div>
+<%end%>
+
   <div class="actions">
     <%= f.submit 'Aceptar', :class=>"btn btn-primary" %>
   </div>

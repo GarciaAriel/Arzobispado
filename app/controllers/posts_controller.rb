@@ -12,6 +12,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @comment=Comment.new
+    @editcomment=Comment.new
     @comments=@post.comments.page(params[:page]).per(5)
   end
 

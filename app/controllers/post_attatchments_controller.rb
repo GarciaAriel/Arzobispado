@@ -17,6 +17,13 @@ class PostAttatchmentsController < ApplicationController
       end
     end
   end
+  def destroy
+    @post_attatchment=PostAttatchment.find(params[:id])
+    @post_attatchment.destroy
+      redirect_to :back, notice: 'Post was successfully destroyed.' 
+
+  end
+
   def download
     post_attatchment = PostAttatchment.find(params[:id])
     send_file post_attatchment.image.path

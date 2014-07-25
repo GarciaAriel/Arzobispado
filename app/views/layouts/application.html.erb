@@ -1,27 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>CSS Dock Menu</title>
-<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  
+ <title>Arzobispado</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-<link href="/assets/style.css" rel="stylesheet" type="text/css" />
 
-
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  
-
-
-<!--[if lt IE 7]>
- <style type="text/css">
- .dock img { behavior: url(iepngfix.htc) }
- </style>
-<![endif]-->
 
 </head>
 <body style='background-image:url(http://www.payperbox.co.uk/ekmps/shops/payperbox/images/10-sheets-of-a4-plain-cream-paper-130gsm-1812-p.jpg);'>
@@ -53,6 +39,9 @@
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav">
       <li class=""><a href="/eventos">Evento</a></li>
+    
+
+
       <li><a href="#">Link</a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -132,31 +121,6 @@
 	<div class='col-lg-1'></div>
 </div>
 
-	
-<!--bottom dock -->
-
-
-<!--dock menu JS options -->
-<script type="text/javascript">
-	
-	$(document).ready(
-		function()
-		{
-			$('#dock').Fisheye(
-				{
-					maxWidth: 90,
-					items: 'a',
-					itemsText: 'span',
-					container: '.dock-container',
-					itemWidth: 60,
-					proximity: 40,
-					halign : 'center'
-				}
-			)
-		}
-	);
-
-</script>
 
 <footer id="footer" style="">
   <div class="panel panel-default">
