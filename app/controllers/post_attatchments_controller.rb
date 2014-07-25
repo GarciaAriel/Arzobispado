@@ -17,7 +17,10 @@ class PostAttatchmentsController < ApplicationController
       end
     end
   end
-
+  def download
+    post_attatchment = PostAttatchment.find(params[:id])
+    send_file post_attatchment.image.path
+  end
     private
     def post_attatchment_params
       params.require(:post_attatchment).permit(:post_id,:image,:content)

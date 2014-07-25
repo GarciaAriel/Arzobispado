@@ -13,7 +13,10 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr class="active" style='cursor:pointer'>
+        <%if post.image!=nil%>
         <td><%= image_tag post.image.url(:thumb) %></td>
+        <%else%>
+        <%end%>
         <td><font color="#FFF"><%= post.title %></font></td>
         <td><%= link_to 'Show', post,:style=>'color:#ffffff;',:class => 'btn btn-mini btn-success' %></td>
         <td><%= link_to 'Edit', edit_post_path(post),:style=>'color:#ffffff;',:class => 'btn btn-mini btn-warning'%></td>
