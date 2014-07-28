@@ -63,7 +63,6 @@
 
 
       <% if user_signed_in? %>
-        </font>  <br>
           <%= link_to 'Editar', edit_user_registration_path,:style=>'color:#ffffff;', :class => 'navbar-link' %>
         
           <%= link_to "Salir", destroy_user_session_path,:style=>'color:#ffffff;', method: :delete %>
@@ -71,7 +70,7 @@
           <%= link_to "Crear una Cuenta", new_user_registration_path,:style=>'color:#ffffff;', :class => 'navbar-link'  %> |
           <%= link_to "Ingresar", new_user_session_path,:style=>'color:#ffffff;', :class => 'navbar-link'  %>
       <% end %>
-
+      <li><a href="#"></a></li>
 
       
     </ul>
