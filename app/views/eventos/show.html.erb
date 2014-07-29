@@ -4,40 +4,39 @@
   <fieldset>
 
     <div class="form-group">
-      <font color="white"><label class="col-lg-2 control-label" color: #000;>Nombre:</label></font>
-      <div class="col-lg-8">
-	  	<input type="text" class ="form-control" name="country" value="<%= @evento.nombre%>" readonly>
-	  </div>
+      <h2>
+      	<font color="white">
+      		Titulo: <%= @evento.nombre%>
+      	</font>
+      </h2>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+          	<%= @evento.descripcion%>
+          </h3>
+        </div>
+      </div>
+      <div>
+      	<i>
+	      <h4>
+	      	<FONT FACE="Comic Sans MS" color="white">
+	      		<blockquote>
+	      			<%= @evento.descripcion%>
+	      		</blockquote>
+	      	</FONT>
+	      </h4>
+      	</i>
+      </div>
+    </div>
+    <div>
+      	<h4>
+	      <FONT FACE="Comic Sans MS" color="white">
+	    	Fecha inicio del evento: <%= @evento.fecha_inicio%> Fin del evento <%= @evento.fecha_fin%>
+	      </FONT>
+	    </h4>
     </div>
 
-    <br><br>
-    <div class="form-group">
-      <font color="white"><label class="col-lg-2 control-label" color: #000;>Descripcion:</label></font>
-	  <div class="col-lg-8">
-	  	<textarea class ="form-control" rows="4" cols="71" readonly>
-	  		<%= @evento.descripcion%>
-		</textarea>
-	  </div>
-    </div>
-
-    <br><br>
     
-	<div class="form-group">
-	    <font color="white"> <label for="inputDate" class="col-lg-2 control-label">Fecha inicio:</label> </font>
-	    <div class="col-lg-8">
-	    	<input type="text" class ="form-control" name="country" value="<%= @evento.fecha_inicio%>" readonly>
-	  	</div>
-	</div>
-
-	<br><br>
-	<div class="form-group">
-	    <font color="white"> <label for="inputDate" class="col-lg-2 control-label">Fecha fin:</label> </font>
-	    <div class="col-lg-8">
-	    	<input type="text" class ="form-control" name="country" value="<%= @evento.fecha_fin%>" readonly>
-	  	</div>
-	</div>
-
-
 	<br><br>
 	<div><%= link_to 'Editar', edit_evento_path(@evento),:style=>'color:#ffffff;' %> |</div>
 	<div><%= link_to 'Atras', eventos_path,:style=>'color:#ffffff;' %></div>

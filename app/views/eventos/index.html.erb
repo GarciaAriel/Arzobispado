@@ -8,28 +8,45 @@
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
-      <th><font color="#FFF">Nombre</font></th>
-      <th><font color="#FFF">Descripcion</font></th>
-      <th><font color="#FFF">Fecha inicio</font></th>
-      <th><font color="#FFF">Fecha fin</font></th>
+      <th><font color="#FFF"></font></th>
+      <th><font color="#FFF"></font></th>
       <th colspan="3"></th>
     </tr>
   </thead>
   <tbody>
     
+
+
     <% @eventos.each do |evento| %>
       <tr class="active">
-        <td><font color="#FFF"><%=evento.nombre%></font></td>
-        <td><font color="#FFF"><%=evento.descripcion%></font></td>
-        <td><font color="#FFF"><%=evento.fecha_inicio%></font></td>
-        <td><font color="#FFF"><%=evento.fecha_fin%></font></td>
-        
-        <td><%= link_to 'Ver', evento,:style=>'color:#ffffff;' %></td>
-        <% if current_user != nil && current_user.rol == "admin"%>  
-          <td><%= link_to 'Editar ', edit_evento_path(evento),:style=>'color:#ffffff;' %></td>
-          <td><%= button_to "delete", evento, :method=>:delete, :class=>:destroy %></td>
+
+
+        <td><button type="button" class="btn btn-info disable">Success</button></td>
+        <td>
+          <h4>
+            <%= link_to evento.nombre, evento,:style=>'color:#ffffff;' %>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <font color="#FFF" size="2">Del <%=evento.fecha_inicio%> al <%=evento.fecha_inicio%></font>
+          </h4>  
+          <div>
+            <%if evento.descripcion.size > 50%>
+              <% string = evento.descripcion %>
+              <% tr_string = string[0, 50] + "..." + string[-5,5] %>
+              <font color="#FFF"><%=tr_string%></font>
+            <%else%>
+              <font color="#FFF"><%=evento.descripcion%></font>
+            <%end%>
+          </div>
           
-        <% end %>
+            <% if current_user != nil && current_user.rol == "admin"%>  
+              <%= link_to 'Editar ', edit_evento_path(evento),:style=>'color:#ffffff;' %>
+              <%= button_to "delete", evento, :method=>:delete, :class=>:destroy ,:class => "btn btn-danger"%>
+            <% end %>    
+          
+          
+        </td>
+        
+        
       </tr>
     
     <% end %>
