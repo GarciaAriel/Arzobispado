@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.where(:evento_id=>params[:id])
     @evento_id=params[:id]
+    @evento=Evento.find(@evento_id)
     
   end
 def algo
@@ -13,6 +14,7 @@ end
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @evento=@post.evento
     @comment=Comment.new
     @editcomment=Comment.new
     @comments=@post.comments.page(params[:page]).per(5)

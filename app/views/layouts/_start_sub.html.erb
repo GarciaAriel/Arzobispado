@@ -1,14 +1,12 @@
 	<div class='page-header'><h1 align='center'>Opciones</h1></div>		
 		<div class="list-group">
-		  <a href="#" class="list-group-item active">
-		    Crear Evento
+		  <a href="/posts/index/<%=@evento.id%>" class="list-group-item">
+		    Todos los posts
 		  </a>
-		  <a href="#" class="list-group-item">Comentarios denunciados
+		  <%if(current_user!=nil && current_user.rol=='admin')%>
+		  <a href="/posts/new/<%=@evento.id%>" class="list-group-item">Crear post
 		  </a>
-		  <a href="#" class="list-group-item">Ver Eventos
+		  <a href="#" class="list-group-item">Ver post
 		  </a>
-		  <a href="#" class="list-group-item">Realizar Nuevo cuestionario
-		  </a>
-		  <a href="#" class="list-group-item">Ver Cuestionario
-		  </a>
+		  <%end%>
 		</div>

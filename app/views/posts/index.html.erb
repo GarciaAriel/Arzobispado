@@ -1,8 +1,9 @@
-<h1>Listing posts</h1>
+<h1>Posts</h1>
 
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
+      <th></th>
       <th></th>
       <th>Titulo</th>
       <th>Contenido</th>
@@ -13,21 +14,39 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr class="active" style='cursor:pointer'>
-        <%if post.image!=nil%>
+        <%if post.image.exists?%>
         <td><%= image_tag post.image.url(:thumb) %></td>
         <%else%>
+        <td><%= image_tag '/assets/missing.png', :size=>"100x100" %></td>
           
         <%end%>
-        <td><font color="#FFF"><%= post.title %></font></td>
-        <td><%= link_to 'Show', post,:style=>'color:#ffffff;',:class => 'btn btn-mini btn-success' %></td>
-        <td><%= link_to 'Edit', edit_post_path(post),:style=>'color:#ffffff;',:class => 'btn btn-mini btn-warning'%></td>
+        <td> <div class="alert alert-dismissable alert-info">
+            
+            Comentarios: <br> <br>
+            <p align="center">
+            <%=post.comments.size %> </p>
+            
+          </div></td>
+        
+        <td><font color="#FFF"><b><%= post.title %></b><br><span>
+admin@admin.com
+</span><br>
+ <span >
+<%=post.created_at.to_date%>
+</span></font></td>
+        <td><%= link_to 'Ver', post,:style=>'color:#ffffff;',:class => 'btn btn-mini btn-success' %></td>
+       <%if(current_user!=nil && current_user.rol=='admin')%>
+        <td><%= link_to 'Editar', edit_post_path(post),:style=>'color:#ffffff;',:class => 'btn btn-mini btn-warning'%></td>
         <td><%= form_for post, :html => {:method => 'delete'} do |t| %>
                     <input type="submit" value="Eliminar" class="btn btn-danger" onClick="return confirm('Quiere eliminar este post?');">
                   <%end%></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<%= link_to 'New Post', new_post_id_path(@evento_id) %>
+<%if(current_user!=nil && current_user.rol=='admin')%>
+<%= link_to 'Nuevo Post', new_post_id_path(@evento_id) %>
+<%end%>

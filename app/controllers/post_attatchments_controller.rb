@@ -3,9 +3,9 @@ class PostAttatchmentsController < ApplicationController
     if(current_user!=nil && current_user.rol=='admin')
     @post_attatchment = PostAttatchment.new
     @post=Post.find(params[:id])
+    @evento=@post.evento
     else
       redirect_to root_path
-
     end
     end
 
@@ -31,7 +31,7 @@ class PostAttatchmentsController < ApplicationController
 
   def download
     post_attatchment = PostAttatchment.find(params[:id])
-    send_file post_attatchment.image.path
+    send_file post_attatchment.image.path and return
   end
     private
     def post_attatchment_params
