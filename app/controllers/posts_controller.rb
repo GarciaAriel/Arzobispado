@@ -7,7 +7,8 @@ class PostsController < ApplicationController
     @posts = Post.where(:evento_id=>params[:id])
     @evento_id=params[:id]
   end
-
+def algo
+end
   # GET /posts/1
   # GET /posts/1.json
   def show

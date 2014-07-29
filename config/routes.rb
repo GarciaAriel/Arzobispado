@@ -27,7 +27,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
    root 'eventos#index'
+   get 'posts/algo' => 'posts#algo'
    get 'welcome/menu' => 'welcome#menu'
+   post 'comments/:id' => 'comments#update'
    get 'layouts/events_sub' => 'welcome#menu'
    get 'posts/new/:id' => 'posts#new', as: 'new_post_id'
    get 'posts/index/:id' => 'posts#index', as: 'posts_index'

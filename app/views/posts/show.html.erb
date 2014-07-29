@@ -119,15 +119,7 @@
         <h4 class="modal-title">Modal title</h4>
       </div>
       <div class="modal-body">
-        <%= form_for @editcomment, :url => { :action => "update" }, :html => { :method => 'put' }  do |f| %>
-          <div class="field">
-            <%= f.label :content %><br>
-            <%= f.text_field :content %>
-          </div>
-          <div class="actions">
-            <%= f.submit %>
-          </div>
-        <% end %>
+        <%= render 'comments/edit_remote' %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
