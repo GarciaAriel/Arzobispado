@@ -1,27 +1,56 @@
 
 <script>
-    $(function() {
-    $("textarea").sceditor({
-    plugins: "bbcode",
-    style: "minifasdasied/jquery.sceditor.default.min.css"
-    });
+var loadCSS = function(url, callback){
+        var link = document.createElement('link');
+        link.type = 'text/css';
+        link.rel = 'stylesheet';
+        link.href = url;
+        link.id = 'theme-style';
+
+        document.getElementsByTagName('head')[0].appendChild(link);
+
+        var img = document.createElement('img');
+        img.onerror = function(){
+          if(callback) callback(link);
+        }
+        img.src = url;
+      }
+$(document).ready(function() {
+        var initEditor = function() {
+          $("textarea").sceditor({
+            plugins: 'bbcode',
+            style: "/assets/jquery.sceditor.default.min.css"
+          });
 
     var html = giveFormat("<%= escape_javascript(@post.content)%>");
     var nestedDiv = document.getElementById("nested");
     nestedDiv.innerHTML = html;
     <%@comments.each do |comment|%>
-    	var html_comment=giveFormat("<%= escape_javascript(comment.content)%>");
-    	var commentDiv = document.getElementById("comment-<%=comment.id%>");
-    	commentDiv.innerHTML = html_comment;
+      var html_comment=giveFormat("<%= escape_javascript(comment.content)%>");
+      var commentDiv = document.getElementById("comment-<%=comment.id%>");
+      commentDiv.innerHTML = html_comment;
     <%end%>
-   		function giveFormat(text)
-     	{
-     	  var html = $("textarea").sceditor('instance').fromBBCode(text);
-     	  
-   			return html;
-   		}
-    
-    });
+      function giveFormat(text)
+      {
+        var html = $("textarea").sceditor('instance').fromBBCode(text);
+        
+        return html;
+      }
+        };
+
+        $("#theme").change(function() {
+          var theme = "/assets/" + $(this).val() + ".min.css";
+
+          $("textarea").sceditor("instance").destroy();
+          $("link:first").remove();
+          $("#theme-style").remove();
+
+          loadCSS(theme, initEditor);
+        });
+
+        initEditor();
+      });
+
     function setComment()
     {
       <%@editcomment.content="asdasd"%>
@@ -44,8 +73,9 @@
 
 
 <div class="col-lg-7">
+<%if(@post.post_attatchments.size>0)%>
 <h3>Archivos</h3>
-<a href="#myModal" role="button" class="btn btn-large btn-primary" data-toggle="modal">Launch Demo Modal</a>
+
 <table class="table table-striped table-hover">
   <thead>
     <tr>  
@@ -64,12 +94,16 @@
   
   </tbody>
 </table> 
+<%end%>
+<%if(current_user!=nil && current_user.rol=='admin')%>
 <%= link_to 'Edit', edit_post_path(@post) %> |
+<%end%>
 <%= link_to 'Back', posts_index_path(@post.evento_id) %>
 </div>
 
 </div>
 <div class="row">
+  <%if(current_user!=nil)%>
 	<div class="col-lg-10">
 	<div class="well">
 		<fieldset>
@@ -85,7 +119,9 @@
 	  </fieldset>
 	</div>
 	</div>
-
+  <%else%>
+  <h2>Debe ingresar al sistema para poder comentar</h2>
+  <%end%>
 	<%@comments.each do |comment|%>
 	<%if comment.visible?%>
 	<div class="row">
@@ -97,7 +133,9 @@
   <div class="panel-heading">Usuario</div>
   <div class="panel-body">
   	<div id="comment-<%=comment.id%>" class="ellipsis"></div><br>
-    <a href="#myModal" data-toggle="modal" onClick="setComment();">Editar</a>
+    <%if(current_user!=nil && current_user==comment.user)%>
+    <a href="/comments/<%=comment.id%>/edit">Editar</a>
+    <%end%>
 
     
   </div>
@@ -109,22 +147,3 @@
 	<%= paginate @comments%>
 </div>
 
-
-
-<div id="myModal" class="modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        <%= render 'comments/edit_remote' %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>

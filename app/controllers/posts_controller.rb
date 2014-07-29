@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.where(:evento_id=>params[:id])
     @evento_id=params[:id]
+    
   end
 def algo
 end
@@ -19,13 +20,23 @@ end
 
   # GET /posts/new
   def new
-    @post = Post.new
-    @evento=Evento.find(params[:id])
+    if(current_user!=nil && current_user.rol=='admin')
+      @evento=Evento.find(params[:id])
+      @post = Post.new
+    else
+      redirect_to root_path
+    end
+    
   end
 
   # GET /posts/1/edit
   def edit
+    if(current_user!=nil && current_user.rol=='admin')
     @evento=@post.evento
+    else
+      redirect_to root_path
+    end
+    
   end
 
   # POST /posts
