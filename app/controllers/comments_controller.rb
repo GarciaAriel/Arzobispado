@@ -25,6 +25,8 @@ class CommentsController < ApplicationController
   def edit
     if(!(current_user!=nil && current_user==@comment.user))
       redirect_to root_path
+    else
+      @evento=@comment.post.evento
     end
   end
 
