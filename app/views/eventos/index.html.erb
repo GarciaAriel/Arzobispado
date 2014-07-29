@@ -21,7 +21,15 @@
       <tr class="active">
 
 
-        <td><button type="button" class="btn btn-info disable">Success</button></td>
+        <td >
+          <div class="alert alert-dismissable alert-info">
+            <strong>Evento!</strong> <br> 
+            <br>
+            Posts: 
+            <%=evento.posts.size %> <br><br>
+
+          </div>
+        </td>
         <td>
           <h4>
             <%= link_to evento.nombre, evento,:style=>'color:#ffffff;' %>
@@ -39,8 +47,13 @@
           </div>
           
             <% if current_user != nil && current_user.rol == "admin"%>  
-              <%= link_to 'Editar ', edit_evento_path(evento),:style=>'color:#ffffff;' %>
-              <%= button_to "delete", evento, :method=>:delete, :class=>:destroy ,:class => "btn btn-danger"%>
+              <div class="panel panel-info">
+                <div class="panel-body">
+                  <%= link_to 'Editar ', edit_evento_path(evento),:style=>'color:#ffffff;' %>
+                  &nbsp;
+                  <%= link_to 'Eliminar', evento, method: :delete, data: { confirm: 'Esta seguro?' } ,:style=>'color:#ffffff;'%>
+                </div>
+              </div>
             <% end %>    
           
           
@@ -54,5 +67,7 @@
 </table>
 
 <% if current_user != nil && current_user.rol == "admin"%>
-  <%= link_to 'Nuevo Evento', new_evento_path,:style=>'color:#ffffff;' %>
+  <h3>
+    <%= link_to 'Nuevo Evento', new_evento_path,:style=>'color:#ffffff;' %>
+  </h3>  
 <% end %>  
