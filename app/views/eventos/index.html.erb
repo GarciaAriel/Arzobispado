@@ -1,28 +1,13 @@
+
 <font color="white"><h2>Lista de Eventos</h2></font>
-<br>
-
-
-
-
 
 <table class="table table-striped table-hover ">
-  <thead>
-    <tr>
-      <th><font color="#FFF"></font></th>
-      <th><font color="#FFF"></font></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    
-
 
     <% @eventos.each do |evento| %>
       <tr class="active">
-
-
         <td >
           <div class="alert alert-dismissable alert-info">
+            <br>
             <strong>Evento!</strong> <br> 
             <br>
             Posts: 
@@ -36,7 +21,8 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <font color="#FFF" size="2">Del <%=evento.fecha_inicio%> al <%=evento.fecha_inicio%></font>
           </h4>  
-          <div>
+          <div class="panel panel-info">
+                <div class="panel-body">
             <%if evento.descripcion.size > 50%>
               <% string = evento.descripcion %>
               <% tr_string = string[0, 50] + "..." + string[-5,5] %>
@@ -45,25 +31,23 @@
               <font color="#FFF"><%=evento.descripcion%></font>
             <%end%>
           </div>
+          </div>
           
             <% if current_user != nil && current_user.rol == "admin"%>  
-              <div class="panel panel-info">
-                <div class="panel-body">
+              <div>
                   <%= link_to 'Editar ', edit_evento_path(evento),:style=>'color:#ffffff;' %>
                   &nbsp;
                   <%= link_to 'Eliminar', evento, method: :delete, data: { confirm: 'Esta seguro?' } ,:style=>'color:#ffffff;'%>
-                </div>
               </div>
             <% end %>    
           
           
         </td>
-        
-        
+      
       </tr>
     
     <% end %>
-  </tbody>
+  
 </table>
 
 <% if current_user != nil && current_user.rol == "admin"%>
