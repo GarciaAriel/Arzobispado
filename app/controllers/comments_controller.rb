@@ -14,11 +14,18 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    @comment = Comment.new
+    if(current_user!=nil)
+      @comment = Comment.new
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /comments/1/edit
   def edit
+    if(!(current_user!=nil && current_user==@comment.user))
+      redirect_to root_path
+    end
   end
 
   # POST /comments
@@ -42,7 +49,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to @comment.post, notice: 'Comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit }

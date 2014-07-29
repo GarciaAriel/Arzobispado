@@ -1,7 +1,12 @@
 class PostAttatchmentsController < ApplicationController
 	def new
+    if(current_user!=nil && current_user.rol=='admin')
     @post_attatchment = PostAttatchment.new
     @post=Post.find(params[:id])
+    else
+      redirect_to root_path
+
+    end
     end
 
     def create
