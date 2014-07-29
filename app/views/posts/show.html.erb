@@ -60,12 +60,23 @@ $(document).ready(function() {
     </script>
 
 <div class="row">
+<div class="panel panel-primary">
+   <div class="panel-heading">
 <p id="notice"><%= notice %></p>
 
 <p>
  
- <h1 align="center"> <%= @post.title %> </h1>
+ <h2 align="center"> <%= @post.title %> </h2>
+ <span>
+<b>Autor: </b>admin@admin.com
+</span>
+ <span style="float:right;">
+<b>Fecha: </b><%=@post.created_at%>
+</span>
+
 </p>
+</div>
+  <div class="panel-body">
 <div id="nested"></div>
 <br>
 
@@ -100,7 +111,8 @@ $(document).ready(function() {
 <%end%>
 <%= link_to 'Back', posts_index_path(@post.evento_id) %>
 </div>
-
+</div>
+</div>
 </div>
 <div class="row">
   <%if(current_user!=nil)%>
@@ -130,7 +142,7 @@ $(document).ready(function() {
 
 		<div class="panel panel-default">
 
-  <div class="panel-heading">Usuario</div>
+  <div class="panel-heading"><%=comment.user.email%></div>
   <div class="panel-body">
   	<div id="comment-<%=comment.id%>" class="ellipsis"></div><br>
     <%if(current_user!=nil && current_user==comment.user)%>
