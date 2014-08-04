@@ -3,6 +3,7 @@ class EventosController < ApplicationController
 	before_action :set_evento, only: [:show, :edit, :update, :destroy]
 	skip_before_filter :verify_authenticity_token
 	def index
+		@submenu=1
 		if user_signed_in? && current_user.rol == "admin" 
 			@submenu=1
 		end

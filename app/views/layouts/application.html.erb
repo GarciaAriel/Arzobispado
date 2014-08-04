@@ -79,7 +79,7 @@
 <div class='row'>
 	<div class='col-lg-1'></div>
 	
-	<% if @submenu==1 %>
+	<% if @submenu==1 || current_user==nil%>
 		<div class='col-lg-3'>
 			<%= render 'layouts/events_sub'%>
 		</div>
@@ -90,7 +90,6 @@
 	<% end %>	
 
 	<div class='col-lg-7'>
-		<br><br><br><br><br><br><br>
 		<div class="jumbotron">
 			
 
