@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :surveys
+
   resources :events
 
   #devise_for :users
