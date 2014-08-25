@@ -17,12 +17,8 @@
   </div>
   
   <%= f.fields_for :questions do |builder| %>
-  <p>
-    <%= builder.label :content, "Question" %><br />
-    <%= builder.text_area :content, :rows => 3 %><br />
-    <%= builder.check_box :_destroy %>
-    <%= builder.label :_destroy, "Remove Question" %>
-  </p>
+    <%= render 'question_fields', :ff => builder %>
+  
   <% end %>
 
   <div class="actions">
