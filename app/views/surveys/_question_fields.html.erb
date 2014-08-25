@@ -1,7 +1,8 @@
 <p>
     <%= ff.label :content, "Question" %><br />
     <%= ff.text_area :content, :rows => 3 %><br />
-    <%= ff.check_box :_destroy %>
+    <%= ff.check_box '_destroy' %>
+    
     <%= ff.label :_destroy, "Remove Question" %>
 </p>
 <%= ff.fields_for :answers do |builder| %>

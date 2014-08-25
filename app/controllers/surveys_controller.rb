@@ -3,7 +3,7 @@ class SurveysController < ApplicationController
 
   # GET /surveys
   # GET /surveys.json
-  def index
+  def index 
     @surveys = Survey.all
   end
 
@@ -46,6 +46,9 @@ class SurveysController < ApplicationController
   def update
     respond_to do |format|
 
+      # member.avatar.marked_for_destruction? # => true
+      # member.save
+
       if @survey.update(survey_params)
         format.html { redirect_to @survey, notice: 'Survey was successfully updated.' }
         format.json { render :show, status: :ok, location: @survey }
@@ -75,8 +78,8 @@ class SurveysController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
       params.require(:survey).permit(:name,questions_attributes: [
-       :content, :id, :survey_id, 
-       answers_attributes: [:content, :id, :questions_id]
+       :content, :id, :survey_id,:_destroy, 
+       answers_attributes: [:content, :id, :questions_id,:_destroy]
      ])
 
     #   questions_attributes: [
