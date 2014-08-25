@@ -1,6 +1,25 @@
 <p>
   <%= f.label :content, "Answer" %>
   <%= f.text_field :content %>
-  <%= f.check_box :_destroy %>
-  <%= f.label :_destroy, "Remove" %>
+  <%= f.hidden_field :_destroy %>
+  <%= link_to 'remove', '#', :onclick => 'remove_fields(this)'%>
 </p>
+
+<SCRIPT type="text/javascript">
+
+	function remove_fields(link) {
+		$(link).prev("input[type=hidden]").first().val("1");
+	$(link).prev().slideToggle("slow");
+
+//$(link).closest(".fields").hide();
+//$(link).parents(".fields").first().hide();
+//$(link).parent().closest(".fields").first().hide();
+	}
+</SCRIPT>
+
+
+
+
+
+
+
