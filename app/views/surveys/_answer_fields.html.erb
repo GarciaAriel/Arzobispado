@@ -2,18 +2,23 @@
   <%= f.label :content, "Answer" %>
   <%= f.text_field :content %>
   <%= f.hidden_field :_destroy %>
-  <%= link_to 'remove', '#', :onclick => 'remove_fields(this)'%>
+  <input type="button" onClick="remove_fields(this)" value="Eliminar"/>
 </p>
 
 <SCRIPT type="text/javascript">
 
 	function remove_fields(link) {
 		$(link).prev("input[type=hidden]").first().val("1");
-	$(link).prev().slideToggle("slow");
+		try{
+	$(link).parent().find('input[type=text]').toggle('slow');
+}catch(err){
 
+	alert(err.message)
+}
 //$(link).closest(".fields").hide();
 //$(link).parents(".fields").first().hide();
 //$(link).parent().closest(".fields").first().hide();
+return false;
 	}
 </SCRIPT>
 
