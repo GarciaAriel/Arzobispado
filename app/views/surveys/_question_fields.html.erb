@@ -1,10 +1,34 @@
-<p>
-    <%= ff.label :content, "Question" %><br />
-    <%= ff.text_area :content, :rows => 3 %><br />
-    <%= ff.check_box '_destroy' %>
-    
-    <%= ff.label :_destroy, "Remove Question" %>
-</p>
-<%= ff.fields_for :answers do |builder| %>
-  <%= render 'answer_fields', :f => builder %>
-<% end %>
+<div id="contenedor">
+	
+	<p>
+		<ul>
+		    <%= ff.label :content, "Question" %><br />
+		    <%= ff.text_area :content, :rows => 3 %><br />
+		    
+		    
+	 	</ul>   
+	 	<%= ff.hidden_field :_destroy %>
+  		<input type="button" onClick="remove_field1(this)" value="Eliminar"/>
+	</p>
+	<ul>
+		<%= ff.fields_for :answers do |builder| %>
+		  <%= render 'answer_fields', :f => builder %>
+		<% end %>
+	</ul>
+</div>
+
+<SCRIPT type="text/javascript">
+
+	function remove_field1(link) {
+		$(link).prev("input[type=hidden]").first().val("1");
+		try{ //jQuery(this).parents("ul").find("h2").html("okay!")
+			$(link).parent("div").find("ul").toggle('slow');
+			alert("holaaaaaaaaaa");
+		}
+		catch(err)
+		{
+			alert(err.message);
+		}
+		return false;
+	}
+</SCRIPT>
