@@ -20,8 +20,30 @@
     <%= render 'question_fields', :ff => builder %>
   
   <% end %>
+  <br>
+  <div class="actions">
+    <input type="button" onClick="elga(this)" value="Add Pregunta" > </button>
+  </div>
+  
 
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+<SCRIPT type="text/javascript">
+
+  function elga(link) {
+    alert("holaaaaaaaaaa");
+    $(link).prev("input[type=hidden]").first().val("1");
+    try{ //jQuery(this).parents("ul").find("h2").html("okay!")
+      $(link).parent("div").find("ul").toggle('slow');
+      alert("holaaaaaaaaaa");
+    }
+    catch(err)
+    {
+      alert(err.message);
+    }
+    return false;
+  }
+</SCRIPT>
