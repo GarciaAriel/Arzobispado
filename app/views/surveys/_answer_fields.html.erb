@@ -8,18 +8,26 @@
 <SCRIPT type="text/javascript">
 
 	function remove_fields(link) {
-		$(link).prev("input[type=hidden]").first().val("1");
 		try{
-	$(link).parent().find('input[type=text]').toggle('slow');
-}catch(err){
+			var sd = $(link).prev("input[type=hidden]").first().val();
+			if (sd == '1') {
+				$(link).prev("input[type=hidden]").first().val("0");
+				$(link).parent().find('input[type=text]').show('slow');
+		
+				$(link).parent().find('input[type=button]').val('Eliminar');
+		
+			} else {
+				$(link).prev("input[type=hidden]").first().val("1");
+				$(link).parent().find('input[type=text]').toggle('slow');
 
-	alert(err.message)
-}
-//$(link).closest(".fields").hide();
-//$(link).parents(".fields").first().hide();
-//$(link).parent().closest(".fields").first().hide();
-return false;
-	}
+				$(link).parent().find('input[type=button]').val('Mostrar');
+			}
+
+		}catch(err){
+			alert(err.message)
+		}
+		return false;
+    }
 </SCRIPT>
 
 

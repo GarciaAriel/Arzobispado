@@ -22,7 +22,7 @@
   <% end %>
   <br>
   <div class="actions">
-    <input type="button" onClick="elga(this)" value="Add Pregunta" > </button>
+    <input type="button" onClick="elga(this,'question',questions)" value="AddPregunta" > </button>
   </div>
   
 
@@ -33,11 +33,13 @@
 
 <SCRIPT type="text/javascript">
 
-  function elga(link) {
-    alert("holaaaaaaaaaa");
-    $(link).prev("input[type=hidden]").first().val("1");
-    try{ //jQuery(this).parents("ul").find("h2").html("okay!")
-      $(link).parent("div").find("ul").toggle('slow');
+  function elga(link,association,content) {
+    alert("hola entrada");
+    
+    try{ 
+      var new_id = new Date().getTime();
+    var regexp = new RegExp("new_" + association, "g");
+    $(link).parent().before(content.replace(regexp, new_id));  
       alert("holaaaaaaaaaa");
     }
     catch(err)

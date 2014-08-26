@@ -20,10 +20,18 @@
 <SCRIPT type="text/javascript">
 
 	function remove_field1(link) {
-		$(link).prev("input[type=hidden]").first().val("1");
-		try{ //jQuery(this).parents("ul").find("h2").html("okay!")
-			$(link).parent("div").find("ul").toggle('slow');
-			alert("holaaaaaaaaaa");
+		
+		try{ 
+			var sd = $(link).prev("input[type=hidden]").first().val();
+			if (sd == '1') {
+				$(link).prev("input[type=hidden]").first().val("0");
+				$(link).parent("div").find("ul").show('slow');
+				$(link).parent().find('input[type=button]').val('Eliminar');
+			} else {
+				$(link).prev("input[type=hidden]").first().val("1");
+				$(link).parent("div").find("ul").toggle('slow');
+				$(link).parent().find('input[type=button]').val('Mostrar');
+			}	
 		}
 		catch(err)
 		{
