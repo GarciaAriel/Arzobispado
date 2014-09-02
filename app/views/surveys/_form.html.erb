@@ -18,11 +18,10 @@
   
   <%= f.fields_for :questions do |builder| %>
     <%= render 'question_fields', :ff => builder %>
-  
   <% end %>
   <br>
-  <div class="actions">
-    <input type="button" onClick="elga(this,'question',questions)" value="AddPregunta" > </button>
+  <div class="actions"> 
+    <input type="button" onClick="elga(this,'question','<%= @survey.questions %>');" value="AddPregunta" > </button>
   </div>
   
 
@@ -34,13 +33,13 @@
 <SCRIPT type="text/javascript">
 
   function elga(link,association,content) {
-    alert("hola entrada");
-    
-    try{ 
+    try
+    { 
       var new_id = new Date().getTime();
-    var regexp = new RegExp("new_" + association, "g");
-    $(link).parent().before(content.replace(regexp, new_id));  
-      alert("holaaaaaaaaaa");
+      var regexp = new RegExp("new_" + association, "g");
+      $(link).parent().before(content.replace(regexp, new_id));
+      
+      
     }
     catch(err)
     {

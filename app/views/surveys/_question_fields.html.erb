@@ -4,21 +4,30 @@
 		<ul>
 		    <%= ff.label :content, "Question" %><br />
 		    <%= ff.text_area :content, :rows => 3 %><br />
-		    
-		    
-	 	</ul>   
+		</ul>   
 	 	<%= ff.hidden_field :_destroy %>
-  		<input type="button" onClick="remove_field1(this)" value="Eliminar"/>
+  		<input type="button" onClick="remove_field1(this)" value="Eliminar pregunta"/>
 	</p>
 	<ul>
 		<%= ff.fields_for :answers do |builder| %>
 		  <%= render 'answer_fields', :f => builder %>
 		<% end %>
+
+		<input type="button" onClick="add_field();" value="add respuesta"/>
 	</ul>
+	
 </div>
 
-<SCRIPT type="text/javascript">
 
+
+
+<SCRIPT type="text/javascript">
+	
+</SCRIPT>
+
+<SCRIPT type="text/javascript">
+	
+	
 	function remove_field1(link) {
 		
 		try{ 
@@ -26,11 +35,11 @@
 			if (sd == '1') {
 				$(link).prev("input[type=hidden]").first().val("0");
 				$(link).parent("div").find("ul").show('slow');
-				$(link).parent().find('input[type=button]').val('Eliminar');
+				$(link).parent().find('input[type=button]').first().val('Eliminar');
 			} else {
 				$(link).prev("input[type=hidden]").first().val("1");
 				$(link).parent("div").find("ul").toggle('slow');
-				$(link).parent().find('input[type=button]').val('Mostrar');
+				$(link).parent().find('input[type=button]').first().val('Mostrar');
 			}	
 		}
 		catch(err)
