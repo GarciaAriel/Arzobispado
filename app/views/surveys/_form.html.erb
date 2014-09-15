@@ -4,10 +4,10 @@
       <h2><%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
 
       <ul>
-      <% @survey.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <% @survey.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul> 
     </div>
   <% end %>
 
@@ -19,32 +19,11 @@
   <%= f.fields_for :questions do |builder| %>
     <%= render 'question_fields', :ff => builder %>
   <% end %>
-  <br>
-  <div class="actions"> 
-    <input type="button" onClick="elga(this,'question','<%= @survey.questions %>');" value="AddPregunta" > </button>
-  </div>
-  
 
+
+  
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
 
-<SCRIPT type="text/javascript">
-
-  function elga(link,association,content) {
-    try
-    { 
-      var new_id = new Date().getTime();
-      var regexp = new RegExp("new_" + association, "g");
-      $(link).parent().before(content.replace(regexp, new_id));
-      
-      
-    }
-    catch(err)
-    {
-      alert(err.message);
-    }
-    return false;
-  }
-</SCRIPT>

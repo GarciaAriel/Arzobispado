@@ -11,25 +11,17 @@
 	<ul>
 		<%= ff.fields_for :answers do |builder| %>
 		  <%= render 'answer_fields', :f => builder %>
-		<% end %>
-
-		<input type="button" onClick="add_field();" value="add respuesta"/>
+		<% end %> 
+		<div>
+			<p><%= link_to_add_fields "Add Answer", ff, :answers %></p>
+		</div>
 	</ul>
 	
 </div>
 
 
-
-
 <SCRIPT type="text/javascript">
-	
-</SCRIPT>
-
-<SCRIPT type="text/javascript">
-	
-	
 	function remove_field1(link) {
-		
 		try{ 
 			var sd = $(link).prev("input[type=hidden]").first().val();
 			if (sd == '1') {
@@ -42,8 +34,7 @@
 				$(link).parent().find('input[type=button]').first().val('Mostrar');
 			}	
 		}
-		catch(err)
-		{
+		catch(err){
 			alert(err.message);
 		}
 		return false;
