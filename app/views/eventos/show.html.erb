@@ -31,7 +31,9 @@
 	<br><br>
 	<div><%= link_to 'Editar', edit_evento_path(@evento),:style=>'color:#ffffff;' %> |</div>
 	<div><%= link_to 'Atras', eventos_path,:style=>'color:#ffffff;' %></div>
-	<br><div><%= link_to 'Atras', posts_index_path(@evento.id),:style=>'color:#ffffff;' %></div>
+	<br>
+  <div><%= link_to 'Atras', posts_index_path(@evento.id),:style=>'color:#ffffff;' %></div>
+  <div><%= link_to 'Cuestionarios', surveys_index_path(@evento.id),:style=>'color:#ffffff;' %></div>
 	<br><br>
 	
 	

@@ -18,6 +18,11 @@ Rails.application.routes.draw do
   resources :eventos
   resources :posts
 
+
+
+  get 'surveys/index/:id' => 'surveys#index', as: 'surveys_index'
+  get 'surveys/new/:id' => 'surveys#new', as: 'new_survey_id'
+  
   # get 'eventos/form'
   # post 'eventos/form'
   # get 'eventos/index'

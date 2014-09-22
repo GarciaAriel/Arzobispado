@@ -2,5 +2,6 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @survey %> |
-<%= link_to 'Back', surveys_path %>
+<%= link_to 'Mostrar', @survey %> |
+<div><%= link_to 'Atras', surveys_index_path(@evento.id),:style=>'color:#ffffff;' %></div>
+

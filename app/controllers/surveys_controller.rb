@@ -3,31 +3,48 @@ class SurveysController < ApplicationController
 
   # GET /surveys
   # GET /surveys.json
+  
   def index 
-    @surveys = Survey.all
+    @submenu=1
+    @surveys = Survey.where(:evento_id=>params[:id])
+    @evento_id=params[:id]
+    @evento=Evento.find(@evento_id)
   end
 
   # GET /surveys/1
   # GET /surveys/1.json
   def show
+    @evento = Evento.find(@survey.evento_id)
+    @submenu=1
   end
 
   # GET /surveys/new
   def new
-    @survey = Survey.new
-    2.times do
-      question = @survey.questions.build
-      3.times { question.answers.build }
+    @submenu=1
+    if(current_user!=nil && current_user.rol=='admin')
+      @evento=Evento.find(params[:id])
+      @survey = Survey.new
+      2.times do
+        question = @survey.questions.build
+        3.times { question.answers.build }
+      end
+      #@post = Post.new
+    else
+      redirect_to root_path
     end
+    
   end
 
   # GET /surveys/1/edit
   def edit
+    @evento = Evento.find(@survey.evento_id)
+    @submenu=1
   end
 
   # POST /surveys
   # POST /surveys.json
   def create
+    @submenu=1
     @survey = Survey.new(survey_params)
 
     respond_to do |format|
@@ -44,6 +61,7 @@ class SurveysController < ApplicationController
   # PATCH/PUT /surveys/1
   # PATCH/PUT /surveys/1.json
   def update
+    @submenu=1
     respond_to do |format|
 
       # member.avatar.marked_for_destruction? # => true
@@ -62,9 +80,12 @@ class SurveysController < ApplicationController
   # DELETE /surveys/1
   # DELETE /surveys/1.json
   def destroy
+    @submenu=1
     @survey.destroy
     respond_to do |format|
-      format.html { redirect_to surveys_url, notice: 'Survey was successfully destroyed.' }
+      #surveys_index_path(@evento.id)
+      #format.html { redirect_to surveys_url, notice: 'Survey was successfully destroyed.' }
+      format.html { redirect_to surveys_index_path(@survey.evento_id), notice: 'Survey was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -77,7 +98,7 @@ class SurveysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.require(:survey).permit(:name,questions_attributes: [
+      params.require(:survey).permit(:name,:evento_id,questions_attributes: [
        :content, :id, :survey_id,:_destroy, 
        answers_attributes: [:content, :id, :questions_id,:_destroy]
      ])

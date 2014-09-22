@@ -22,4 +22,7 @@
 
 <br>
 
-<%= link_to 'New Survey', new_survey_path %>
+<%if(current_user!=nil && current_user.rol=='admin')%>
+  <%= link_to 'Nuevo Cuestionario', new_survey_id_path(@evento_id) %>
+<%end%>
+

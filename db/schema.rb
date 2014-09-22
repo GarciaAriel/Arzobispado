@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20140825024917) do
 
   create_table "surveys", force: true do |t|
     t.string   "name"
+    t.integer  "evento_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
