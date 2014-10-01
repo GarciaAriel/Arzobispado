@@ -10,7 +10,7 @@
 		</p>
 		<ul>
 			<%= ff.fields_for :answers do |builder| %>
-			  <%= render 'answer_fields', :f => builder %>
+			  <%= render 'answer_fields', :ff => builder %>
 			<% end %> 
 			<div>
 				<p><%= link_to_add_fields "Adicionar respuesta", ff, :answers %></p>
