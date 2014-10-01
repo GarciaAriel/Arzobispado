@@ -1,0 +1,29 @@
+<%= form_tag( crear_path, :method=>'post', :multipart => true) do %>
+<div class='bs-example form-horizontal'>
+  <div class="row">
+    <div class="col-lg-10">
+       <div class="well">
+          <fieldset>
+            <% @cuestionario.questions.each do |pregunta| %>
+              <div class="form-group">
+                <label for="inputTitle" class="col-lg-3 control-label"><%= pregunta.content %></label>
+                    <% pregunta.answers.each do |respuesta| %>
+                      <label for="inputTitle" class="control-label"><%= respuesta.content %></label>
+                        <%= check_box_tag  'resp[' + pregunta.id.to_s + '][]', respuesta.content %>
+                        <%= hidden_field_tag 'id_pregunta[]', pregunta.id %>
+                    <% end %><br>
+              </div>
+            <% end %>
+            <%= hidden_field_tag :id_cuestionario, @cuestionario.id %>
+            <%= hidden_field_tag :id_usuario, current_user.id %>
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-10">
+                <input type="submit" value="Aceptar" class="btn btn-success">
+              </div>
+            </div>
+        </fieldset>
+      </div>
+    </div>
+   </div>
+  </div>
+<% end %>

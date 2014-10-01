@@ -19,12 +19,14 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+
+  
   
   <%= f.fields_for :questions do |builder| %>
     <%= render 'question_fields', :ff => builder %>
   <% end %>
 
-
+  
   
   <div class="actions">
     <%= f.submit %>

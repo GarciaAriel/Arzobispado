@@ -12,9 +12,13 @@
     <% @surveys.each do |survey| %>
       <tr>
         <td><%= survey.name %></td>
-        <td><%= link_to 'Show', survey %></td>
-        <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
-        <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+        <td><%= link_to 'Ver', survey %></td>
+        <td><%= link_to 'Editar', edit_survey_path(survey) %></td>
+        <td><%= link_to 'Eliminar', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if AnswerUser.ya_respondio_cuestionario(current_user.id,survey.id)%>
+          <td><%= link_to 'Responder', nuevo_path(survey.id) %></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>
