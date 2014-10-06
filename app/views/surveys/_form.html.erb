@@ -16,19 +16,26 @@
   </div>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name, 'Nombre' %><br>
     <%= f.text_field :name %>
   </div>
 
+  <ul>
+  <p><%= link_to_add_fields "Adicionar pregunta", f, :questions %></p>  
+  </ul>
   
     <%= f.fields_for :questions do |builder| %>
       <%= render 'question_fields', :ff => builder %>
     <% end %>
+
   
-  <p><%= link_to_add_fields "Adicionar pregunta", f, :questions %></p>  
-  
+
+  <br>
+  <br>
+  <br>
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Crear Cuestionario' %>
   </div>
 <% end %>
 

@@ -9,7 +9,7 @@
                 <label for="inputTitle" class="col-lg-3 control-label"><%= pregunta.content %></label>
                     <% pregunta.answers.each do |respuesta| %>
                       <label for="inputTitle" class="control-label"><%= respuesta.content %></label>
-                        <%= check_box_tag  'resp[' + pregunta.id.to_s + '][]', respuesta.content %>
+                        <%= radio_button_tag  'resp[' + pregunta.id.to_s + '][]', respuesta.content %>
                         <%= hidden_field_tag 'id_pregunta[]', pregunta.id %>
                     <% end %><br>
               </div>
