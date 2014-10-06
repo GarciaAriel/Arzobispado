@@ -14,11 +14,19 @@
         <td><%= survey.name %></td>
         
         <td><%= link_to 'Ver', survey %></td>
-        <td><%= link_to 'Editar', edit_survey_path(survey) %></td>
-        <td><%= link_to 'Eliminar', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% if AnswerUser.ya_respondio_cuestionario(current_user.id,survey.id)%>
-          <td><%= link_to 'Responder', nuevo_path(survey.id) %></td>
+        <% if current_user != nil && current_user.rol == "admin" %>
+          <td><%= link_to 'Editar', edit_survey_path(survey) %></td>
+          <td><%= link_to 'Eliminar', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if AnswerUser.ya_respondio_cuestionario(current_user.id,survey.id)%>
+            <td><%= link_to 'Responder', nuevo_path(survey.id) %></td>
+          <%end%>
+        <%end%>  
+        <% if current_user != nil && current_user.rol == "user" %>
+          <% if AnswerUser.ya_respondio_cuestionario(current_user.id,survey.id)%>
+            <td><%= link_to 'Responder', nuevo_path(survey.id) %></td>
+          <%end%>
         <%end%>
+        
       </tr>
     <% end %>
   </tbody>
