@@ -1,18 +1,25 @@
 <%= form_tag( crear_path, :method=>'post', :multipart => true) do %>
-<div class='bs-example form-horizontal'>
-  <div class="row">
-    <div class="col-lg-10">
-       <div class="well">
-          <fieldset>
+  <div class="panel panel-default">
+    <div class="panel-heading"><strong>Nombre: </strong><%= @cuestionario.name %></div>
+    <div class="panel-body">
+     
+      
             <% @cuestionario.questions.each do |pregunta| %>
-              <div class="form-group">
-                <label for="inputTitle" class="col-lg-3 control-label"><%= pregunta.content %></label>
+              
+                <p class="text-primary"><label class="text-info"><%= pregunta.content %></label></p>
+                    <ul>
                     <% pregunta.answers.each do |respuesta| %>
-                      <label for="inputTitle" class="control-label"><%= respuesta.content %></label>
-                        <%= radio_button_tag  'resp[' + pregunta.id.to_s + '][]', respuesta.content %>
+                       
+                      <!--label class="text-warning"><%= respuesta.content %></label-->
+                        <label class="text-warning" >
+                        <%= radio_button_tag  'resp[' + pregunta.id.to_s + '][]', respuesta.content, respuesta.content%> <%=respuesta.content%>
+                        </label>
                         <%= hidden_field_tag 'id_pregunta[]', pregunta.id %>
-                    <% end %><br>
-              </div>
+                        <br>
+                    <% end %>
+                    </ul>
+                    <br>
+              
             <% end %>
             <%= hidden_field_tag :id_cuestionario, @cuestionario.id %>
             <%= hidden_field_tag :id_usuario, current_user.id %>
@@ -21,9 +28,9 @@
                 <input type="submit" value="Aceptar" class="btn btn-success">
               </div>
             </div>
-        </fieldset>
-      </div>
-    </div>
+       
+     
+
    </div>
-  </div>
+  </div>  
 <% end %>

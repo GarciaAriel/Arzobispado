@@ -1,20 +1,27 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-heading"> 
+    <strong>Nombre:</strong>
+    <%= @survey.name %>
+  </div>
+  <div class="panel-body">
 
-<p>
-  <strong>Name:</strong>
-  <%= @survey.name %>
-</p>
 
 <ol>
   <% for question in @survey.questions %>
-  	<li><%= h question.content %></li>
+    <h3 class="text-info">
+  	 <li><%= h question.content %></li>
+    </h3>   
   	<ul>
 	    <% for answer in question.answers %>
-	      <li><%= h answer.content %></li>
+	      <li class="text-success"><%= h answer.content %></li>
 	    <% end %>
 	</ul>
   <% end %>
 </ol>
 
-<%= link_to 'Editar', edit_survey_path(@survey) %> |
-<div><%= link_to 'Atras', surveys_index_path(@evento.id),:style=>'color:#ffffff;' %></div>
+
+  </div>
+</div>
+
+<%= link_to 'Editar', edit_survey_path(@survey) ,:class=>"btn btn-primary"%>
+<%= link_to 'Atras', surveys_index_path(@evento.id),:style=>'color:#ffffff;' ,:class=>"btn btn-primary"%>

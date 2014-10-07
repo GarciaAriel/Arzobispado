@@ -4,6 +4,14 @@ class AnswerUsersController < ApplicationController
     @submenu=1
     @cuestionario = Survey.find(params[:id])
   end
+  def report
+    @submenu=1
+    #@survey = Survey.find(params[:id])
+    @questions = Question.where(:survey_id=>params[:id])
+    @answersUsers = AnswerUser.where(:survey_id=>params[:id])
+
+    render "report"
+  end
   
   def crear 
     @submenu=1

@@ -1,12 +1,13 @@
+
 <p>
 	<div> 
 		<p> 
 			<ul></ul>
 			<%= ff.hidden_field :_destroy %>
-	  		<input type="button" onClick="remove_field1(this)" value="Eliminar pregunta"/>
+	  		<input type="button" onClick="remove_field1(this)" value="Eliminar pregunta" class="btn btn-primary"/>
 			<ul>
-			    <%= ff.label :content, "Question" %><br />
-			    <%= ff.text_area :content, :rows => 3 %><br />
+			    <!--%= ff.label :content, "Pregunta" ,:class => 'control-label'%--><br />
+			    <%= ff.text_area :content, :rows => 3, :class=>"form-control",:placeholder=>"Descripcion Pregunta" %><br />
 			</ul>   
 		 	
 		</p>
@@ -20,6 +21,7 @@
 		</ul>
 	</div>
 </p>
+	
 
 <SCRIPT type="text/javascript">
 	function remove_field1(link) {
