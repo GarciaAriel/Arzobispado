@@ -1,8 +1,8 @@
 <p>
-  <%= ff.label :content, "Answer" %>
-  <%= ff.text_field :content %>
+  <!--%= ff.label :content, "Answer" %-->
+  <%= ff.text_field :content ,:class => "col-lg-6 form-control",:placeholder=>"Descripcion Respuesta"%>
   <%= ff.hidden_field :_destroy %> 
-  <input type="button" onClick="remove_fields(this)" value="Eliminar"/>
+  <input type="button" onClick="remove_fields(this)" value="Eliminar Respuesta" class="btn btn-primary"/>
 </p>
  
 <SCRIPT type="text/javascript"> 
@@ -14,13 +14,13 @@
 				$(link).prev("input[type=hidden]").first().val("0");
 				$(link).parent().find('input[type=text]').show('slow');
 		
-				$(link).parent().find('input[type=button]').val('Eliminar');
+				$(link).parent().find('input[type=button]').val('Eliminar Respuesta');
 		
 			} else {
 				$(link).prev("input[type=hidden]").first().val("1");
 				$(link).parent().find('input[type=text]').toggle('slow');
 
-				$(link).parent().find('input[type=button]').val('Mostrar');
+				$(link).parent().find('input[type=button]').val('Restaurar Respuesta');
 			}
 
 		}catch(err){

@@ -14,8 +14,8 @@ class SurveysController < ApplicationController
   # GET /surveys/1
   # GET /surveys/1.json
   def show
-    @evento = Evento.find(@survey.evento_id)
     @submenu=1
+    @evento = Evento.find(@survey.evento_id)
   end
 
   # GET /surveys/new
@@ -24,11 +24,11 @@ class SurveysController < ApplicationController
     if(current_user!=nil && current_user.rol=='admin')
       @evento=Evento.find(params[:id])
       @survey = Survey.new
-      2.times do
-        question = @survey.questions.build
-        3.times { question.answers.build }
-      end
-      #@post = Post.new
+      # 2.times do
+      #   question = @survey.questions.build
+      #   3.times { question.answers.build }
+      # end
+      
     else
       redirect_to root_path
     end

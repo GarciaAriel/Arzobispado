@@ -1,0 +1,38 @@
+<h3><legend>Reporte del cuestionario</legend></h3>
+
+
+<div class="panel panel-primary">
+  
+  
+
+  
+
+<% if @answersUsers.size > 0 %>
+	<% @questions.each do |question| %>
+		<div class="panel-heading">
+		  <h3 class="panel-title"><%= question.content%></h3>
+		</div>
+		<% question.answers.each do |answer| %>
+			   <ul>
+					<% @contador = 0 %>
+					<div class="panel panel-info">
+					  <div class="panel-heading">
+					    <h3 class="panel-title"><%= answer.content %></h3>
+					  </div>
+					  <% @answersUsers.each do |answerUser| %>
+							<% if answerUser.answer_id == answer.id %>
+								<% @contador = @contador+1 %>
+							<% end %>				
+						<% end %>	
+						<p class="text-info"><%= @contador %> Usuarios eligieron esta opcion</p>
+					</div>
+				</ul>
+		<% end %>
+	<% end %>
+<% end %>
+
+</div>
+
+<% if @answersUsers.size == 0 %>
+	<h4><legend>Ningun usuario respondio el cuestionario</legend></h4>
+<% end %>

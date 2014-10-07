@@ -1,32 +1,46 @@
-<h1>Listing surveys</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<legend>Lista de Cuestionarios</legend>
 
-  <tbody>
+  
+  
     <% @surveys.each do |survey| %>
-      <tr>
-        <td><%= survey.name %></td>
+    
+      <div class="panel panel-default">
+        <div class="panel-heading"><%= survey.name %></div>
+        <div class="panel-body">
+          
         
-        <td><%= link_to 'Ver', survey %></td>
-        <td><%= link_to 'Editar', edit_survey_path(survey) %></td>
-        <td><%= link_to 'Eliminar', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% if AnswerUser.ya_respondio_cuestionario(current_user.id,survey.id)%>
-          <td><%= link_to 'Responder', nuevo_path(survey.id) %></td>
-        <%end%>
-      </tr>
+        
+          
+          <%= link_to 'Ver', survey ,:class=>"btn btn-primary"%>
+
+          <% if current_user != nil && current_user.rol == "admin" %>
+            <%= link_to 'Editar', edit_survey_path(survey) ,:class=>"btn btn-primary"%>
+            <% if AnswerUser.ya_respondio_cuestionario(current_user.id,survey.id)%>
+              <%= link_to 'Responder', nuevo_path(survey.id) ,:class=>"btn btn-primary"%>
+            <%end%>
+            <%= link_to 'Eliminar', survey, method: :delete, data: { confirm: 'Are you sure?' } ,:class=>"btn btn-danger"%>
+            <%= link_to 'Reporte',report_path(survey.id) ,:class=>"btn btn-warning"%>
+          <%end%> 
+
+          <% if current_user != nil && current_user.rol == "user" %>
+            <% if AnswerUser.ya_respondio_cuestionario(current_user.id,survey.id)%>
+              <%= link_to 'Responder', nuevo_path(survey.id),:class => "btn btn-success" %>
+            <%end%>
+          <%end%>
+          
+        
+
+        </div>
+      </div>
+
     <% end %>
-  </tbody>
-</table>
 
-<br>
 
-<%if(current_user!=nil && current_user.rol=='admin')%>
-  <%= link_to 'Nuevo Cuestionario', new_survey_id_path(@evento_id) %>
+
+
+
+<%if(current_user!=nil && current_user.rol=='admin') %>
+  <%= link_to 'Nuevo Cuestionario', new_survey_id_path(@evento_id) ,:class=>"btn btn-success"%>
 <%end%>
 

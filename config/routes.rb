@@ -21,8 +21,8 @@ Rails.application.routes.draw do
   get "answer_users/nuevo/:id" => "answer_users#nuevo", :as => "nuevo"
   post "answer_users/crear" => "answer_users#crear", :as => "crear"
   post "answer_users/terminado" => "answer_users#terminado", :as => "terminado"
-
-
+  get "answer_users/report/:id" => "answer_users#report", :as => "report"
+  
 
   get 'surveys/index/:id' => 'surveys#index', as: 'surveys_index'
   get 'surveys/new/:id' => 'surveys#new', as: 'new_survey_id'

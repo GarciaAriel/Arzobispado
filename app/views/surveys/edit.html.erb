@@ -1,7 +1,6 @@
-<h1>Editing survey</h1>
+<legend>Editar Cuestionario</legend>
 
 <%= render 'form' %>
 
-<%= link_to 'Mostrar', @survey %>
-<div><%= link_to 'Atras', surveys_index_path(@evento.id),:style=>'color:#ffffff;' %></div>
+<div><%= link_to 'Atras', surveys_index_path(@evento.id),:style=>'color:#ffffff;' ,:class => "btn btn-primary"%></div>
 
