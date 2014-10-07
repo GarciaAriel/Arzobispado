@@ -8,8 +8,9 @@ body {
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 18px;
+   
 }
 
 pre {
@@ -21,7 +22,7 @@ pre {
 a {
   color: #000;
   &:visited {
-    color: #fff;
+    color: #000;
   }
   &:hover {
     color: #fff;
@@ -44,7 +45,10 @@ div {
   background-color: red;
   display: table;
 }
-
+h1
+{
+  color: #fff;
+}
 #error_explanation {
   width: 450px;
   border: 2px solid red;
@@ -63,7 +67,7 @@ div {
     color: #fff;
   }
   ul li {
-    font-size: 12px;
+    font-size: 14px;
     list-style: square;
   }
 }
