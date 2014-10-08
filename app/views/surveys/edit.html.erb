@@ -2,7 +2,5 @@
 
 <%= render 'form' %>
 
-<% if current_user != nil && current_user.rol == "admin"%>  
-<div><%= link_to image_tag("ic_action_previous_item.png"), surveys_index_path(@evento.id) ,:class => "btn btn-primary"%></div>
 
-<%end%>
+<div><%= link_to image_tag("ic_action_previous_item.png"), surveys_index_path(@evento.id) ,:class => "btn btn-primary"%></div>
