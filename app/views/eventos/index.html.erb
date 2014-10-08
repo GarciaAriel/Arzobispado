@@ -9,14 +9,15 @@
     <%= render 'list' %>
   </div>
   <div class="tab-pane fade" id="cview">
-       <div id='calendar' style="background-color:yellow;"></div>
+       <div id='calendar'></div>
   </div>
   
 </div>
 
 <% if current_user != nil && current_user.rol == "admin"%>
   <h3>
-    <%= link_to 'Nuevo Evento', new_evento_path,:style=>'color:#ffffff;' %>
+    <%= link_to image_tag("ic_action_new.png"), new_evento_path ,:class=>"btn btn-primary"%>
+
   </h3>  
 <% end %>  
 

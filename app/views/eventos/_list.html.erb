@@ -17,27 +17,27 @@
         </td>
         <td>
           <h4>
-            <%= link_to evento.nombre, evento,:style=>'color:#ffffff;' %>
+            <%= link_to evento.nombre, evento%>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <font color="#FFF" size="2">Del <%=evento.fecha_inicio%> al <%=evento.fecha_inicio%></font>
+            Del <%=evento.fecha_inicio%> al <%=evento.fecha_inicio%>
           </h4>  
           <div class="panel panel-info">
                 <div class="panel-body">
             <%if evento.descripcion.size > 50%>
               <% string = evento.descripcion %>
               <% tr_string = string[0, 50] + "..." + string[-5,5] %>
-              <font color="#FFF"><%=tr_string%></font>
+              <%=tr_string%>
             <%else%>
-              <font color="#FFF"><%=evento.descripcion%></font>
+              <%=evento.descripcion%>
             <%end%>
           </div>
           </div>
           
             <% if current_user != nil && current_user.rol == "admin"%>  
               <div>
-                  <%= link_to 'Editar ', edit_evento_path(evento),:style=>'color:#ffffff;' %>
+                  <%= link_to image_tag("ic_action_edit.png"), edit_evento_path(evento) ,:class=>"btn btn-primary"%>
                   &nbsp;
-                  <%= link_to 'Eliminar', evento, method: :delete, data: { confirm: 'Esta seguro?' } ,:style=>'color:#ffffff;'%>
+                  <%= link_to image_tag("ic_action_discard.png"), evento, method: :delete, data: { confirm: 'Esta seguro?' }, :class=>"btn btn-primary"%>
               </div>
             <% end %>    
           
