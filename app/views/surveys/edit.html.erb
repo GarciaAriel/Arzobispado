@@ -2,5 +2,7 @@
 
 <%= render 'form' %>
 
-<div><%= link_to 'Atras', surveys_index_path(@evento.id),:style=>'color:#ffffff;' ,:class => "btn btn-primary"%></div>
+<% if current_user != nil && current_user.rol == "admin"%>  
+<div><%= link_to image_tag("ic_action_previous_item.png"), surveys_index_path(@evento.id) ,:class => "btn btn-primary"%></div>
 
+<%end%>

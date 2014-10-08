@@ -17,7 +17,8 @@
         </td>
         <td>
           <h4>
-            <%= link_to evento.nombre, evento%>
+            <legend><%= link_to evento.nombre, evento%></legend>
+            
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Del <%=evento.fecha_inicio%> al <%=evento.fecha_inicio%>
           </h4>  
@@ -32,15 +33,17 @@
             <%end%>
           </div>
           </div>
-          
+          <div>
+            <%= link_to image_tag("ic_action_expand.png"), evento ,:class=>"btn btn-primary"%>
             <% if current_user != nil && current_user.rol == "admin"%>  
-              <div>
+              
+                  
                   <%= link_to image_tag("ic_action_edit.png"), edit_evento_path(evento) ,:class=>"btn btn-primary"%>
-                  &nbsp;
+                  
                   <%= link_to image_tag("ic_action_discard.png"), evento, method: :delete, data: { confirm: 'Esta seguro?' }, :class=>"btn btn-primary"%>
-              </div>
+              
             <% end %>    
-          
+          </div>
           
         </td>
       
