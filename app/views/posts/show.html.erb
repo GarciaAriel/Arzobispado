@@ -19,7 +19,9 @@ $(document).ready(function() {
         var initEditor = function() {
           $("textarea").sceditor({
             plugins: 'bbcode',
+            toolbar: "bold,italic,underline|source",
             style: "/assets/jquery.sceditor.default.min.css"
+
           });
 
     var html = giveFormat("<%= escape_javascript(@post.content)%>");
@@ -123,7 +125,7 @@ $(document).ready(function() {
 			<%= form_for @comment do |f| %>
 		  <div class="field">
 			<%= f.label :content %><br>
-			<%= f.text_area :content, :size => "100x15" %>
+			<%= f.text_area :content, :size => "80x15" %>
 			<%= f.hidden_field :post_id,:value=>@post.id.to_s %><br>
 			<input type="submit" class="btn btn-primary" value="Comentar">
 	      </div>
@@ -132,7 +134,9 @@ $(document).ready(function() {
 	</div>
 	</div>
   <%else%>
+  <div class="well">
   <h2>Debe ingresar al sistema para poder comentar</h2>
+</div>
   <div style="display:none;">
   <textarea ></textarea>
 </div>
