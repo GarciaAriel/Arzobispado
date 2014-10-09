@@ -16,6 +16,7 @@ class SurveysController < ApplicationController
   def show
     @submenu=1
     @evento = Evento.find(@survey.evento_id)
+    @survey = Survey.find(@survey.id)
   end
 
   # GET /surveys/new
