@@ -1,56 +1,56 @@
 
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Editar </h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
 
-  <%= devise_error_messages! %>
-<form class="form-horizontal">
-<fieldset>
 
-  <br><br>
+<form class="form-horizontal">
+  <fieldset>
+
+  <%= devise_error_messages! %>
+
   <div class="form-group">
-    <%= f.label :email ,:class => "col-lg-2 control-label"%><br />
-    <div class="col-lg-8">
-      <%= f.email_field :email, :autofocus => true ,:class => "form-control"%>
+      <%= f.label :email ,:class => "col-lg-2 control-label"%><br />
+      <div class="col-lg-10">
+        <%= f.email_field :email, :autofocus => true ,:class => "form-control"%>
+      </div>
     </div>
-  </div>
+<br><br><br>
+  
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      Currently waiting confirmation for: <%= resource.unconfirmed_email %>
   <% end %>
 
-  <br><br><br>   
+
   <div class="form-group">
     <%= f.label :password ,:class => "col-lg-2 control-label"%> 
-    <div class="col-lg-8">
+    <div class="col-lg-10">
       <%= f.password_field :password, :autocomplete => "off" ,:class => "form-control"%>
     </div>
   </div>
-
-  <br><br>  
+<br><br><br>
   <div class="form-group">
     <%= f.label :password_confirmation ,:class => "col-lg-2 control-label"%><br />
-    <div class="col-lg-8">
+    <div class="col-lg-10">
       <%= f.password_field :password_confirmation ,:class => "form-control"%>
-    </div>  
-  </div>
-
-  <br><br><br>
+    </div>
+  </div>    
+      <br><br><br>
   <div class="form-group">
     <%= f.label :current_password ,:class => "col-lg-2 control-label"%> 
-    <div class="col-lg-8">
+    <div class="col-lg-10">
       <%= f.password_field :current_password ,:class => "form-control"%>
     </div>
-  </div>
+  </div>    
 
-  <br><br>
-  <div><%= f.submit "Update" ,:class => "btn btn-primary"%></div>
+  <br><br><br>
+  <%= f.submit "Update" ,:class => "btn btn-primary"%>
+<br><br><br>
+  </fieldset>
+</form>
 <% end %>
 
-<h3>Cancelar mi cuenta</h3>
+<p>No estoy feliz? <%= button_to "Cancelar mi cuenta", registration_path(resource_name), :data => { :confirm => "Esta seguro?" }, :method => :delete ,:class => "btn btn-danger"%></p>
 
-<p>No estoy feliz? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Esta seguro?" }, :method => :delete ,:class => "btn btn-danger"%></p>
 
-<%= link_to "Back", :back %>
-</fieldset>
-</form>

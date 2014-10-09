@@ -52,6 +52,8 @@
 
 
       <% if user_signed_in? %>
+          <% @submenu=1 %>
+          
           <%= link_to 'Editar', edit_user_registration_path,:style=>'color:#ffffff;', :class => 'navbar-link' %>
         
           <%= link_to "Salir", destroy_user_session_path,:style=>'color:#ffffff;', method: :delete %>

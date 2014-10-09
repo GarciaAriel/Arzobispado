@@ -23,5 +23,9 @@
   </div>
 </div>
 
-<%= link_to 'Editar', edit_survey_path(@survey) ,:class=>"btn btn-primary"%>
-<%= link_to 'Atras', surveys_index_path(@evento.id),:style=>'color:#ffffff;' ,:class=>"btn btn-primary"%>
+
+
+<%= link_to image_tag("ic_action_previous_item.png"), surveys_index_path(@evento.id),:class=>"btn btn-primary"%>
+<% if current_user != nil && current_user.rol == "admin"%>  
+  <%= link_to image_tag("ic_action_edit.png"), edit_survey_path(@survey) ,:class=>"btn btn-primary"%>
+<%end%>

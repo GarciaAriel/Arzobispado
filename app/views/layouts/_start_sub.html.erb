@@ -4,9 +4,9 @@
 		    Todos los posts
 		  </a>
 		  <%if(current_user!=nil && current_user.rol=='admin')%>
-		  <a href="/posts/new/<%=@evento.id%>" class="list-group-item">Crear post
-		  </a>
-		  <a href="#" class="list-group-item">Ver post
-		  </a>
+		  		<a href="/posts/new/<%=@evento.id%>" class="list-group-item">Crear post
+		  		</a>
+		  		<a href="#" class="list-group-item">Ver post
+		  		</a>
 		  <%end%>
 		</div>

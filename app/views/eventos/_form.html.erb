@@ -17,7 +17,7 @@
 <form class="form-horizontal">
   <fieldset>
     <div class="form-group">
-      <font color="white"><label class="col-lg-2 control-label" color: #000;>Nombre:</label></font>
+      <label class="col-lg-2 control-label">Nombre:</label>
       <div class="col-lg-8">
 	  	<%= f.text_field :nombre, :class =>"form-control", :placeholder => "Nombre" %>
 	  </div>
@@ -25,7 +25,7 @@
 
     <br><br><br>
     <div class="form-group">
-      <font color="white"><%= f.label :descripcion, :class =>"col-lg-2 control-label" %></font>
+      <%= f.label :descripcion, :class =>"col-lg-2 control-label" %>
 	  <div class="col-lg-8">
       	<%= f.text_area :descripcion, :class =>"form-control", :rows=>"3" %>
         <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
@@ -38,7 +38,7 @@
 
 
 <div class="form-group">
-      <font color="white"> <label for="inputDate" class="col-lg-2 control-label">Fecha inicio:</label> </font>
+      <label for="inputDate" class="col-lg-2 control-label">Fecha inicio:</label>
       <div class="col-lg-8">
          <%= f.date_field :fecha_inicio, :class=>'form-control input-append',:"data-format"=>'dd/MM/yyyy',:id =>"fecha_inicio" , :required => true, :style=>"border-bottom-left-radius: 4px;  border-top-left-radius: 4px;"%>
       </div>
@@ -47,7 +47,7 @@
 
 
   <div class="form-group">
-      <font color="white"> <label for="inputDate" class="col-lg-2 control-label">Fecha fin:</label> </font>
+      <label for="inputDate" class="col-lg-2 control-label">Fecha fin:</label>
       <div class="col-lg-8">
          <%= f.date_field :fecha_fin, :class=>'form-control input-append',:"data-format"=>'dd/MM/yyyy',:id =>"fecha_fin" , :required => true, :style=>"border-bottom-left-radius: 4px;  border-top-left-radius: 4px;"%>
       </div>
