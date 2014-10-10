@@ -31,9 +31,10 @@
 
     <% end %>
 
-
-
 <%if(current_user!=nil && current_user.rol=='admin') %>
   <%= link_to image_tag("ic_action_new.png"), new_survey_id_path(@evento_id) ,:class=>"btn btn-primary"%>
 <%end%>
+
+
+
 

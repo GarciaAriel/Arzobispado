@@ -98,6 +98,10 @@ ActiveRecord::Schema.define(version: 20140929134936) do
     t.integer  "evento_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "docu_file_name"
+    t.string   "docu_content_type"
+    t.integer  "docu_file_size"
+    t.datetime "docu_updated_at"
   end
 
   create_table "users", force: true do |t|

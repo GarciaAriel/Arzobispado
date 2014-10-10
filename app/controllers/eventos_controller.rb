@@ -7,7 +7,7 @@ class EventosController < ApplicationController
 		if user_signed_in? && current_user.rol == "admin" 
 			@submenu=1
 		end
-		@eventos = Evento.all
+		@eventos = Evento.all.page(params[:page]).per(5)
 		
 	end
 	

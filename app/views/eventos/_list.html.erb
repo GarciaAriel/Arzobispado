@@ -24,7 +24,7 @@
           </h4>  
           
           <div>
-            <%= link_to image_tag("ic_action_expand.png"), evento ,:class=>"btn btn-primary"%>
+            <%= link_to image_tag("ic_action_expand.png"), evento ,:class=>"btn btn-primary" %>
             <% if current_user != nil && current_user.rol == "admin"%>  
               
                   
@@ -40,5 +40,15 @@
       </tr>
     
     <% end %>
-  
+
 </table>
+
+
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= paginate @eventos %></h3>
+    </div>
+  </div>
+
+
+
