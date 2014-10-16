@@ -46,6 +46,21 @@
   <div class="actions">
     <%= f.submit 'Crear Cuestionario' ,:class => "btn btn-warning"%>
   </div>
+
+
+
+
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <%= f.label :docu, "Documento" %>
+        <%= f.file_field :docu %>
+
+      </h3>
+    </div>
+  </div>
+
   </fieldset>
 </form>
 <% end %>

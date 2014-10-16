@@ -16,6 +16,7 @@ class SurveysController < ApplicationController
   def show
     @submenu=1
     @evento = Evento.find(@survey.evento_id)
+    @survey = Survey.find(@survey.id)
   end
 
   # GET /surveys/new
@@ -98,7 +99,7 @@ class SurveysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.require(:survey).permit(:name,:evento_id,questions_attributes: [
+      params.require(:survey).permit(:name,:evento_id,:docu,questions_attributes: [
        :content, :id, :survey_id,:_destroy, 
        answers_attributes: [:content, :id, :questions_id,:_destroy]
      ])

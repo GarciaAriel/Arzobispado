@@ -3,31 +3,142 @@
 
 <div class="panel panel-primary">
   
-  
-
-  
 
 <% if @answersUsers.size > 0 %>
 	<% @questions.each do |question| %>
 		<div class="panel-heading">
 		  <h3 class="panel-title"><%= question.content%></h3>
 		</div>
+
+
+		<% ary = Array.new %>
 		<% question.answers.each do |answer| %>
 			   <ul>
 					<% @contador = 0 %>
-					<div class="panel panel-info">
-					  <div class="panel-heading">
-					    <h3 class="panel-title"><%= answer.content %></h3>
-					  </div>
-					  <% @answersUsers.each do |answerUser| %>
+					<!--div class="panel panel-info"-->
+					  <!--div class="panel-heading"-->
+					    <!--h3 class="panel-title"><%= answer.content %></h3-->
+					  <!--/div-->
+
+					  	<% @answersUsers.each do |answerUser| %>
 							<% if answerUser.answer_id == answer.id %>
 								<% @contador = @contador+1 %>
 							<% end %>				
 						<% end %>	
-						<p class="text-info"><%= @contador %> Usuarios eligieron esta opcion</p>
-					</div>
+						<% ary.push(@contador) %>
+						<!--p class="text-info"><%= @contador %> Usuarios eligieron esta opcion</p-->
+					<!--/div-->
 				</ul>
 		<% end %>
+
+		<% color = 1%>
+		<ol>
+		<% question.answers.each do |answer| %>
+		<li>
+			<% if color == 1  %>
+				<%color = 2%>
+				<div class="panel panel-success">
+				  <div class="panel-heading">
+				    <h3 class="panel-title"><%= answer.content %></h3>
+				  </div>
+				</div>
+				<%next%>
+			<% end %>	
+			<% if color == 2  %>
+				<%color = 3%>
+				<div class="panel panel-info">
+				  <div class="panel-heading">
+				    <h3 class="panel-title"><%= answer.content %></h3>
+				  </div>
+				</div>
+				<%next%>
+			<% end %>
+			<% if color == 3  %>
+				<% color = 4%>
+				<div class="panel panel-warning">
+				  <div class="panel-heading">
+				    <h3 class="panel-title"><%= answer.content %></h3>
+				  </div>
+				</div>
+				<% next %>
+			<% end %>
+			<% if color == 4  %>
+				<%color = 5%>
+				<div class="panel panel-primary">
+				  <div class="panel-heading">
+				    <h3 class="panel-title"><%= answer.content %></h3>
+				  </div>
+				</div>
+				<%next%>
+			<% end %>
+			<% if color == 5  %>
+				<%color = 1%>
+				<div class="panel panel-danger">
+				  <div class="panel-heading">
+				    <h3 class="panel-title"><%= answer.content %></h3>
+				  </div>
+				</div>
+				<% next %>
+			<% end %>
+		</li>
+		<% end %>
+		</ol>
+
+		<div class="progress">
+
+		<% pos = 0 %>
+		<% posColor = 1 %>
+		<% suma = ary.sum%>
+
+		<% ary.each do |value| %>
+			<% valor = (value*100)/suma%>
+
+			<% if posColor == 1 %>
+				<% pos += 1 %>
+				<div class="progress-bar progress-bar-success" style="width: <%= valor %>%">
+					<h3 class="panel-title"><%= valor %>% la Opc: <%= pos %>  </h3>
+				</div>
+				<% posColor = 2%>
+				<% next %>
+			<% end %>
+			<% if posColor == 2 %>
+				<% pos += 1 %>
+				<div class="progress-bar progress-bar-info" style="width: <%= valor %>%">
+					<h3 class="panel-title"><%= valor %>% la Opc: <%= pos %>  </h3>
+				</div>
+				<% posColor = 3%>
+				<% next %>
+			<% end %>
+			<% if posColor == 3 %>
+				<% pos += 1 %>
+				<div class="progress-bar progress-bar-warning" style="width: <%= valor %>%">
+					<h3 class="panel-title"><%= valor %>% la Opc: <%= pos %>  </h3>
+				</div>
+				<% posColor = 4%>
+				<% next %>
+			<% end %>
+			<% if posColor == 4 %>
+				<% pos += 1 %>
+				<div class="progress-bar progress-bar-prymary" style="width: <%= valor %>%">
+					<h3 class="panel-title"><%= valor %>% la Opc: <%= pos %>  </h3>
+				</div>
+				<% posColor = 5%>
+				<% next %>
+			<% end %>
+			<% if posColor == 5 %>
+				<% pos += 1 %>
+				<div class="progress-bar progress-bar-danger" style="width: <%= valor %>%">
+					<h3 class="panel-title"><%= valor %>% la Opc: <%= pos %>  </h3>
+				</div>
+				<% posColor = 1%>
+				<% next %>
+			<% end %>
+			
+			
+		<%end%>
+
+		</div>
+
 	<% end %>
 <% end %>
 
@@ -36,3 +147,5 @@
 <% if @answersUsers.size == 0 %>
 	<h4><legend>Ningun usuario respondio el cuestionario</legend></h4>
 <% end %>
+
+<%= link_to image_tag("ic_action_previous_item.png"), :back,:class=>"btn btn-primary" %>

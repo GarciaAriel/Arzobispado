@@ -29,3 +29,9 @@
 <% if current_user != nil && current_user.rol == "admin"%>  
   <%= link_to image_tag("ic_action_edit.png"), edit_survey_path(@survey) ,:class=>"btn btn-primary"%>
 <%end%>
+
+<% if current_user != nil && (current_user.rol == "user" || current_user.rol == "admin") %>
+  <% if AnswerUser.ya_respondio_cuestionario(current_user.id,@survey.id)%>
+    <%= link_to image_tag("responder.png"), nuevo_path(@survey.id),:class => "btn btn-primary" %>
+  <%end%>
+<%end%>

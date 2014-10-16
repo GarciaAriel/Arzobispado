@@ -6,35 +6,25 @@
       <tr class="active">
         <td >
           <div class="alert alert-dismissable alert-info">
-            <br>
+            
             <strong>Evento!</strong> <br> 
             <br>
             Posts: 
             <%=evento.posts.size %> <br><br>
             <a href="/posts/index/<%=evento.id%>">Ver posts</a>
-
+            <br><br>
           </div>
         </td>
         <td>
-          <h4>
-            <legend><%= link_to evento.nombre, evento%></legend>
-            
+          
+            <legend>Evento: <%= evento.nombre%></legend>
+          <h4>  
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Del <%=evento.fecha_inicio%> al <%=evento.fecha_inicio%>
+            <strong>Fecha inicio:</strong> <%=evento.fecha_inicio%> <strong>Fecha fin:</strong> <%=evento.fecha_inicio%>
           </h4>  
-          <div class="panel panel-info">
-                <div class="panel-body">
-            <%if evento.descripcion.size > 50%>
-              <% string = evento.descripcion %>
-              <% tr_string = string[0, 50] + "..." + string[-5,5] %>
-              <%=tr_string%>
-            <%else%>
-              <%=evento.descripcion%>
-            <%end%>
-          </div>
-          </div>
+          
           <div>
-            <%= link_to image_tag("ic_action_expand.png"), evento ,:class=>"btn btn-primary"%>
+            <%= link_to image_tag("ic_action_expand.png"), evento ,:class=>"btn btn-primary" %>
             <% if current_user != nil && current_user.rol == "admin"%>  
               
                   
@@ -50,5 +40,15 @@
       </tr>
     
     <% end %>
-  
+
 </table>
+
+
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= paginate @eventos %></h3>
+    </div>
+  </div>
+
+
+

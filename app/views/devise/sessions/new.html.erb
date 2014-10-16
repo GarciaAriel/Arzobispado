@@ -1,1 +1,37 @@
-<%=render 'form'%>
+
+
+
+<%= form_for(User.new, :as => :user, :url => session_path(:user)) do |f| %>
+  
+  
+<form class="form-horizontal">
+  <fieldset>
+
+  <font color="white"><h2>Ingresar</h2></font><br><br>
+
+
+	<div class="form-group">
+      <%= f.label :email, :autofocus => true ,:class => 'col-lg-2 control-label'%>
+      <div class="col-lg-8">
+      	<%= f.email_field :email, :autofocus => true, :class =>"form-control" , :placeholder => "Email"%>
+	  </div>
+    </div><br><br><br>
+
+    <div class="form-group">
+      <%= f.label :password,:class => 'col-lg-2 control-label' %>
+      <div class="col-lg-8">
+      	<%= f.password_field :password , :autofocus => true,:class =>"form-control", :placeholder => "Password"%>
+	  </div>
+    </div><br><br>
+
+
+
+    <div><%= f.submit "Aceptar",:class => "btn btn-primary"  %></div>
+
+    <%= render "devise/shared/links" %>
+  </fieldset>
+</form>  
+
+<% end %>
+
+
