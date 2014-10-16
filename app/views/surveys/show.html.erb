@@ -15,13 +15,21 @@
 	    <% for answer in question.answers %>
 	      <li class="text-success"><%= h answer.content %></li>
 	    <% end %>
+
 	</ul>
+  <% end %>
+  <% if @survey.archivo.exists? %>
+    Documento de cuestionario<br>
+    
+    <a href="/surveys/download/<%=@survey.id%>"><%=  @survey.archivo_file_name.to_s %></a>   
+
   <% end %>
 </ol>
 
 
   </div>
 </div>
+
 
 
 

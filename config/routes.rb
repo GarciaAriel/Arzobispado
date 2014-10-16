@@ -2,13 +2,13 @@ Rails.application.routes.draw do
 
 
   resources :surveys
+  get 'surveys/download/:id' => 'surveys#download'
 
   resources :events
 
   #devise_for :users
   devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
-
-
+  
   resources :comments
   resources :post_attatchments
 

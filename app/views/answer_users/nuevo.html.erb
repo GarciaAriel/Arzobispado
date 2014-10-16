@@ -1,4 +1,5 @@
-<%= form_tag( crear_path, :method=>'post', :multipart => true) do %>
+<%= form_for @answer_user,url: crear_path, :html => { :multipart => true } do |f| %> 
+<!--%= form_tag( crear_path, :method=>'post', :multipart => true) do %-->
   <div class="panel panel-default">
     <div class="panel-heading"><strong>Nombre: </strong><%= @cuestionario.name %></div>
     <div class="panel-body">
@@ -12,17 +13,27 @@
                        
                       <!--label class="text-warning"><%= respuesta.content %></label-->
                         <label class="text-warning" >
-                        <%= radio_button_tag  'resp[' + pregunta.id.to_s + '][]', respuesta.content, respuesta.content%> <%=respuesta.content%>
+                          <%= radio_button_tag  'resp[' + pregunta.id.to_s + '][]', respuesta.content, respuesta.content%> <%=respuesta.content%>
                         </label>
-                        <%= hidden_field_tag 'id_pregunta[]', pregunta.id %>
+                          <%= hidden_field_tag 'id_pregunta[]', pregunta.id %>
                         <br>
                     <% end %>
                     </ul>
                     <br>
-              
             <% end %>
-            <%= hidden_field_tag :id_cuestionario, @cuestionario.id %>
-            <%= hidden_field_tag :id_usuario, current_user.id %>
+
+            <%= f.hidden_field :usuario_id,:value=>current_user.id %>
+            <%= f.hidden_field :survey_id,:value=>@cuestionario.id %>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <%= f.label :archivo, "Documento" %>
+        <%= f.file_field :archivo %>
+      </h3>
+    </div>
+  </div>
+
             <div class="form-group">
               <div class="col-lg-10 col-lg-offset-10">
                 <input type="submit" value="Aceptar" class="btn btn-success">

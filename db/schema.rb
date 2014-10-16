@@ -21,6 +21,10 @@ ActiveRecord::Schema.define(version: 20140929134936) do
     t.integer  "answer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "archivo_file_name"
+    t.string   "archivo_content_type"
+    t.integer  "archivo_file_size"
+    t.datetime "archivo_updated_at"
   end
 
   create_table "answers", force: true do |t|
@@ -98,10 +102,10 @@ ActiveRecord::Schema.define(version: 20140929134936) do
     t.integer  "evento_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "docu_file_name"
-    t.string   "docu_content_type"
-    t.integer  "docu_file_size"
-    t.datetime "docu_updated_at"
+    t.string   "archivo_file_name"
+    t.string   "archivo_content_type"
+    t.integer  "archivo_file_size"
+    t.datetime "archivo_updated_at"
   end
 
   create_table "users", force: true do |t|

@@ -47,9 +47,11 @@ class SurveysController < ApplicationController
   def create
     @submenu=1
     @survey = Survey.new(survey_params)
+    @evento = Evento.find(@survey.evento_id)
 
     respond_to do |format|
       if @survey.save
+
         format.html { redirect_to @survey, notice: 'Survey was successfully created.' }
         format.json { render :show, status: :created, location: @survey }
       else
@@ -57,6 +59,11 @@ class SurveysController < ApplicationController
         format.json { render json: @survey.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def download
+    survey_doc = Survey.find(params[:id])
+    send_file survey_doc.archivo.path and return
   end
 
   # PATCH/PUT /surveys/1
@@ -99,7 +106,7 @@ class SurveysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.require(:survey).permit(:name,:evento_id,:docu,questions_attributes: [
+      params.require(:survey).permit(:name,:evento_id,:archivo,questions_attributes: [
        :content, :id, :survey_id,:_destroy, 
        answers_attributes: [:content, :id, :questions_id,:_destroy]
      ])

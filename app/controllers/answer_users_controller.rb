@@ -1,6 +1,7 @@
 class AnswerUsersController < ApplicationController
   
   def nuevo
+    @answer_user = AnswerUser.new
     @submenu=1
     @cuestionario = Survey.find(params[:id])
   end
@@ -19,31 +20,45 @@ class AnswerUsersController < ApplicationController
     @cuestionario_id = params[:id_cuestionario]
     @usuario_id = params[:id_usuario]
     @preguntas_id = params[:id_pregunta]
+    archivo = params[:archive]
     @respuestas_id
     #@pregunta_tipo = params[:tipo_pregunta]
     cont = 0
 
     if(AnswerUser.ya_respondio_cuestionario(current_user.id,@cuestionario_id))
-      @respuestas.each { |key,respuesta_usuario|  #question id
-        respuesta_usuario.each { |valor|
-          @respuestaUsuario = AnswerUser.new(:response => valor, :survey_id => @cuestionario_id , 
-            :usuario_id => @usuario_id, :question_id => key.to_s )
+      if @respuestas != nil
+        @respuestas.each { |key,respuesta_usuario|  #question id
+          respuesta_usuario.each { |valor|
+            @respuestaUsuario = AnswerUser.new(:response => valor, :survey_id => @cuestionario_id , 
+              :usuario_id => @usuario_id, :question_id => key.to_s )
 
-          allrespuestas = Answer.where(question_id: key)
-          allrespuestas.each do |resp|
-            if key.to_s==resp.question_id.to_s && valor==resp.content #&& resp.correct == true
-              @respuestaUsuario.answer_id = resp.id
-              #@respuestaUsuario.response = true
-              break
-            # else
-            #   @respuestaUsuario.response = false
-            end
-          end 
-          @respuestaUsuario.save
-          #agregar_archivos_adjuntos(@respuestaUsuario.id, key) 
-        }
-      }
+            allrespuestas = Answer.where(question_id: key)
+            allrespuestas.each do |resp|
+              if key.to_s==resp.question_id.to_s && valor==resp.content #&& resp.correct == true
+                @respuestaUsuario.answer_id = resp.id
+                #@respuestaUsuario.response = true
+                break
+              # else
+              #   @respuestaUsuario.response = false
+              end
+            end 
+            @respuestaUsuario.save
+            #agregar_archivos_adjuntos(@respuestaUsuario.id, key) 
+          }
+        }  
+      end
+      # if archivo != nil
+      puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        @respuestaUsuario = AnswerUser.new(answer_user_params)
+        puts "ssssssssssssssssssssssssssssssssssssssssssssssssssssss"
+          # :survey_id=>@cuestionario_id,:usuario_id=>@usuario_id)
+        @respuestaUsuario.save
+        puts "ddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+      # end
     end
-
   end
+  private
+    def answer_user_params
+      params.require(:answer_user).permit(:usuario_id,:archivo,:survey_id,:question_id,:answer_id)
+    end
 end
