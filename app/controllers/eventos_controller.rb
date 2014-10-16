@@ -43,6 +43,8 @@ class EventosController < ApplicationController
 
 		    respond_to do |format|
 		      if @evento.save
+		      	 log("Usuario: "+current_user.email+" Creo el evento: "+@evento.nombre+", fecha/hora: "+current_user.last_sign_in_at.to_s+" desde: "+current_user.last_sign_in_ip)
+ 
 		        format.html { redirect_to @evento, notice: 'High score was successfully created.' }
 		      else
 		        format.html { render :new }
@@ -57,7 +59,10 @@ class EventosController < ApplicationController
   		if user_signed_in? && current_user.rol == "admin"
 	  		@submenu=1
 	  		respond_to do |format|
+	  			@nombre=@evento.nombre
 	  			if @evento.update(evento_params)
+	  				 log("Usuario: "+current_user.email+" Actualizo el evento: "+@nombre+" a "+@evento.nombre+", fecha/hora: "+current_user.last_sign_in_at.to_s+" desde: "+current_user.last_sign_in_ip)
+ 
 	  				format.html{redirect_to @evento, notice: 'evento ok'}
 	  			else
 	  				format.html {render :edit}	
@@ -83,6 +88,12 @@ class EventosController < ApplicationController
   	
   	private
 
+  def log(event)
+    @l=Log.new
+    @l.description=event
+    @l.user_id=current_user.id
+    @l.save
+  end    
   	def set_evento
       @evento = Evento.find(params[:id])
     end

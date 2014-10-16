@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140929134936) do
+ActiveRecord::Schema.define(version: 20141016210804) do
 
   create_table "answer_users", force: true do |t|
     t.boolean  "response"
@@ -51,6 +51,13 @@ ActiveRecord::Schema.define(version: 20140929134936) do
     t.text     "description"
     t.date     "date_start"
     t.date     "date_end"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "logs", force: true do |t|
+    t.text     "description"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
