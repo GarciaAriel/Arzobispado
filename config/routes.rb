@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
 
 
+  resources :logs
+
   resources :surveys
   get 'surveys/download/:id' => 'surveys#download'
 
   resources :events
-
   #devise_for :users
+
   devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
   
+
   resources :comments
   resources :post_attatchments
 
@@ -17,7 +20,6 @@ Rails.application.routes.draw do
 
   resources :eventos
   resources :posts
-
   get "answer_users/nuevo/:id" => "answer_users#nuevo", :as => "nuevo"
   post "answer_users/crear" => "answer_users#crear", :as => "crear"
   post "answer_users/terminado" => "answer_users#terminado", :as => "terminado"

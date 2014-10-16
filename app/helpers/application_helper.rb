@@ -13,6 +13,8 @@ module ApplicationHelper
 	  # end
 	  #link_to_function(name, "add_field(this, '#{association}', '#{escape_javascript(fields)}')", :remote => true)
 	end
-
+def devise_mapping
+  @devise_mapping ||= request.env["devise.mapping"]
+end
 end 
 
