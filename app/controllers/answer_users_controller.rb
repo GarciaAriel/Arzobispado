@@ -25,14 +25,13 @@ class AnswerUsersController < ApplicationController
     @cuestionario_id = params[:id_cuestionario]
     @usuario_id = params[:id_usuario]
     @preguntas_id = params[:id_pregunta]
-    archivo = params[:archive]
+    archivo = params[:archivo]
     @respuestas_id
     #@pregunta_tipo = params[:tipo_pregunta]
     cont = 0
 
     if(AnswerUser.ya_respondio_cuestionario(current_user.id,@cuestionario_id))
       if @respuestas != nil
-        puts "oooooooooooooooooooooooooooooooooooooooooooooooooooooo"
         @respuestas.each { |key,respuesta_usuario|  #question id
           respuesta_usuario.each { |valor|
             @respuestaUsuario = AnswerUser.new(answer_user_params)
@@ -50,17 +49,18 @@ class AnswerUsersController < ApplicationController
             @respuestaUsuario.save
             #agregar_archivos_adjuntos(@respuestaUsuario.id, key) 
           }
-        }  
-      end
-       if archivo != nil
+        }
+      else      
         @respuestaUsuario = AnswerUser.new(answer_user_params)
           # :survey_id=>@cuestionario_id,:usuario_id=>@usuario_id)
         @respuestaUsuario.save
-       end
+      end
+        
+      
     end
   end
   private
     def answer_user_params
-      params.require(:answer_user).permit(:usuario_id,:archivo,:survey_id,:question_id,:answer_id)
+      params.require(:answer_user).permit(:usuario_id,:survey_id,:question_id,:answer_id,:archivo)
     end
 end
