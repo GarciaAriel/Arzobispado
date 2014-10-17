@@ -50,6 +50,8 @@ class SurveysController < ApplicationController
 
     respond_to do |format|
       if @survey.save
+          log("Usuario: "+current_user.email+" Creo el cuestionario: "+@survey.name+", fecha/hora: "+current_user.last_sign_in_at.to_s+" desde: "+current_user.last_sign_in_ip)
+ 
         format.html { redirect_to @survey, notice: 'Survey was successfully created.' }
         format.json { render :show, status: :created, location: @survey }
       else
@@ -92,6 +94,12 @@ class SurveysController < ApplicationController
   end
 
   private
+  def log(event)
+    @l=Log.new
+    @l.description=event
+    @l.user_id=current_user.id
+    @l.save
+  end  
     # Use callbacks to share common setup or constraints between actions.
     def set_survey
       @survey = Survey.find(params[:id])

@@ -79,7 +79,10 @@ class EventosController < ApplicationController
   		if user_signed_in? && current_user.rol == "admin" 
 			@submenu=1
 		end
+	     log("Usuario: "+current_user.email+" elimino el evento: "+@evento.nombre+", fecha/hora: "+current_user.last_sign_in_at.to_s+" desde: "+current_user.last_sign_in_ip)
+ 
 	    @evento.destroy
+
 	    respond_to do |format|
 	      format.html { redirect_to eventos_url, notice: 'High score was successfully destroyed.' }
 	      format.json { head :no_content }

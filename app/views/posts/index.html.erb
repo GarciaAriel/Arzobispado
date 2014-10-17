@@ -23,8 +23,10 @@
         <td> <div class="alert alert-dismissable alert-info">
             
             Comentarios: <br> <br>
+        
             <p align="center">
-            <%=post.comments.size %> </p>
+          <fb:comments-count href="http://ferro-tools.com/arzobizpado/<%=post.id%>"></fb:comments-count> 
+</p>
             
           </div></td>
         
@@ -37,11 +39,12 @@ admin@admin.com
 
 <%=post.created_at.to_date%>
 </span></font></td>
-        <td><%= link_to image_tag("detail.png",:size=>'25x25'), post,:style=>'color:#ffffff;',:class => 'btn btn-mini btn-success' %></td>
+        <td><%= link_to image_tag("detail.png",:size=>'25x25'), post,:style=>'color:#ffffff;',:class => 'btn btn-mini btn-success','data-no-turbolink' => true %></td>
        <%if(current_user!=nil && current_user.rol=='admin')%>
         <td><%= link_to image_tag("ic_action_edit.png",:size=>'25x25'), edit_post_path(post),:style=>'color:#ffffff;',:class => 'btn btn-mini btn-warning'%></td>
-        <td><%= link_to image_tag("delete.png",:size=>'25x25'), edit_post_path(post),
-            :confirm => 'Esta seguro?', :method => :delete,:class => 'btn btn-mini btn-danger' %></td>
+        <td><%= link_to image_tag("delete.png",:size=>'25x25'), post,
+            data: { confirm: 'Esta seguro?' }, :method => :delete,:class => 'btn btn-mini btn-danger' %></td>
+
         <%end%>
       </tr>
     <% end %>
@@ -52,3 +55,15 @@ admin@admin.com
 <%if(current_user!=nil && current_user.rol=='admin')%>
 <%= link_to image_tag("ic_action_new.png"), new_post_id_path(@evento_id),:class=>"btn btn-primary" %>
 <%end%>
+
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&appId=1504005809866397&version=v2.0";
+  
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+
+</script>

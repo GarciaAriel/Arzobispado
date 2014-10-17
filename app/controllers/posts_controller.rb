@@ -45,10 +45,10 @@ end
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        log("Usuario: "+current_user.email+" creo el post: "+@post.title+", fecha/hora: "+current_user.last_sign_in_at.to_s+" desde: "+current_user.last_sign_in_ip)
+        format.html { redirect_to @post, notice: 'Post creado!' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
@@ -60,9 +60,11 @@ end
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+    @nombre=@post.title
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+               log("Usuario: "+current_user.email+" Actualizo el post: "+@nombre+" a "+@post.title+", fecha/hora: "+current_user.last_sign_in_at.to_s+" desde: "+current_user.last_sign_in_ip)
+        format.html { redirect_to @post, notice: 'Post actualizado!' }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit }
@@ -74,14 +76,21 @@ end
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post.destroy
+       log("Usuario: "+current_user.email+" elimino el post: "+@post.title+", fecha/hora: "+current_user.last_sign_in_at.to_s+" desde: "+current_user.last_sign_in_ip)
+     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_index_path(@post.evento.id), notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to posts_index_path(@post.evento.id), notice: 'Post Eliminado' }
       format.json { head :no_content }
     end
   end
 
   private
+  def log(event)
+    @l=Log.new
+    @l.description=event
+    @l.user_id=current_user.id
+    @l.save
+  end  
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])

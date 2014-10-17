@@ -111,59 +111,29 @@ $(document).ready(function() {
 <%if(current_user!=nil && current_user.rol=='admin')%>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%end%>
-<%= link_to 'Back', posts_index_path(@post.evento_id) %>
+<%= link_to 'Back', posts_index_path(@post.evento_id),'data-no-turbolink' => true%>
 </div>
 </div>
 </div>
-</div>
-<div class="row">
-  <%if(current_user!=nil)%>
-	<div class="col-lg-10">
-	<div class="well">
-		<fieldset>
-			<legend>Comentar:</legend>
-			<%= form_for @comment do |f| %>
-		  <div class="field">
-			<%= f.label :content %><br>
-			<%= f.text_area :content, :size => "80x15" %>
-			<%= f.hidden_field :post_id,:value=>@post.id.to_s %><br>
-			<input type="submit" class="btn btn-primary" value="Comentar">
-	      </div>
-	      <%end%>
-	  </fieldset>
-	</div>
-	</div>
-  <%else%>
-  <div class="well">
-  <h2>Debe ingresar al sistema para poder comentar</h2>
 </div>
   <div style="display:none;">
   <textarea ></textarea>
-</div>
-  <br>
-  <%end%>
-	<%@comments.each do |comment|%>
-	<%if comment.visible?%>
-	<div class="row">
-	<div class="col-lg-10">
-
-
-		<div class="panel panel-default">
-
-  <div class="panel-heading"><%=comment.user.email%></div>
-  <div class="panel-body">
-  	<div id="comment-<%=comment.id%>" class="ellipsis"></div><br>
-    <%if(current_user!=nil && current_user==comment.user)%>
-    <a href="/comments/<%=comment.id%>/edit">Editar</a>| <%= link_to 'Eliminar', comment, method: :delete, data: { confirm: 'Esta seguro?' } ,:style=>'color:#ffffff;'%>
-    <%end%>
-
-    
   </div>
-</div>
-		
-		</div></div>
-		<%end%>
-	<%end%>
-	<%= paginate @comments%>
-</div>
+    
+
+  <div class="row" align="center">
+<div class="fb-comments" data-href="ferro-tools.com/arzobizpado/<%=@post.id%>" data-width="600" data-num-posts="2" align="center"></div>
+     </div>
+     <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&appId=1504005809866397&version=v2.0";
+  
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+
+</script>
 

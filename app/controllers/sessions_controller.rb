@@ -6,6 +6,8 @@ class SessionsController < Devise::SessionsController
  
   end
   def destroy
+     log("Usuario: "+current_user.email+" salio del sistema, fecha/hora: "+current_user.last_sign_in_at.to_s+" desde: "+current_user.last_sign_in_ip)
+ 
     super
   end
   private
