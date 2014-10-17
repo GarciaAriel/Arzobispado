@@ -4,23 +4,23 @@
 
     <% @eventos.each do |evento| %>
       <tr class="active">
-        <td >
-          <div class="alert alert-dismissable alert-info">
+        <td>
+          <%if evento.image.exists?%>
+            <td><%= image_tag evento.image.url(:thumb) %></td>
+          <%else%>
+            <td><%= image_tag '/assets/missing.png', :size=>"100x100" %></td>
             
-            <strong>Evento!</strong> <br> 
-            <br>
-            Posts: 
-            <%=evento.posts.size %> <br><br>
-            <a href="/posts/index/<%=evento.id%>">Ver posts</a>
-            <br><br>
-          </div>
+          <%end%>
         </td>
+        
         <td>
           
             <legend>Evento: <%= evento.nombre%></legend>
           <h4>  
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <strong>Fecha inicio:</strong> <%=evento.fecha_inicio%> <strong>Fecha fin:</strong> <%=evento.fecha_inicio%>
+            <strong>Fecha inicio:</strong> <%=evento.fecha_inicio%> <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <strong>Fecha fin:</strong> <%=evento.fecha_inicio%>
           </h4>  
           
           <div>
@@ -35,6 +35,19 @@
             <% end %>    
           </div>
           
+        </td>
+
+        <td >
+          <div class="alert alert-dismissable alert-info">
+            
+
+            <strong>Evento!</strong> <br> 
+            <br>
+            Posts: 
+            <%=evento.posts.size %> <br><br>
+            <a href="/posts/index/<%=evento.id%>">Ver posts</a>
+            <br><br>
+          </div>
         </td>
       
       </tr>

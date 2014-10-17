@@ -32,10 +32,10 @@ class AnswerUsersController < ApplicationController
 
     if(AnswerUser.ya_respondio_cuestionario(current_user.id,@cuestionario_id))
       if @respuestas != nil
+        puts "oooooooooooooooooooooooooooooooooooooooooooooooooooooo"
         @respuestas.each { |key,respuesta_usuario|  #question id
           respuesta_usuario.each { |valor|
-            @respuestaUsuario = AnswerUser.new(:response => valor, :survey_id => @cuestionario_id , 
-              :usuario_id => @usuario_id, :question_id => key.to_s )
+            @respuestaUsuario = AnswerUser.new(answer_user_params)
 
             allrespuestas = Answer.where(question_id: key)
             allrespuestas.each do |resp|
@@ -52,14 +52,11 @@ class AnswerUsersController < ApplicationController
           }
         }  
       end
-      # if archivo != nil
-      puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+       if archivo != nil
         @respuestaUsuario = AnswerUser.new(answer_user_params)
-        puts "ssssssssssssssssssssssssssssssssssssssssssssssssssssss"
           # :survey_id=>@cuestionario_id,:usuario_id=>@usuario_id)
         @respuestaUsuario.save
-        puts "ddddddddddddddddddddddddddddddddddddddddddddddddddddd"
-      # end
+       end
     end
   end
   private

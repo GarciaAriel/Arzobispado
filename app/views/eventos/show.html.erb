@@ -18,6 +18,15 @@
         </div>
       </div>
     </div>
+
+    Imagen del evento<br>
+    <%if @evento.image.exists?%>
+
+      <td><%= image_tag @evento.image.url(:thumb) %></td>
+    <%else%>
+      <td><%= image_tag '/assets/missing.png', :size=>"100x100" %></td>
+    <%end%>
+
     <div>
       	<h4>
           <strong>Fecha inicio del evento:</strong> <%= @evento.fecha_inicio%><strong>Fin del evento:</strong> <%= @evento.fecha_fin%>
