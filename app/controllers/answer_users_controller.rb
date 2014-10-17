@@ -13,6 +13,11 @@ class AnswerUsersController < ApplicationController
 
     render "report"
   end
+
+  def download
+    answer_doc = AnswerUser.find(params[:id])
+    send_file answer_doc.archivo.path and return
+  end
   
   def crear 
     @submenu=1

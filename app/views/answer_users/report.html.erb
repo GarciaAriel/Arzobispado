@@ -31,6 +31,9 @@
 				</ul>
 		<% end %>
 
+
+		
+
 		<% color = 1%>
 		<ol>
 		<% question.answers.each do |answer| %>
@@ -140,6 +143,11 @@
 		</div>
 
 	<% end %>
+	<% @answersUsers.each do |answerUser| %>
+			<% if answerUser.archivo.exists? %>
+				<h4><a href="/answer_users/download/<%=answerUser.id%>"><%=answerUser.archivo_file_name.to_s %></a></h4><br>
+			<% end %>				
+	<% end %>	
 <% end %>
 
 </div>
