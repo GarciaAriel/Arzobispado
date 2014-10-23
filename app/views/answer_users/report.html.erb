@@ -145,7 +145,16 @@
 	<% end %>
 	<% @answersUsers.each do |answerUser| %>
 			<% if answerUser.archivo.exists? %>
-				<h4><a href="/answer_users/download/<%=answerUser.id%>"><%=answerUser.archivo_file_name.to_s %></a></h4><br>
+				<h4>
+					<a href="/answer_users/download/<%=answerUser.id%>"><%=answerUser.archivo_file_name.to_s %></a>
+					<% hu = User.find(answerUser.usuario_id) %><br>
+					<ul>
+						Enviado por: <%= hu.name.to_s %> <%= hu.lastname.to_s %> <br> 
+						En fecha: <%= hu.updated_at %>
+					</ul>
+					
+
+				</h4><br>
 			<% end %>				
 	<% end %>	
 <% end %>

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  devise_for :users, controllers: {registrations: 'registrations'}
+
   resources :logs
 
   resources :surveys
@@ -9,7 +11,7 @@ Rails.application.routes.draw do
   resources :events
   #devise_for :users
 
-  devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
+  #devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
   
 
   resources :comments
