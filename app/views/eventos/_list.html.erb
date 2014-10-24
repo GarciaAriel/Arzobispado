@@ -25,7 +25,7 @@
           
           <div>
             <%= link_to image_tag("ic_action_expand.png"), evento ,:class=>"btn btn-primary" %>
-            <% if current_user != nil && current_user.rol == "admin"%>  
+            <% if current_user!=nil && (current_user.rol=="admin"||current_user.rol=="super")%>  
               
                   
                   <%= link_to image_tag("ic_action_edit.png"), edit_evento_path(evento) ,:class=>"btn btn-primary"%>
