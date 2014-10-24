@@ -28,8 +28,12 @@
   <div class="panel panel-info">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <%= f.label :archivo, "Documento" %>
-        <%= f.file_field :archivo %>
+        <% if @cuestionario.archivo.exists? %>
+          
+          <%= f.label :archivo, "Documento" %>
+        <%= f.file_field :archivo %>  
+        <% end %>
+        
       </h3>
     </div>
   </div>

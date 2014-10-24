@@ -18,7 +18,7 @@
             <%end%>
             <%= link_to image_tag("ic_action_discard.png"), survey, method: :delete, data: { confirm: 'Are you sure?' } ,:class=>"btn btn-danger"%>
 
-            <%= link_to image_tag("ic_action_paste.png"),report_path(survey.id,(survey.questions)[0].id) ,:class=>"btn btn-primary"%>
+            <%= link_to image_tag("ic_action_paste.png"),report_path(survey.id) ,:class=>"btn btn-primary"%>
           <%end%> 
 
           <% if current_user != nil && current_user.rol == "user" %>
