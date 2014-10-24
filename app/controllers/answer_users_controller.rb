@@ -6,7 +6,10 @@ class AnswerUsersController < ApplicationController
     @cuestionario = Survey.find(params[:id])
   end
   def report
+    @f=50
+    @p=50
     @submenu=1
+    @id_q = params[:idq]
     #@survey = Survey.find(params[:id])
     @questions = Question.where(:survey_id=>params[:id])
     @answersUsers = AnswerUser.where(:survey_id=>params[:id])

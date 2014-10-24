@@ -9,6 +9,7 @@ class SurveysController < ApplicationController
     @surveys = Survey.where(:evento_id=>params[:id])
     @evento_id=params[:id]
     @evento=Evento.find(@evento_id)
+    
   end
 
   # GET /surveys/1

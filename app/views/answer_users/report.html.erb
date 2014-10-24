@@ -1,148 +1,23 @@
+
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+
 <h3><legend>Reporte del cuestionario</legend></h3>
 
-
 <div class="panel panel-primary">
-  
 
 <% if @answersUsers.size > 0 %>
+	<% pos = Array.new %>
 	<% @questions.each do |question| %>
-		<div class="panel-heading">
-		  <h3 class="panel-title"><%= question.content%></h3>
-		</div>
-
-
-		<% ary = Array.new %>
-		<% question.answers.each do |answer| %>
-			   <ul>
-					<% @contador = 0 %>
-					<!--div class="panel panel-info"-->
-					  <!--div class="panel-heading"-->
-					    <!--h3 class="panel-title"><%= answer.content %></h3-->
-					  <!--/div-->
-
-					  	<% @answersUsers.each do |answerUser| %>
-							<% if answerUser.answer_id == answer.id %>
-								<% @contador = @contador+1 %>
-							<% end %>				
-						<% end %>	
-						<% ary.push(@contador) %>
-						<!--p class="text-info"><%= @contador %> Usuarios eligieron esta opcion</p-->
-					<!--/div-->
-				</ul>
-		<% end %>
-
-
-		
-
-		<% color = 1%>
-		<ol>
-		<% question.answers.each do |answer| %>
-		<li>
-			<% if color == 1  %>
-				<%color = 2%>
-				<div class="panel panel-success">
-				  <div class="panel-heading">
-				    <h3 class="panel-title"><%= answer.content %></h3>
-				  </div>
-				</div>
-				<%next%>
-			<% end %>	
-			<% if color == 2  %>
-				<%color = 3%>
-				<div class="panel panel-info">
-				  <div class="panel-heading">
-				    <h3 class="panel-title"><%= answer.content %></h3>
-				  </div>
-				</div>
-				<%next%>
-			<% end %>
-			<% if color == 3  %>
-				<% color = 4%>
-				<div class="panel panel-warning">
-				  <div class="panel-heading">
-				    <h3 class="panel-title"><%= answer.content %></h3>
-				  </div>
-				</div>
-				<% next %>
-			<% end %>
-			<% if color == 4  %>
-				<%color = 5%>
-				<div class="panel panel-primary">
-				  <div class="panel-heading">
-				    <h3 class="panel-title"><%= answer.content %></h3>
-				  </div>
-				</div>
-				<%next%>
-			<% end %>
-			<% if color == 5  %>
-				<%color = 1%>
-				<div class="panel panel-danger">
-				  <div class="panel-heading">
-				    <h3 class="panel-title"><%= answer.content %></h3>
-				  </div>
-				</div>
-				<% next %>
-			<% end %>
-		</li>
-		<% end %>
-		</ol>
-
-		<div class="progress">
-
-		<% pos = 0 %>
-		<% posColor = 1 %>
-		<% suma = ary.sum%>
-
-		<% ary.each do |value| %>
-			<% valor = (value*100)/suma%>
-
-			<% if posColor == 1 %>
-				<% pos += 1 %>
-				<div class="progress-bar progress-bar-success" style="width: <%= valor %>%">
-					<h3 class="panel-title"><%= valor %>% la Opc: <%= pos %>  </h3>
-				</div>
-				<% posColor = 2%>
-				<% next %>
-			<% end %>
-			<% if posColor == 2 %>
-				<% pos += 1 %>
-				<div class="progress-bar progress-bar-info" style="width: <%= valor %>%">
-					<h3 class="panel-title"><%= valor %>% la Opc: <%= pos %>  </h3>
-				</div>
-				<% posColor = 3%>
-				<% next %>
-			<% end %>
-			<% if posColor == 3 %>
-				<% pos += 1 %>
-				<div class="progress-bar progress-bar-warning" style="width: <%= valor %>%">
-					<h3 class="panel-title"><%= valor %>% la Opc: <%= pos %>  </h3>
-				</div>
-				<% posColor = 4%>
-				<% next %>
-			<% end %>
-			<% if posColor == 4 %>
-				<% pos += 1 %>
-				<div class="progress-bar progress-bar-prymary" style="width: <%= valor %>%">
-					<h3 class="panel-title"><%= valor %>% la Opc: <%= pos %>  </h3>
-				</div>
-				<% posColor = 5%>
-				<% next %>
-			<% end %>
-			<% if posColor == 5 %>
-				<% pos += 1 %>
-				<div class="progress-bar progress-bar-danger" style="width: <%= valor %>%">
-					<h3 class="panel-title"><%= valor %>% la Opc: <%= pos %>  </h3>
-				</div>
-				<% posColor = 1%>
-				<% next %>
-			<% end %>
-			
-			
-		<%end%>
+	
+		<div class="panel-heading" onClick="grafica(<%= question.id %>);" >
+			<h3 class="panel-title"> <%= question.content%> </h3>
 
 		</div>
-
 	<% end %>
+	
 	<% @answersUsers.each do |answerUser| %>
 			<% if answerUser.archivo.exists? %>
 				<h4>
@@ -159,6 +34,10 @@
 	<% end %>	
 <% end %>
 
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto">
+  
+</div>
+
 </div>
 
 <% if @answersUsers.size == 0 %>
@@ -166,3 +45,85 @@
 <% end %>
 
 <%= link_to image_tag("ic_action_previous_item.png"), :back,:class=>"btn btn-primary" %>
+
+
+
+<script type="text/javascript">
+function grafica(idd) {
+
+	
+	
+	<% @question = Question.find(@id_q) %>
+	  
+	<% ary = Array.new %>
+	<% aryPos = Array.new %>
+	<% ini = 0 %>
+	<% @question.answers.each do |answer| %>
+			   
+		<% @contador = 0 %>
+		<% @answersUsers.each do |answerUser| %>
+			<% if answerUser.answer_id == answer.id %>
+				<% @contador = @contador+1 %>
+			<% end %>				
+		<% end %>	
+		
+		<% ary.push(@contador) %>
+		<% aryPos.push(answer.content) %>
+		<% ini = ini+1%>
+	<% end %>
+  
+    $('#container').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 1,//null,
+            plotShadow: false
+        },
+        title: {
+            text: 'Grafica' 
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+
+
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: 
+        [{
+            type: 'pie',
+            name: 'Porcentaje',
+            data: 
+            [
+            	<% suma = ary.sum%>
+            	<% index = 1 %>
+            	
+            	<% ary.each do |value| %>
+					<% valor = (value*100)/suma%>
+					['Respuesta #'+ <%= index %>,   <%= valor %>]
+					<% index = index+1 %>
+
+					<% if index <= aryPos.size+1 %>
+						,
+					<% end %>
+
+				<% end %>
+
+                
+            ]
+        }]
+    });
+}
+
+
+</script>
