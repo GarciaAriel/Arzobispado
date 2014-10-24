@@ -28,7 +28,7 @@
       <%= f.label :descripcion, :class =>"col-lg-2 control-label" %>
 	  <div class="col-lg-8">
       	<%= f.text_area :descripcion, :class =>"form-control", :rows=>"3" %>
-        <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+        
       </div>
     </div>
 
@@ -57,9 +57,12 @@
 
   <div class="field">
     <% if @evento.image.exists? %>
-      Documento actual<br>
+      <ul>
+      Imagen actual del evento<br>
+
       <%=  @evento.image_file_name.to_s %><br>
       <%= image_tag @evento.image.url(:thumb) %><br/>
+      </ul>
     <% end %>
     <%= f.file_field :image %>
 

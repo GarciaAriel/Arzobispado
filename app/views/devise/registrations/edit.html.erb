@@ -50,11 +50,17 @@
       <%= f.password_field :password_confirmation ,:class => "form-control"%>
     </div>
   </div>    
-      <br><br><br>
+      <br><br><br><br><br><br>
+      <ul>
+        <h4>
+      Ingrese Password para confirmar cualquier cambio
+      </h4>
+      </ul>
+
   <div class="form-group">
     <%= f.label :current_password ,:class => "col-lg-2 control-label"%> 
     <div class="col-lg-10">
-      <%= f.password_field :current_password ,:class => "form-control"%>
+      <%= f.password_field :current_password ,:class => "form-control" ,:required => true%>
     </div>
   </div>    
 

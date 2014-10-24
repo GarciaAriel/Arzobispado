@@ -4,33 +4,36 @@
   <fieldset>
 
     <div class="form-group">
-      <h2>
-      		Titulo: <%= @evento.nombre%>
-      </h2>
+      
       <div class="panel panel-info">
         <div class="panel-heading">
           <i>
             <h4 class="panel-title">
-              
-          	  <%= @evento.descripcion%>
+              Titulo: <%= @evento.nombre%> 
+          	  
             </h4>
           </i>	
         </div>
+        <h5>
+          Descripcion: <%= @evento.descripcion%>
+        </h5>
+          
       </div>
     </div>
+    <ul>
+      Imagen del evento<br>
+    
+      <%if @evento.image.exists?%>
 
-    Imagen del evento<br>
-    <%if @evento.image.exists?%>
-
-      <td><%= image_tag @evento.image.url(:thumb) %></td>
-    <%else%>
-      <td><%= image_tag '/assets/missing.png', :size=>"100x100" %></td>
-    <%end%>
-
+        <td><%= image_tag @evento.image.url(:thumb) %></td>
+      <%else%>
+        <td><%= image_tag '/assets/missing.png', :size=>"100x100" %></td>
+      <%end%>
+    </ul>
     <div>
       	<h4>
-          <strong>Fecha inicio del evento:</strong> <%= @evento.fecha_inicio%><strong>Fin del evento:</strong> <%= @evento.fecha_fin%>
-	    </h4>
+          <strong>Fecha inicio del evento:</strong> <%= @evento.fecha_inicio%><br><strong>Fin del evento:</strong> <%= @evento.fecha_fin%>
+	      </h4>
     </div>
 
     

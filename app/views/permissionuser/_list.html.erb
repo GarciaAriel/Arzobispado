@@ -5,7 +5,11 @@
     <% @usersPrivilege.each do |user| %>
       <tr class="active">
         <td>
-          <legend>Evento: <%= user.name %> <%= user.lastname %> </legend>
+          <% if user.id == current_user.id%>
+            <legend>Yo: <%= user.name %> <%= user.lastname %> </legend>  
+          <%else%>
+            <legend>Usuario: <%= user.name %> <%= user.lastname %> </legend>
+          <%end%>
           <ul>
             <h4>
             </h4>  
@@ -39,7 +43,7 @@
     <% @users.each do |user| %>
       <tr class="active">
         <td>
-          <legend>Evento: <%= user.name%> <%= user.lastname%> </legend>
+          <legend>Usuario: <%= user.name%> <%= user.lastname%> </legend>
           <ul>
             <h4>  
             </h4>  
@@ -54,6 +58,8 @@
     <% end %>
   <% end %>  
 </table>
+
+<%= link_to image_tag("ic_action_previous_item.png"), eventos_path ,:class=>"btn btn-primary"%>
 
 <div class="panel panel-success">
   <div class="panel-heading">
