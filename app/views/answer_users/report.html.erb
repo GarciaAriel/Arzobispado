@@ -9,51 +9,24 @@
 <div class="panel panel-primary">
 
 <% if @answersUsers.size > 0 %>
+
 	<% pos = Array.new %>
+	<% @var_idd = 0 %>
 	<% @questions.each do |question| %>
-	
+		
+		<% @var_idd = question.id %>
 		<div class="panel-heading" onClick="grafica(<%= question.id %>);" >
 			<h3 class="panel-title"> <%= question.content%> </h3>
-
 		</div>
-	<% end %>
-	
-	<% @answersUsers.each do |answerUser| %>
-			<% if answerUser.archivo.exists? %>
-				<h4>
-					<a href="/answer_users/download/<%=answerUser.id%>"><%=answerUser.archivo_file_name.to_s %></a>
-					<% hu = User.find(answerUser.usuario_id) %><br>
-					<ul>
-						Enviado por: <%= hu.name.to_s %> <%= hu.lastname.to_s %> <br> 
-						En fecha: <%= hu.updated_at %>
-					</ul>
-					
 
-				</h4><br>
-			<% end %>				
-	<% end %>	
-<% end %>
+			<div id="container<%= question.id %>" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto">
 
-<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto">
-  
-</div>
+  			<script type="text/javascript">
 
-</div>
-
-<% if @answersUsers.size == 0 %>
-	<h4><legend>Ningun usuario respondio el cuestionario</legend></h4>
-<% end %>
-
-<%= link_to image_tag("ic_action_previous_item.png"), :back,:class=>"btn btn-primary" %>
-
-
-
-<script type="text/javascript">
-function grafica(idd) {
+	$(function grafica(idd) {
 
 	
-	
-	<% @question = Question.find(@id_q) %>
+	<% @question = Question.find(@var_idd) %>
 	  
 	<% ary = Array.new %>
 	<% aryPos = Array.new %>
@@ -72,7 +45,7 @@ function grafica(idd) {
 		<% ini = ini+1%>
 	<% end %>
   
-    $('#container').highcharts({
+    $('#container<%= @var_idd %>').highcharts({
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: 1,//null,
@@ -124,6 +97,40 @@ function grafica(idd) {
         }]
     });
 }
+);
 
 
 </script>
+  			
+		</div>
+
+	<% end %>
+	
+	<% @answersUsers.each do |answerUser| %>
+			<% if answerUser.archivo.exists? %>
+				<h4>
+					<a href="/answer_users/download/<%=answerUser.id%>"><%=answerUser.archivo_file_name.to_s %></a>
+					<% hu = User.find(answerUser.usuario_id) %><br>
+					<ul>
+						Enviado por: <%= hu.name.to_s %> <%= hu.lastname.to_s %> <br> 
+						En fecha: <%= hu.updated_at %>
+					</ul>
+					
+
+				</h4><br>
+			<% end %>				
+	<% end %>	
+<% end %>
+
+
+
+</div>
+
+<% if @answersUsers.size == 0 %>
+	<h4><legend>Ningun usuario respondio el cuestionario</legend></h4>
+<% end %>
+
+<%= link_to image_tag("ic_action_previous_item.png"), :back,:class=>"btn btn-primary" %>
+
+
+
