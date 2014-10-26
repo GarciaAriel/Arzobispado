@@ -4,7 +4,7 @@ class EventosController < ApplicationController
 	skip_before_filter :verify_authenticity_token
 	def index
 		@submenu=1
-		if user_signed_in? && current_user.rol == "admin" 
+		if (user_signed_in? && (current_user.rol == "admin" || current_user.rol == "super"))
 			@submenu=1
 		end
 		@eventos = Evento.all.page(params[:page]).per(5)
@@ -12,7 +12,7 @@ class EventosController < ApplicationController
 	end
 	
 	def new
-		if user_signed_in? && current_user.rol == "admin" 
+		if user_signed_in? && (current_user.rol == "admin" || current_user.rol == "super")
 			@submenu=1
 			@evento = Evento.new
 		else
@@ -21,14 +21,14 @@ class EventosController < ApplicationController
 	end
 
 	def show
-		if user_signed_in? && current_user.rol == "admin" 
+		if user_signed_in? && (current_user.rol == "admin" || current_user.rol == "super")
 			@submenu=1
 		end
 		@evento = Evento.find(params[:id])
 	end
 
 	def edit
-		if user_signed_in? && current_user.rol == "admin"
+		if user_signed_in? && (current_user.rol == "admin" || current_user.rol == "super")
 			@submenu=1
 			@evento = Evento.find(params[:id])
 		else
@@ -37,7 +37,7 @@ class EventosController < ApplicationController
 	end
 	
 	def create
-		if user_signed_in? && current_user.rol == "admin"
+		if user_signed_in? && (current_user.rol == "admin" || current_user.rol == "super")
 			@submenu=1
 		    @evento = Evento.new(evento_params)
 
@@ -56,7 +56,7 @@ class EventosController < ApplicationController
   	end
 
   	def update
-  		if user_signed_in? && current_user.rol == "admin"
+  		if user_signed_in? && (current_user.rol == "admin" || current_user.rol == "super")
 	  		@submenu=1
 	  		respond_to do |format|
 	  			@nombre=@evento.nombre
@@ -76,7 +76,7 @@ class EventosController < ApplicationController
 
 
   	def destroy
-  		if user_signed_in? && current_user.rol == "admin" 
+  		if user_signed_in? && (current_user.rol == "admin" || current_user.rol == "super")
 			@submenu=1
 		end
 	     log("Usuario: "+current_user.email+" elimino el evento: "+@evento.nombre+", fecha/hora: "+current_user.last_sign_in_at.to_s+" desde: "+current_user.last_sign_in_ip)
@@ -102,6 +102,6 @@ class EventosController < ApplicationController
     end
     
     def evento_params
-      params.require(:evento).permit(:nombre, :descripcion, :fecha_inicio, :fecha_fin)
+      params.require(:evento).permit(:nombre, :descripcion, :fecha_inicio,:image, :fecha_fin)
     end
 end

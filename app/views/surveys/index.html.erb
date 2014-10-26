@@ -11,18 +11,19 @@
           
           <%= link_to image_tag("ic_action_expand.png"), survey ,:class=>"btn btn-primary"%>
 
-          <% if current_user != nil && current_user.rol == "admin" %>
+          <% if current_user!=nil && (current_user.rol=="admin" || current_user.rol=="super") %>
             <%= link_to image_tag("ic_action_edit.png"), edit_survey_path(survey),:class=>"btn btn-primary" %>
             <% if AnswerUser.ya_respondio_cuestionario(current_user.id,survey.id)%>
-              <%= link_to  image_tag("responder.png"), nuevo_path(survey.id) ,:class=>"btn btn-primary"%>
+              <%= link_to  image_tag("responder.png"), nuevo_path(survey) ,:class=>"btn btn-primary"%>
             <%end%>
             <%= link_to image_tag("ic_action_discard.png"), survey, method: :delete, data: { confirm: 'Are you sure?' } ,:class=>"btn btn-danger"%>
+
             <%= link_to image_tag("ic_action_paste.png"),report_path(survey.id) ,:class=>"btn btn-primary"%>
           <%end%> 
 
           <% if current_user != nil && current_user.rol == "user" %>
             <% if AnswerUser.ya_respondio_cuestionario(current_user.id,survey.id)%>
-              <%= link_to image_tag("responder.png"), nuevo_path(survey.id),:class => "btn btn-primary" %>
+              <%= link_to image_tag("responder.png"), nuevo_path(survey),:class => "btn btn-primary" %>
             <%end%>
           <%end%>
         
@@ -31,7 +32,7 @@
 
     <% end %>
 
-<%if(current_user!=nil && current_user.rol=='admin') %>
+<%if(current_user!=nil && (current_user.rol=="admin" || current_user.rol=="super")) %>
   <%= link_to image_tag("ic_action_new.png"), new_survey_id_path(@evento_id) ,:class=>"btn btn-primary"%>
 <%end%>
 

@@ -8,5 +8,6 @@ class CreateEventos < ActiveRecord::Migration
       t.column :binary_data, :imagen
       t.timestamps
     end
+    add_attachment :eventos, :image
   end
 end

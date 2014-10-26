@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
 
 
+  devise_for :users, controllers: {registrations: 'registrations'}
+
   resources :logs
 
   resources :surveys
+  get 'surveys/download/:id' => 'surveys#download'
 
   resources :events
   #devise_for :users
-  devise_for :users,  controllers: {sessions: 'sessions'}
 
+  #devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
+  
 
   resources :comments
   resources :post_attatchments
@@ -22,6 +26,7 @@ Rails.application.routes.draw do
   post "answer_users/crear" => "answer_users#crear", :as => "crear"
   post "answer_users/terminado" => "answer_users#terminado", :as => "terminado"
   get "answer_users/report/:id" => "answer_users#report", :as => "report"
+  get 'answer_users/download/:id' => 'answer_users#download'
   
 
   get 'surveys/index/:id' => 'surveys#index', as: 'surveys_index'
@@ -51,6 +56,9 @@ Rails.application.routes.draw do
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+
+  get 'permissionuser/index' => 'permissionuser#index'
+  get 'permissionuser/change/:id' => 'permissionuser#change', as: 'edit_privilege'
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products

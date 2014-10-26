@@ -21,6 +21,10 @@ ActiveRecord::Schema.define(version: 20141016210804) do
     t.integer  "answer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "archivo_file_name"
+    t.string   "archivo_content_type"
+    t.integer  "archivo_file_size"
+    t.datetime "archivo_updated_at"
   end
 
   create_table "answers", force: true do |t|
@@ -105,13 +109,15 @@ ActiveRecord::Schema.define(version: 20141016210804) do
     t.integer  "evento_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "docu_file_name"
-    t.string   "docu_content_type"
-    t.integer  "docu_file_size"
-    t.datetime "docu_updated_at"
+    t.string   "archivo_file_name"
+    t.string   "archivo_content_type"
+    t.integer  "archivo_file_size"
+    t.datetime "archivo_updated_at"
   end
 
   create_table "users", force: true do |t|
+    t.string   "name",                   default: "",     null: false
+    t.string   "lastname",               default: "",     null: false
     t.string   "email",                  default: "",     null: false
     t.string   "encrypted_password",     default: "",     null: false
     t.string   "reset_password_token"
@@ -125,8 +131,6 @@ ActiveRecord::Schema.define(version: 20141016210804) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "rol",                    default: "user"
-    t.string   "nombre",                 default: ""
-    t.string   "apellido",               default: ""
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -8,5 +8,7 @@ class CreateAnswerUsers < ActiveRecord::Migration
       t.integer :answer_id
       t.timestamps
     end
+
+    add_attachment :answer_users, :archivo
   end
 end

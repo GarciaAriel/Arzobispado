@@ -10,6 +10,20 @@
   <%= devise_error_messages! %>
 
   <div class="form-group">
+      <%= f.label :name,:class => 'col-lg-2 control-label'%>
+      <div class="col-lg-10">
+        <%= f.text_field :name, :autofocus => true, :class =>"form-control" , :placeholder => "Nombre",:required => true%>
+    </div>
+  </div>  
+  
+  <div class="form-group">
+      <%= f.label :lastname,:class => 'col-lg-2 control-label'%>
+      <div class="col-lg-10">
+        <%= f.text_field :lastname, :autofocus => true, :class =>"form-control" , :placeholder => "Apellidos",:required => true%>
+    </div>
+  </div>    
+
+  <div class="form-group">
       <%= f.label :email ,:class => "col-lg-2 control-label"%><br />
       <div class="col-lg-10">
         <%= f.email_field :email, :autofocus => true ,:class => "form-control"%>
@@ -36,11 +50,17 @@
       <%= f.password_field :password_confirmation ,:class => "form-control"%>
     </div>
   </div>    
-      <br><br><br>
+      <br><br><br><br><br><br>
+      <ul>
+        <h4>
+      Ingrese Password para confirmar cualquier cambio
+      </h4>
+      </ul>
+
   <div class="form-group">
     <%= f.label :current_password ,:class => "col-lg-2 control-label"%> 
     <div class="col-lg-10">
-      <%= f.password_field :current_password ,:class => "form-control"%>
+      <%= f.password_field :current_password ,:class => "form-control" ,:required => true%>
     </div>
   </div>    
 

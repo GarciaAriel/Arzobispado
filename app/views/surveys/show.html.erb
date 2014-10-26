@@ -15,7 +15,14 @@
 	    <% for answer in question.answers %>
 	      <li class="text-success"><%= h answer.content %></li>
 	    <% end %>
+
 	</ul>
+  <% end %>
+  <% if @survey.archivo.exists? %>
+    Documento de cuestionario<br>
+    
+    <a href="/surveys/download/<%=@survey.id%>"><%=  @survey.archivo_file_name.to_s %></a>   
+
   <% end %>
 </ol>
 
@@ -25,12 +32,13 @@
 
 
 
+
 <%= link_to image_tag("ic_action_previous_item.png"), surveys_index_path(@evento.id),:class=>"btn btn-primary"%>
-<% if current_user != nil && current_user.rol == "admin"%>  
+<% if current_user != nil && (current_user.rol == "admin" || current_user.rol == "super")%>  
   <%= link_to image_tag("ic_action_edit.png"), edit_survey_path(@survey) ,:class=>"btn btn-primary"%>
 <%end%>
 
-<% if current_user != nil && (current_user.rol == "user" || current_user.rol == "admin") %>
+<% if current_user != nil  %>
   <% if AnswerUser.ya_respondio_cuestionario(current_user.id,@survey.id)%>
     <%= link_to image_tag("responder.png"), nuevo_path(@survey.id),:class => "btn btn-primary" %>
   <%end%>

@@ -5,6 +5,6 @@ class CreateSurveys < ActiveRecord::Migration
       t.integer :evento_id
       t.timestamps
     end
-    add_attachment :surveys, :docu
+    add_attachment :surveys, :archivo
   end
 end

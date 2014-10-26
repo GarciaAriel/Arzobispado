@@ -1,151 +1,177 @@
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+	whatever();
+	function verr(a) {
+		var obj = document.getElementById("container"+a);
+		obj.style.display='block';
+	}
+
+	function nover(b) {
+		var obj = document.getElementById("container"+b);
+		obj.style.display='none';
+	}
+
+	function loadd() {
+		location.reload();
+	}
+
+</script>
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+
 <h3><legend>Reporte del cuestionario</legend></h3>
 
-
 <div class="panel panel-primary">
-  
 
 <% if @answersUsers.size > 0 %>
+	
+	<button id="hide" onClick="loadd();" class="btn btn-warning">Cargar Resultados</button>
+
+	<% pos = Array.new %>
+	<% @var_idd = 0 %>
 	<% @questions.each do |question| %>
-		<div class="panel-heading">
-		  <h3 class="panel-title"><%= question.content%></h3>
+		
+		<% @var_idd = question.id %>
+		<div id="asdf" class="panel-heading" >
+
+			<h3 class="panel-title"> 
+				Descripcion: <%= question.content%> 
+				<button id="hide" onClick="nover(<%= question.id %>);" class="btn btn-info">Ocultar</button>
+				<button id="show" onClick="verr(<%= question.id %>);" class="btn btn-info">Mostrar</button>
+			</h3>
+
+			
+			
 		</div>
 
+			<div id="container<%= question.id %>" >
 
-		<% ary = Array.new %>
-		<% question.answers.each do |answer| %>
-			   <ul>
-					<% @contador = 0 %>
-					<!--div class="panel panel-info"-->
-					  <!--div class="panel-heading"-->
-					    <!--h3 class="panel-title"><%= answer.content %></h3-->
-					  <!--/div-->
 
-					  	<% @answersUsers.each do |answerUser| %>
+			</div>	
+
+				<script type="text/javascript">
+
+					$(function grafica(idd) {
+
+					
+					<% @question = Question.find(@var_idd) %>
+					  
+					<% ary = Array.new %>
+					<% aryPos = Array.new %>
+					<% ini = 0 %>
+					<% @question.answers.each do |answer| %>
+							   
+						<% @contador = 0 %>
+						<% @answersUsers.each do |answerUser| %>
 							<% if answerUser.answer_id == answer.id %>
 								<% @contador = @contador+1 %>
 							<% end %>				
 						<% end %>	
+						
 						<% ary.push(@contador) %>
-						<!--p class="text-info"><%= @contador %> Usuarios eligieron esta opcion</p-->
-					<!--/div-->
-				</ul>
-		<% end %>
+						<% aryPos.push(answer.content.to_s) %>
+						<% ini = ini+1%>
+					<% end %>
+				  
+				    $('#container<%= @var_idd %>').highcharts({
+				        chart: {
+				            plotBackgroundColor: null,
+				            plotBorderWidth: 1,//null,
+				            plotShadow: false
+				        },
+				        title: {
+				            text: 'Grafica' 
+				        },
+				        tooltip: {
+				            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+				        },
+				        plotOptions: {
 
-		<% color = 1%>
-		<ol>
-		<% question.answers.each do |answer| %>
-		<li>
-			<% if color == 1  %>
-				<%color = 2%>
-				<div class="panel panel-success">
-				  <div class="panel-heading">
-				    <h3 class="panel-title"><%= answer.content %></h3>
-				  </div>
-				</div>
-				<%next%>
-			<% end %>	
-			<% if color == 2  %>
-				<%color = 3%>
-				<div class="panel panel-info">
-				  <div class="panel-heading">
-				    <h3 class="panel-title"><%= answer.content %></h3>
-				  </div>
-				</div>
-				<%next%>
-			<% end %>
-			<% if color == 3  %>
-				<% color = 4%>
-				<div class="panel panel-warning">
-				  <div class="panel-heading">
-				    <h3 class="panel-title"><%= answer.content %></h3>
-				  </div>
-				</div>
-				<% next %>
-			<% end %>
-			<% if color == 4  %>
-				<%color = 5%>
-				<div class="panel panel-primary">
-				  <div class="panel-heading">
-				    <h3 class="panel-title"><%= answer.content %></h3>
-				  </div>
-				</div>
-				<%next%>
-			<% end %>
-			<% if color == 5  %>
-				<%color = 1%>
-				<div class="panel panel-danger">
-				  <div class="panel-heading">
-				    <h3 class="panel-title"><%= answer.content %></h3>
-				  </div>
-				</div>
-				<% next %>
-			<% end %>
-		</li>
-		<% end %>
-		</ol>
 
-		<div class="progress">
+				            pie: {
+				                allowPointSelect: true,
+				                cursor: 'pointer',
+				                dataLabels: {
+				                    enabled: true,
+				                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+				                    style: {
+				                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+				                    }
+				                }
+				            }
+				        },
+				        series: 
+				        [{
+				            type: 'pie',
+				            name: 'Porcentaje',
+				            data: 
+				            [
+				            	<% suma = ary.sum%>
+				            	<% index = 1 %>
+				            	
+				            	<% ary.each do |value| %>
+									<% valor = (value*100)/suma%>
+									['Respuesta #'+ <%= index %>,   <%= valor %>]
+									<% index = index+1 %>
 
-		<% pos = 0 %>
-		<% posColor = 1 %>
-		<% suma = ary.sum%>
+									<% if index <= aryPos.size+1 %>
+										,
+									<% end %>
 
-		<% ary.each do |value| %>
-			<% valor = (value*100)/suma%>
+								<% end %>
 
-			<% if posColor == 1 %>
-				<% pos += 1 %>
-				<div class="progress-bar progress-bar-success" style="width: <%= valor %>%">
-					<h3 class="panel-title"><%= valor %>% la Opc: <%= pos %>  </h3>
-				</div>
-				<% posColor = 2%>
-				<% next %>
-			<% end %>
-			<% if posColor == 2 %>
-				<% pos += 1 %>
-				<div class="progress-bar progress-bar-info" style="width: <%= valor %>%">
-					<h3 class="panel-title"><%= valor %>% la Opc: <%= pos %>  </h3>
-				</div>
-				<% posColor = 3%>
-				<% next %>
-			<% end %>
-			<% if posColor == 3 %>
-				<% pos += 1 %>
-				<div class="progress-bar progress-bar-warning" style="width: <%= valor %>%">
-					<h3 class="panel-title"><%= valor %>% la Opc: <%= pos %>  </h3>
-				</div>
-				<% posColor = 4%>
-				<% next %>
-			<% end %>
-			<% if posColor == 4 %>
-				<% pos += 1 %>
-				<div class="progress-bar progress-bar-prymary" style="width: <%= valor %>%">
-					<h3 class="panel-title"><%= valor %>% la Opc: <%= pos %>  </h3>
-				</div>
-				<% posColor = 5%>
-				<% next %>
-			<% end %>
-			<% if posColor == 5 %>
-				<% pos += 1 %>
-				<div class="progress-bar progress-bar-danger" style="width: <%= valor %>%">
-					<h3 class="panel-title"><%= valor %>% la Opc: <%= pos %>  </h3>
-				</div>
-				<% posColor = 1%>
-				<% next %>
-			<% end %>
-			
-			
-		<%end%>
+				                
+				            ]
+				        }]
+				    });
+					
+				}
+				);
 
-		</div>
 
+				</script>
+				<ol>
+			<% question.answers.each do |ans| %>		
+				<li>
+					<%=ans.content%><br>
+				</li>
+			<%end%>
+			</ol>
+		
 	<% end %>
+	
+	<% @answersUsers.each do |answerUser| %>
+			<% if answerUser.archivo.exists? %>
+				<h4>
+					<a href="/answer_users/download/<%=answerUser.id%>"><%=answerUser.archivo_file_name.to_s %></a>
+					<% hu = User.find(answerUser.usuario_id) %><br>
+					<ul>
+						Enviado por: <%= hu.name.to_s %> <%= hu.lastname.to_s %> <br> 
+						En fecha: <%= hu.updated_at %>
+					</ul>
+					
+
+				</h4><br>
+			<% end %>				
+	<% end %>	
 <% end %>
+
+
 
 </div>
 
 <% if @answersUsers.size == 0 %>
-	<h4><legend>Ningun usuario respondio el cuestionario</legend></h4>
+	<h4>
+		<legend>Ningun usuario respondio el cuestionario</legend>
+	</h4>
 <% end %>
 
 <%= link_to image_tag("ic_action_previous_item.png"), :back,:class=>"btn btn-primary" %>
+
+
+
+
+
