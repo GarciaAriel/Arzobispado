@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
 
 
-  devise_for :users, controllers: {registrations: 'registrations'}
+  devise_for :users, controllers: {registrations: 'registrations',sessions: 'sessions'}
 
-  resources :logs
 
   resources :surveys
   get 'surveys/download/:id' => 'surveys#download'
@@ -27,7 +26,7 @@ Rails.application.routes.draw do
   post "answer_users/terminado" => "answer_users#terminado", :as => "terminado"
   get "answer_users/report/:id" => "answer_users#report", :as => "report"
   get 'answer_users/download/:id' => 'answer_users#download'
-  
+  get 'logs/save'=>'logs#save', :as => 'save'
 
   get 'surveys/index/:id' => 'surveys#index', as: 'surveys_index'
   get 'surveys/new/:id' => 'surveys#new', as: 'new_survey_id'
@@ -60,6 +59,7 @@ Rails.application.routes.draw do
   get 'permissionuser/index' => 'permissionuser#index'
   get 'permissionuser/change/:id' => 'permissionuser#change', as: 'edit_privilege'
 
+  resources :logs
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 

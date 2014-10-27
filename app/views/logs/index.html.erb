@@ -1,11 +1,21 @@
-<h1>Listing logs</h1>
-
-<table>
+<h1>Log</h1>
+<div class="row">
+  <div class="col-lg-7">
+    <form action="/logs" method="get">
+Fecha: <input type="date" id="log_date" name="log_date" class='form-control input-append' data-format='dd/MM/yyyy' style="border-bottom-left-radius: 4px;  border-top-left-radius: 4px;" value="<%=params[:log_date]%>">
+<br>
+<input type="submit" value="Filtrar">
+</form>
+</div>
+<div class="col-lg-3">
+<%= link_to image_tag("txt.png",:size=>"50x50"), save_path(:log_date=>params[:log_date]) %>
+</div>
+</div>
+<table class="table table-striped table-hover ">
   <thead>
     <tr>
-      <th>Description</th>
-      <th>User</th>
-      <th colspan="3"></th>
+      <th>Descripcion</th>
+    
     </tr>
   </thead>
 
@@ -13,15 +23,13 @@
     <% @logs.each do |log| %>
       <tr>
         <td><%= log.description %></td>
-        <td><%= log.user_id %></td>
-        <td><%= link_to 'Show', log %></td>
-        <td><%= link_to 'Edit', edit_log_path(log) %></td>
-        <td><%= link_to 'Destroy', log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+<%=paginate @logs%>
 
-<%= link_to 'New Log', new_log_path %>
+
