@@ -4,9 +4,26 @@ class LogsController < ApplicationController
   # GET /logs
   # GET /logs.json
   def index
-    @logs = Log.all
+    if params[:log_date].blank?
+      @logs = Log.all.page(params[:page]).per(10)
+    else
+      @logs = Log.where("DATE(created_at) = ?", params[:log_date].to_date).page(params[:page]).per(5)
+    end
+ #  SendMail.testeando.deliver
   end
+def save
 
+   if params[:log_date].blank?
+      @logs = Log.all
+      
+    else
+      @logs = Log.where("DATE(created_at) = ?", params[:log_date].to_date)
+
+    end
+savefile(@logs)
+
+
+end
   # GET /logs/1
   # GET /logs/1.json
   def show
@@ -62,6 +79,15 @@ class LogsController < ApplicationController
   end
 
   private
+  def savefile(logs)
+    @bigtable = ""
+    logs.each do |log|
+      @bigtable<<log.description+"\n"
+    end
+    doc = "log.txt"
+    File.open(doc, "w", :type => 'text/html; charset=utf-8'){ |f| f << @bigtable}
+    send_file(doc, :disposition => 'attachment')
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_log
       @log = Log.find(params[:id])

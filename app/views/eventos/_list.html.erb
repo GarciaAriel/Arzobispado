@@ -45,7 +45,7 @@
             <br>
             Posts: 
             <%=evento.posts.size %> <br><br>
-            <a href="/posts/index/<%=evento.id%>">Ver posts</a>
+            <%=link_to "Ver posts","/posts/index/"+evento.id.to_s,'data-no-turbolink' => true%>
             <br><br>
           </div>
         </td>
