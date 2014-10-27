@@ -2,8 +2,16 @@ class EventosController < ApplicationController
 
 	before_action :set_evento, only: [:show, :edit, :update, :destroy]
 	skip_before_filter :verify_authenticity_token
+
+	def myevent
+		if (user_signed_in? && (current_user.rol == "admin" || current_user.rol == "super"))
+			@submenu=1
+		end
+		@eventos = Evento.where(:user_id => current_user.id).page(params[:page]).per(5)
+		render :index
+	end
+
 	def index
-		@submenu=1
 		if (user_signed_in? && (current_user.rol == "admin" || current_user.rol == "super"))
 			@submenu=1
 		end
@@ -42,6 +50,7 @@ class EventosController < ApplicationController
 		    @evento = Evento.new(evento_params)
 
 		    respond_to do |format|
+		    @evento.user_id = current_user.id	
 		      if @evento.save
 		      	 log("Usuario: "+current_user.email+" Creo el evento: "+@evento.nombre+", fecha/hora: "+current_user.last_sign_in_at.to_s+" desde: "+current_user.last_sign_in_ip)
  
@@ -102,6 +111,6 @@ class EventosController < ApplicationController
     end
     
     def evento_params
-      params.require(:evento).permit(:nombre, :descripcion, :fecha_inicio,:image, :fecha_fin)
+      params.require(:evento).permit(:nombre, :descripcion, :fecha_inicio,:image, :fecha_fin,:user_id)
     end
 end

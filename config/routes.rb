@@ -19,7 +19,9 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
 
+  get "eventos/myevent" => "eventos#myevent"
   resources :eventos
+
   resources :posts
   get "answer_users/nuevo/:id" => "answer_users#nuevo", :as => "nuevo"
   post "answer_users/crear" => "answer_users#crear", :as => "crear"
