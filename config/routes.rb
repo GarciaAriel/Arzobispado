@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
-  get 'permissionuser/index' => 'permissionuser#index'
+  get 'permissionuser/index' => 'permissionuser#index', as: 'permissionusers'
   get 'permissionuser/change/:id' => 'permissionuser#change', as: 'edit_privilege'
 
   resources :logs

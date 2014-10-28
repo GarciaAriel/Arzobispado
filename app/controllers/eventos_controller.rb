@@ -15,7 +15,7 @@ class EventosController < ApplicationController
 		if (user_signed_in? && (current_user.rol == "admin" || current_user.rol == "super"))
 			@submenu=1
 		end
-		@eventos = Evento.all.page(params[:page]).per(5)
+		@eventos = Evento.search(params[:search]).page(params[:page]).per(5)
 		
 	end
 	
