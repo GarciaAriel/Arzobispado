@@ -9,15 +9,19 @@
         <div class="panel-heading">
           <i>
             <h4 class="panel-title">
+
               Titulo: <%= @evento.nombre%> 
           	  
             </h4>
           </i>	
-        </div>
-        <h5>
-          Descripcion: <%= @evento.descripcion%>
-        </h5>
-          
+        </div >
+        <div align="center">
+
+          <ul >
+            Descripcion:
+            <%= content_tag("pre", @evento.descripcion,:align => "center") %>
+          </ul>
+        </div >  
       </div>
     </div>
     <ul>

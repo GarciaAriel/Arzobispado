@@ -8,6 +8,7 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <%= javascript_include_tag :defaults, :cache => true %>
+  <link rel="shortcut icon" href="/assets/logo.png" />
 <SCRIPT type="text/javascript">
   function add_fields(link, association, content) {
     var new_id = new Date().getTime();
@@ -36,19 +37,18 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="/eventos">Inicio</a>
+    <a class="navbar-brand" href="/welcome/index">Inicio</a>
   </div>
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav">
       <li class=""><a href="/eventos">Eventos</a></li>
-      
-      
     </ul>
-    <% if current_user != nil && current_user.rol == "admin"%>  
-      <ul class="nav navbar-nav">
-        <li class=""><a href="/permissionuser/index">Usuarios</a></li>
-      </ul>
-    <%end%>  
+    <ul class="nav navbar-nav">
+      <li class=""><a href="www.iglesiacbba.org/mensajero">Mensajero</a></li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li class=""><a href="www.iglesiacbba.org">Arquidiócesis</a></li>
+    </ul>
 
 
     
@@ -118,7 +118,7 @@
             </div>
             <div class="col-lg-4 col-sm-12">
               <h4>Arquidiócesis de Cochabamba</h4>
-              <p>MISION La Comision de Comunicacion del Arquidiócesis de Cochabamba es un ente de fe y servicio en Cristo; que dinamiza, gestiona tiene una extensión aproximada de 32.306 km2 y está integrada por 13 de las 16 provincias que conforman el Departamento del mismo nombre</p>
+              <p>nos avisan que quieren ue haya aca :)</p>
             </div>
             <!--div class="col-lg-3 col-sm-12 ">
               <h4>Términos y condiciones</h4>
@@ -132,8 +132,8 @@
                 <h4>Contáctanos</h4>
                 <ul class="contact">
                   <li><p><i class="icon-map-marker"></i> <strong>Dirección:</strong>Av Heroínas entre Av Ayacucho y Mariano Baptista</p></li>
-                  <li><p><i class="icon-phone"></i> <strong>Teléfono</strong> 4-xxx-xxx</p></li>
-                  <li><p><i class="icon-link"></i> <strong>Celular:</strong> 7-xxx-xxxx</p></li>
+                  <li><p><i class="icon-phone"></i> <strong>Teléfono</strong> (591)(4)(4251831)</p></li>
+                  <li><p><i class="icon-link"></i> <strong>Fax:</strong> (591)(4)4250522</p></li>
                 </ul>
               </div>
             </div>

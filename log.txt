@@ -1,27 +1,19 @@
-Usuario: admin@admin.com accedio al sistema, fecha/hora: 2014-10-16 23:18:49 UTC desde: 127.0.0.1
-Usuario: admin@admin.com Creo el evento: 1, fecha/hora: 2014-10-16 23:18:49 UTC desde: 127.0.0.1
-Usuario: admin@admin.com Actualizo el evento: 1 a 2, fecha/hora: 2014-10-16 23:18:49 UTC desde: 127.0.0.1
-Usuario: admin@admin.com accedio al sistema, fecha/hora: 2014-10-16 23:19:10 UTC desde: 127.0.0.1
-Usuario: admin@admin.com elimino el eventoEvento 2, fecha/hora: 2014-10-16 23:19:10 UTC desde: 127.0.0.1
-Usuario: admin@admin.com salio del sistema, fecha/hora: 2014-10-16 23:19:10 UTC desde: 127.0.0.1
-Usuario: user@user.com accedio al sistema, fecha/hora: 2014-07-31 15:13:48 UTC desde: 127.0.0.1
-Usuario: user@user.com salio del sistema, fecha/hora: 2014-07-31 15:13:48 UTC desde: 127.0.0.1
-Usuario: admin@admin.com accedio al sistema, fecha/hora: 2014-10-16 23:39:57 UTC desde: 127.0.0.1
-Usuario: admin@admin.com creo el post: Nuevo, fecha/hora: 2014-10-16 23:39:57 UTC desde: 127.0.0.1
-Usuario: admin@admin.com Actualizo el post: Nuevo a Nuevo2, fecha/hora: 2014-10-16 23:39:57 UTC desde: 127.0.0.1
-Usuario: admin@admin.com elimino el post: Nuevo2, fecha/hora: 2014-10-16 23:39:57 UTC desde: 127.0.0.1
-Usuario: admin@admin.com Actualizo el post: Post de taringa a Post de taringa, fecha/hora: 2014-10-16 23:39:57 UTC desde: 127.0.0.1
-Usuario: admin@admin.com accedio al sistema, fecha/hora: 2014-10-16 23:57:21 UTC desde: 127.0.0.1
-Usuario: admin@admin.com Creo el evento: nuevo, fecha/hora: 2014-10-16 23:57:21 UTC desde: 127.0.0.1
-Usuario: admin@admin.com creo el post: nuevo123, fecha/hora: 2014-10-16 23:57:21 UTC desde: 127.0.0.1
-Usuario: admin@admin.com accedio al sistema, fecha/hora: 2014-10-26 20:08:44 UTC desde: 127.0.0.1
-Usuario: admin@admin.com accedio al sistema, fecha/hora: 2014-10-26 20:00:33 UTC desde: 127.0.0.1
-Usuario: admin@admin.com salio del sistema, fecha/hora: 2014-10-26 20:00:33 UTC desde: 127.0.0.1
-Usuario: nelsonaraoz@ymail.com salio del sistema, fecha/hora: 2014-10-31 00:05:07 UTC desde: 127.0.0.1
-Usuario: admin@admin.com accedio al sistema, fecha/hora: 2014-10-26 21:53:25 UTC desde: 127.0.0.1
-Usuario: admin@admin.com creo el post: , fecha/hora: 2014-10-26 21:53:25 UTC desde: 127.0.0.1
-Usuario: admin@admin.com creo el post: , fecha/hora: 2014-10-26 21:53:25 UTC desde: 127.0.0.1
-Usuario: admin@admin.com salio del sistema, fecha/hora: 2014-10-26 21:53:25 UTC desde: 127.0.0.1
-Usuario: nelsonaraoz@ymail.com accedio al sistema, fecha/hora: 2014-10-31 00:05:07 UTC desde: 127.0.0.1
-Usuario: nelsonaraoz@ymail.com salio del sistema, fecha/hora: 2014-10-31 00:05:07 UTC desde: 127.0.0.1
-Usuario: admin@admin.com accedio al sistema, fecha/hora: 2014-10-31 00:30:40 UTC desde: 127.0.0.1
+Usuario: admin@admin.com Creo el evento: evento, fecha/hora: 2014-10-20 19:11:26 UTC desde: 127.0.0.1
+Usuario: admin@admin.com Actualizo el evento: evento a evento nombre oto, fecha/hora: 2014-10-24 19:16:17 UTC desde: 127.0.0.1
+Usuario: asdf@asdf.gmail Creo el evento: asdf, fecha/hora: 2014-10-24 19:18:33 UTC desde: 127.0.0.1
+Usuario: admin@admin.com Creo el evento: urcupi, fecha/hora: 2014-10-25 00:07:03 UTC desde: 127.0.0.1
+Usuario: admin@admin.com salio del sistema, fecha/hora: 2014-10-25 00:07:03 UTC desde: 127.0.0.1
+Usuario: asdf@fdfdfdf.com salio del sistema, fecha/hora: 2014-10-27 03:45:53 UTC desde: 127.0.0.1
+Usuario: admin@admin.com accedio al sistema, fecha/hora: 2014-10-25 00:07:03 UTC desde: 127.0.0.1
+Usuario: admin@admin.com Creo el evento: nomb, fecha/hora: 2014-10-25 00:07:03 UTC desde: 127.0.0.1
+Usuario: admin@admin.com Creo el evento: asdfsdf, fecha/hora: 2014-10-25 00:07:03 UTC desde: 127.0.0.1
+Usuario: admin@admin.com salio del sistema, fecha/hora: 2014-10-25 00:07:03 UTC desde: 127.0.0.1
+Usuario: user@user.com accedio al sistema, fecha/hora: 2014-10-24 19:49:27 UTC desde: 127.0.0.1
+Usuario: user@user.com salio del sistema, fecha/hora: 2014-10-24 19:49:27 UTC desde: 127.0.0.1
+Usuario: admin@admin.com accedio al sistema, fecha/hora: 2014-10-27 13:13:16 UTC desde: 127.0.0.1
+Usuario: admin@admin.com accedio al sistema, fecha/hora: 2014-10-28 14:49:31 UTC desde: 127.0.0.1
+Usuario: admin@admin.com accedio al sistema, fecha/hora: 2014-10-28 14:49:31 UTC desde: 127.0.0.1
+Usuario: admin@admin.com Creo el evento: asdf, fecha/hora: 2014-10-28 14:49:31 UTC desde: 127.0.0.1
+Usuario: admin@admin.com elimino el evento: asdf, fecha/hora: 2014-10-28 14:49:31 UTC desde: 127.0.0.1
+Usuario: admin@admin.com elimino el evento: asdfsdf, fecha/hora: 2014-10-28 14:49:31 UTC desde: 127.0.0.1
+Usuario: admin@admin.com elimino el evento: asdf, fecha/hora: 2014-10-28 14:49:31 UTC desde: 127.0.0.1
