@@ -1,5 +1,23 @@
 <h3 align="center">Posts de <%=@evento.nombre%></h3>
+<div >
+<form class="navbar-form">
+      <%= form_tag posts_index_path(@evento.id), :method => 'get' do %>
+        <p>
+          <%= text_field_tag :search, params[:search] , :class =>"form-control col-lg-8",:placeholder=>"Nombre del post" %>  
+          <%= submit_tag "Buscar", :name => nil, :class =>"btn btn-default"%>
+        </p>
+      <% end %>
+    </form>
+  </div>
+  <%if current_user!=nil && current_user.rol!="user"%>
+<%if  params[:myposts]!=nil && params[:myposts]=="true"%>
+  <%=link_to "Todos",posts_index_path(@evento.id),'data-no-turbolink' => true%>
 
+    <%else%>
+       <%=link_to "Solo Mios","?myposts=true",'data-no-turbolink' => true%>
+ 
+  <%end%>
+  <%end%>
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
@@ -32,7 +50,7 @@
         
         <td><span><%=image_tag 'post.png',:size=>'20x20'%></span><font ><b> <%= post.title %></b><br>
           <i><%=image_tag 'user.png',:size=>'20x20'%></i><span>
-admin@admin.com
+<%=post.user.email%>
 </span><br>
   <span><%=image_tag 'calendar.png',:size=>'20x20'%></span>
  <span >
@@ -40,7 +58,7 @@ admin@admin.com
 <%=post.created_at.to_date%>
 </span></font></td>
         <td><%= link_to image_tag("detail.png",:size=>'25x25'), post,:style=>'color:#ffffff;',:class => 'btn btn-mini btn-success','data-no-turbolink' => true %></td>
-       <%if(current_user!=nil && current_user.rol=='admin')%>
+       <%   if (user_signed_in? && (current_user.rol == "admin" || (current_user.rol == "super" && current_user.id==post.user_id)))%>
         <td><%= link_to image_tag("ic_action_edit.png",:size=>'25x25'), edit_post_path(post),:style=>'color:#ffffff;',:class => 'btn btn-mini btn-warning'%></td>
         <td><%= link_to image_tag("delete.png",:size=>'25x25'), post,
             data: { confirm: 'Esta seguro?' }, :method => :delete,:class => 'btn btn-mini btn-danger' %></td>
@@ -50,8 +68,12 @@ admin@admin.com
     <% end %>
   </tbody>
 </table>
-
+ <div class="panel panel-success">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= paginate @posts %></h3>
+    </div>
+  </div>
 <br>
-<%if(current_user!=nil && current_user.rol=='admin')%>
+<%    if (user_signed_in? && (current_user.rol == "admin" || current_user.rol == "super"))%>
 <%= link_to image_tag("ic_action_new.png"), new_post_id_path(@evento_id),:class=>"btn btn-primary" %>
 <%end%>

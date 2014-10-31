@@ -11,7 +11,16 @@
 			  		Mis eventos
 			  	</a>
 		  <%end%>
-		  
+		<% if user_signed_in? && (current_user.rol=="admin")%>
+				  	<a href="https://developers.facebook.com/tools/comments?id=1504005809866397" class="list-group-item">
+			  			Comentarios
+			  		</a>
+	
+				  	<a href="/logs" class="list-group-item">
+			  		Log
+			  	</a>
+	
+		  <%end%>
 
 		  
 		</div>

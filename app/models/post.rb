@@ -5,4 +5,6 @@ class Post < ActiveRecord::Base
 		has_many :comments
 		has_many :post_attatchments
 		belongs_to :evento
+		belongs_to :user
+		
 end

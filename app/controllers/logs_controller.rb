@@ -4,15 +4,20 @@ class LogsController < ApplicationController
   # GET /logs
   # GET /logs.json
   def index
+    if(current_user!=nil && current_user.rol=="admin")
     if params[:log_date].blank?
       @logs = Log.all.page(params[:page]).per(10)
     else
       @logs = Log.where("DATE(created_at) = ?", params[:log_date].to_date).page(params[:page]).per(5)
     end
+  else
+    redirect_to root_path
+  end
  #  SendMail.testeando.deliver
   end
 def save
-
+   if(current_user!=nil && current_user.rol=="admin")
+ 
    if params[:log_date].blank?
       @logs = Log.all
       
@@ -21,6 +26,10 @@ def save
 
     end
 savefile(@logs)
+  else
+    redirect_to root_path
+  end
+
 
 
 end

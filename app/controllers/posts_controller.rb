@@ -4,13 +4,18 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.where(:evento_id=>params[:id])
+    search=params[:search]
+       if (user_signed_in? && (current_user.rol == "admin" || current_user.rol == "super") && params[:myposts]!=nil && params[:myposts]=="true" )
+          
+          @posts = Post.where(:evento_id=>params[:id],:user_id=>current_user.id).where('title LIKE ?', "%#{search}%").page(params[:page]).per(5)
+      else
+
+    @posts = (Post.where(:evento_id=>params[:id]).where('title LIKE ?', "%#{search}%")).page(params[:page]).per(5)
+  end
     @evento_id=params[:id]
     @evento=Evento.find(@evento_id)
     
   end
-def algo
-end
   # GET /posts/1
   # GET /posts/1.json
   def show
@@ -22,7 +27,7 @@ end
 
   # GET /posts/new
   def new
-    if(current_user!=nil && current_user.rol=='admin')
+    if (user_signed_in? && (current_user.rol == "admin" || current_user.rol == "super"))
       @evento=Evento.find(params[:id])
       @post = Post.new
     else
@@ -33,8 +38,8 @@ end
 
   # GET /posts/1/edit
   def edit
-    if(current_user!=nil && current_user.rol=='admin')
-    @evento=@post.evento
+    if (user_signed_in? && (current_user.rol == "admin" || (current_user.rol == "super" && current_user.id==@post.id)))
+      @evento=@post.evento
     else
       redirect_to root_path
     end
@@ -45,7 +50,8 @@ end
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-    respond_to do |format|
+    @post.user=current_user
+        respond_to do |format|
       if @post.save
         log("Usuario: "+current_user.email+" creo el post: "+@post.title+", fecha/hora: "+current_user.last_sign_in_at.to_s+" desde: "+current_user.last_sign_in_ip)
         format.html { redirect_to @post, notice: 'Post creado!' }
