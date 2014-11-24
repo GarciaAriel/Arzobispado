@@ -18,13 +18,14 @@
     <!--%= f.label :name, 'Nombre', :class => 'control-label',:for =>'inputDefault' %--><br>
     <%= f.text_field :name,:class => 'form-control input-lg' ,:placeholder=>"Nombre Cuestionario",:required => true%>
   </div>
-
-    <%= f.fields_for :questions do |builder| %>
-      <%= render 'question_fields', :ff => builder %>
-    <% end %>
-
-
-    <p ><%= link_to_add_fields "Adicionar pregunta", f, :questions %></p>  
+    
+      <%= f.fields_for :questions do |builder| %>
+        <%= render 'question_fields', :ff => builder %>
+      <% end %>
+    
+    <% if !@survey.archivo.exists?%>
+      <p ><%= link_to_add_fields "Adicionar pregunta", f, :questions %></p>  
+    <%end%>
     
   <div class="field">
   <%= f.hidden_field :evento_id,:value=>@evento.id %>
@@ -33,24 +34,26 @@
   <br>
   <br>
 
+<% if @survey.archivo.exists? %>
   <div class="panel panel-info">
     <div class="panel-heading">
       <h3 class="panel-title">
         <br>
         <!--%= f.file_field :image %-->
-        
-        <% if @survey.archivo.exists? %>
           Documento actual<br>
           <%=  @survey.archivo_file_name.to_s %>
-          <%= image_tag @survey.archivo.url(:thumb) %><br/>
-
           
-        <% end %>
-        <%= f.file_field :archivo %>
+<br><br>
+          Seleccionar nuevo:<%= f.file_field :archivo %>
+        
       </h3>
     </div>
   </div>
+<% end %>
 
+<% if !@survey.archivo.exists? && !@survey.questions.exists? %>
+  Seleccionar Cuestionario: <%= f.file_field :archivo %>
+<% end %>
 
   <br>
   <div class="actions">

@@ -17,27 +17,32 @@
         </div >
         <div align="center">
 
-          <ul >
+          
             Descripcion:
             <%= content_tag("pre", @evento.descripcion,:align => "center") %>
-          </ul>
+          
+
+          
+            Imagen del evento<br>
+          
+            <%if @evento.image.exists?%>
+
+              <td><%= image_tag @evento.image.url(:thumb) %></td>
+            <%else%>
+              <td><%= image_tag '/assets/missing.png', :size=>"100x100" %></td>
+            <%end%>
+          
+
+          <h4>
+            <strong>Fecha inicio del evento:</strong> <%= @evento.fecha_inicio%><br><strong>Fin del evento:</strong> <%= @evento.fecha_fin%>
+          </h4>
+                
         </div >  
       </div>
     </div>
-    <ul>
-      Imagen del evento<br>
     
-      <%if @evento.image.exists?%>
-
-        <td><%= image_tag @evento.image.url(:thumb) %></td>
-      <%else%>
-        <td><%= image_tag '/assets/missing.png', :size=>"100x100" %></td>
-      <%end%>
-    </ul>
     <div>
-      	<h4>
-          <strong>Fecha inicio del evento:</strong> <%= @evento.fecha_inicio%><br><strong>Fin del evento:</strong> <%= @evento.fecha_fin%>
-	      </h4>
+      	
     </div>
 
     
