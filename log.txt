@@ -25,3 +25,11 @@ Usuario: admin@admin.com salio del sistema, fecha/hora: 2014-10-26 21:53:25 UTC 
 Usuario: nelsonaraoz@ymail.com accedio al sistema, fecha/hora: 2014-10-31 00:05:07 UTC desde: 127.0.0.1
 Usuario: nelsonaraoz@ymail.com salio del sistema, fecha/hora: 2014-10-31 00:05:07 UTC desde: 127.0.0.1
 Usuario: admin@admin.com accedio al sistema, fecha/hora: 2014-10-31 00:30:40 UTC desde: 127.0.0.1
+Usuario: admin@admin.com salio del sistema, fecha/hora: 2014-10-31 00:30:40 UTC desde: 127.0.0.1
+Usuario: admin@admin.com accedio al sistema, fecha/hora: 2014-10-31 02:46:12 UTC desde: 127.0.0.1
+Usuario: admin@admin.com creo el post: Nuevo, fecha/hora: 2014-10-31 02:46:12 UTC desde: 127.0.0.1
+Usuario: admin@admin.com accedio al sistema, fecha/hora: 2014-10-31 17:36:39 UTC desde: 127.0.0.1
+Usuario: admin@admin.com salio del sistema, fecha/hora: 2014-10-31 17:36:39 UTC desde: 127.0.0.1
+Usuario: admin@admin.com accedio al sistema, fecha/hora: 2014-11-23 02:35:38 UTC desde: 127.0.0.1
+Usuario: admin@admin.com creo el post: titulo del post, fecha/hora: 2014-11-23 02:35:38 UTC desde: 127.0.0.1
+Usuario: admin@admin.com Actualizo el post: sdfsdf a nuevo titulo, fecha/hora: 2014-11-23 02:35:38 UTC desde: 127.0.0.1
