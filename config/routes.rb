@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'eventos#index'
+   root 'welcome#index'
    get 'posts/algo' => 'posts#algo'
    get 'welcome/menu' => 'welcome#menu'
    post 'comments/:id' => 'comments#update'
