@@ -1,0 +1,2 @@
+Arzobispado::Application.config.secret_key_base ='b866a0d0ef281e090ae783f59cf1f3aa87dca1ee80f88370255fb3e42693d9c0923917317b41c424a72e0561e5d36c898484
+1c0cb3ac945f64f38ef569eededc'
